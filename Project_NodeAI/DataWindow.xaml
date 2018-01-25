@@ -1,0 +1,30 @@
+﻿<Window x:Class="NodeAI.DataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NodeAI"
+        mc:Ignorable="d"
+        Title="DatabaseSelectorWindow" Width="370" MaxHeight="550" ResizeMode="NoResize">
+    <TabControl x:Name="TabControl">
+        <TabItem Header="Search">
+            <StackPanel Grid.ColumnSpan="2">
+                <Border BorderBrush="#FF959595" Padding="5" Margin="0,7,0,0" CornerRadius="2" BorderThickness="1">
+                    <StackPanel>
+                        <Label HorizontalAlignment="Left" Margin="0" Content="Search Information"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox x:Name="SearchElementType" Width="115.92" Margin="0" HorizontalAlignment="Center"/>
+                            <TextBox x:Name="SearchTerm" TextWrapping="NoWrap" Margin="0,0,10,0" Text="" KeyDown="HandleSearchTerm_KeyDown" Grid.Column="1"/>
+                        </Grid>
+                        <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Right" Margin="0,8,11,0" Width="75" Click="HandleSearch"/>
+                    </StackPanel>
+                </Border>
+                <DataGrid x:Name="SearchData" Height="352" Margin="0,9,0,0" HorizontalAlignment="Stretch" MinWidth="355.84" AutoGenerateColumns="True" CanUserAddRows="False" MouseDoubleClick="SelectData"/>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</Window>

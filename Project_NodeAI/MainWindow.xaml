@@ -1,0 +1,44 @@
+﻿<Window x:Class="NodeAI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NodeAI" Height="1000" Width="1400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="17.96"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="17.96"/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="Exit" />
+            </MenuItem>
+            <MenuItem Header="Export">
+                <MenuItem Header="Export to SQL" Click="ExportToSql"/>
+            </MenuItem>
+        </Menu>
+        <Canvas x:Name="NodeEditorCanvas" Grid.Row="1" MouseLeftButtonDown="DeselectNode" PreviewKeyDown="HandleKeyboard" Background="White" Focusable="True" ContextMenuOpening="HandleContextMenuOpening" ContextMenuClosing="HandleContextMenuClosing" MouseWheel="NodeEditorCanvas_MouseWheel" MouseRightButtonDown="HandleRightClick">
+            <Canvas.RenderTransform>
+                <ScaleTransform x:Name="NodeEditorCanvasScaleTransfrom"/>
+            </Canvas.RenderTransform>
+            <Canvas.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="selectionMenuActionNodes" Header="Action"/>
+                    <MenuItem x:Name="selectionMenuEventNodes" Header="Event"/>
+                    <MenuItem x:Name="selectionMenuGeneralNodes" Header="General"/>
+                    <MenuItem x:Name="selectionMenuTargetNodes" Header="Target"/>
+                </ContextMenu>
+            </Canvas.ContextMenu>
+        </Canvas>
+        <Menu Grid.Row="2">
+            <MenuItem x:Name="generalNode" Header="GeneralNode">
+                
+            </MenuItem>
+            <MenuItem x:Name="eventNode" Header="EventNode">
+                
+            </MenuItem>
+            <MenuItem x:Name="actionNode" Header="ActionNode">
+                
+            </MenuItem>
+        </Menu>
+    </Grid>
+</Window>

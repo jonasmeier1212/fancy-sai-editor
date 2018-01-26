@@ -39,7 +39,7 @@ namespace NodeAI
         EVENT_FRIENDLY_MISSING_BUFF,
         EVENT_SUMMONED_UNIT,
         EVENT_TARGET_MANA_PCT,
-        EVENT_QUEST_ACCEPT,
+        EVENT_QUEST,
         EVENT_MAX,
 
         /// <summary>

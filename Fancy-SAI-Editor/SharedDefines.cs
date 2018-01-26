@@ -40,6 +40,16 @@ namespace NodeAI
         EVENT_SUMMONED_UNIT,
         EVENT_TARGET_MANA_PCT,
         EVENT_QUEST,
+        EVENT_REACHED_HOME,
+        EVENT_RECEIVE_EMOTE,
+        EVENT_HAS_AURA,
+        EVENT_TARGET_BUFFED,
+        EVENT_RESET,
+        EVENT_PASSENGER,
+        EVENT_CHARMED,
+        EVENT_CHARMED_TARGET,
+        EVENT_SPELLHIT_TARGET,
+        EVENT_DAMAGED,
         EVENT_MAX,
 
         /// <summary>

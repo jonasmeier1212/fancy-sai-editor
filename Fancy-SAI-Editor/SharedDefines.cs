@@ -50,6 +50,14 @@ namespace NodeAI
         EVENT_CHARMED_TARGET,
         EVENT_SPELLHIT_TARGET,
         EVENT_DAMAGED,
+        EVENT_DAMAGED_TARGET,
+        EVENT_MOVEMENTINFORM,
+        EVENT_SUMMON_DESPAWN,
+        EVENT_CORPSE_REMOVED,
+        EVENT_AI_INIT,
+        EVENT_DATA_SET,
+        EVENT_WAYPOINT,
+        EVENT_TEXT_OVER,
         EVENT_MAX,
 
         /// <summary>

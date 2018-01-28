@@ -159,9 +159,13 @@
     <Compile Include="Nodes\ActionNodes\ActionNode_ThreatSinglePct.cs" />
     <Compile Include="Nodes\EventNodes\EventNode.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Aggro.cs" />
+    <Compile Include="Nodes\EventNodes\EventNode_AIInit.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Charmed.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_CharmedTarget.cs" />
+    <Compile Include="Nodes\EventNodes\EventNode_CorpeRemoved.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Damaged.cs" />
+    <Compile Include="Nodes\EventNodes\EventNode_DamagedTarget.cs" />
+    <Compile Include="Nodes\EventNodes\EventNode_DataSet.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Death.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Evade.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_FriendlyHealth.cs" />
@@ -172,6 +176,7 @@
     <Compile Include="Nodes\EventNodes\EventNode_Kill.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_LOS.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_ManaPct.cs" />
+    <Compile Include="Nodes\EventNodes\EventNode_MovementInform.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Passenger.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Quest.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Range.cs" />
@@ -181,12 +186,15 @@
     <Compile Include="Nodes\EventNodes\EventNode_Respawn.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Spellhit.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_SpellhitTarget.cs" />
+    <Compile Include="Nodes\EventNodes\EventNode_SummonDespawned.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_SummonedUnit.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_TargetBuffed.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_TargetHealthPct.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_TargetManaPct.cs" />
+    <Compile Include="Nodes\EventNodes\EventNode_TextOver.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Update.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_VictimCasting.cs" />
+    <Compile Include="Nodes\EventNodes\EventNode_Waypoint.cs" />
     <Compile Include="Nodes\GeneralNodes\CreatureTextCreation.xaml.cs">
       <DependentUpon>CreatureTextCreation.xaml</DependentUpon>
     </Compile>

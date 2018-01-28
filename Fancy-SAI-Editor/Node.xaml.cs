@@ -345,25 +345,18 @@ namespace NodeAI
         }
 
         /// <summary>
-        /// Searchs all connected nodes and puts them in a list.
-        /// </summary>
-        /// <returns>
-        /// Returns a list filled with all connected nodes.
-        /// </returns>
-        public List<Node> GetConnectedNodes()
-        {
-            List<Node> nodeList = new List<Node>();
-            GetConnectedNodes(nodeList, NodeType.NONE, NodeType.NONE);
-            return nodeList;
-        }
-
-        /// <summary>
         /// Searchs all connected nodes with passed type and puts them in a list.
         /// </summary>
         /// <returns>
         /// Returns a list filled with all connected nodes.
         /// </returns>
-        public List<Node> GetConnectedNodes(NodeType type)
+        public List<Node> GetConnectedNodes(NodeType type = NodeType.NONE)
+        {
+            List<Node> nodeList = new List<Node>();
+            GetConnectedNodes(nodeList, NodeType.NONE, type);
+            return nodeList;
+        }
+
         {
             List<Node> nodeList = new List<Node>();
             GetConnectedNodes(nodeList, NodeType.NONE, type);

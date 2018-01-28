@@ -381,7 +381,7 @@ namespace NodeAI
 
                     if (connection.ParentNode.type != originType)
                     {
-                        if(connection.ParentNode.Type == type || GetSuperiorType(connection.ParentNode.Type) == type)
+                        if(connection.ParentNode.Type == type || GetSuperiorType(connection.ParentNode.Type) == type || type == NodeType.NONE)
                             nodeList.Add(connection.ParentNode);
                         connection.ParentNode.GetConnectedNodes(nodeList, this.type, type);
                     }

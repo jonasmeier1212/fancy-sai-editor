@@ -10,6 +10,7 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="File">
+                <MenuItem Header="Position nodes" Click="HandlePositionNodes"/>
                 <MenuItem Header="Exit" />
             </MenuItem>
             <MenuItem Header="Export">

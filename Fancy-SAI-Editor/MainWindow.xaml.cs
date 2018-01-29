@@ -353,23 +353,45 @@ namespace NodeAI
 
         #endregion
 
-        private int GetMaxTopologicalDepth()
+        #region Positioning
+
+        private void HandlePositionNodes(object sender, RoutedEventArgs e)
         {
-            //First find the NPCs which should be affected
-            List<Nodes.GeneralNodes.Npc> npcNodes = new List<Nodes.GeneralNodes.Npc>();
             foreach (Node node in nodeStore)
             {
                 if (node.Type == NodeType.GENERAL_NPC && node is Nodes.GeneralNodes.Npc npcNode && npcNode.GetDirectlyConnectedNodes(NodeType.EVENT).Count != 0)
-                    npcNodes.Add(npcNode);
+                {
+                    foreach (Node rightNode in node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.OUTPUT))
+                    {
+                        PositionRight(rightNode, node);
+                    }
+                }
             }
-            
-            int depth = 0;
-            if (npcNodes.Count > 0)
-                depth = GetTopologicalDepth(npcNodes.First());
-            
+        }
 
-            
-            return depth;
+        public void PositionRight(Node node, Node referenceNode)
+        {
+            double newPosition = Canvas.GetLeft(referenceNode) + referenceNode.ActualWidth + 50;
+            Canvas.SetLeft(node, newPosition);
+            foreach (Node rightNode in node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.OUTPUT))
+                PositionRight(rightNode, node);
+
+            //Also check if there is any node on the left hand side which isn't the reference node
+            foreach (Node leftNode in node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.INPUT))
+            {
+                if(leftNode != referenceNode)
+                    PositionLeft(leftNode, node);
+            }
+        }
+
+        public void PositionLeft(Node node, Node referenceNode)
+        {
+            double newPosition = Canvas.GetLeft(referenceNode) - node.ActualWidth - 50;
+            Canvas.SetLeft(node, newPosition);
+            foreach (Node leftNode in node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.INPUT))
+            {
+                PositionLeft(leftNode, node);
+            }
         }
 
         private int GetTopologicalDepth(Node node)
@@ -386,6 +408,8 @@ namespace NodeAI
 
             return depth;
         }
+
+        #endregion
 
         /// <summary>
         /// Checks if the passed node collides with any other node
@@ -446,6 +470,7 @@ namespace NodeAI
             if(e.Source is Canvas)
                 ShowNodeSelectionMenuInNodeEditor(e.GetPosition(null));
         }
+
         private void Window_LayoutUpdated(object sender, EventArgs e)
         {
             UpdateNodeConnections();

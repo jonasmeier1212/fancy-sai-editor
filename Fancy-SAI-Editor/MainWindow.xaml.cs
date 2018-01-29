@@ -390,11 +390,6 @@ namespace NodeAI
             }
         }
 
-        private void PositionTop(Node node, Node referenceNode)
-        {
-
-        }
-
         private void PositionRight(Node node, Node referenceNode)
         {
             double newPosition = Canvas.GetLeft(referenceNode) + referenceNode.ActualWidth + 50;

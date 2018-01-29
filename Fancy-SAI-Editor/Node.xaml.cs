@@ -350,23 +350,19 @@ namespace NodeAI
         /// <returns>
         /// Returns a list filled with all connected nodes.
         /// </returns>
-        public List<Node> GetConnectedNodes(NodeType type = NodeType.NONE)
+        public List<Node> GetConnectedNodes(NodeType type = NodeType.NONE, NodeConnectorType connectorType = NodeConnectorType.NONE)
         {
             List<Node> nodeList = new List<Node>();
-            GetConnectedNodes(nodeList, NodeType.NONE, type);
+            GetConnectedNodes(nodeList, NodeType.NONE, type, connectorType);
             return nodeList;
         }
 
-        {
-            List<Node> nodeList = new List<Node>();
-            GetConnectedNodes(nodeList, NodeType.NONE, type);
-            return nodeList;
-        }
-
-        private void GetConnectedNodes(List<Node> nodeList, NodeType originType, NodeType type)
+        private void GetConnectedNodes(List<Node> nodeList, NodeType originType, NodeType type, NodeConnectorType connectorType = NodeConnectorType.NONE)
         {
             foreach(NodeConnector connector in connectorStore)
             {
+                if (connectorType != NodeConnectorType.NONE && connector.Type != connectorType)
+                    continue;
                 foreach (NodeConnector connection in connector.ConnectedNodeConnectors)
                 {
                     if (connection.ParentNode == null)
@@ -436,12 +432,12 @@ namespace NodeAI
             return null;
         }
 
-        public List<Node> GetDirectlyConnectedNodes(NodeType type)
+        public List<Node> GetDirectlyConnectedNodes(NodeType type, NodeConnectorType connectorType = NodeConnectorType.NONE)
         {
-            NodeConnector connector = FindNodeConnectorWithAllowedType(type);
+            NodeConnector connector = FindNodeConnectorWithAllowedType(type, connectorType);
 
             if (connector == null)
-                return null;
+                return new List<Node>();
 
             List<Node> connectedNodes = new List<Node>();
             foreach(NodeConnector connectedConnector in connector.ConnectedNodeConnectors)
@@ -450,12 +446,15 @@ namespace NodeAI
             return connectedNodes;
         }
 
-        private NodeConnector FindNodeConnectorWithAllowedType(NodeType type)
+        private NodeConnector FindNodeConnectorWithAllowedType(NodeType type, NodeConnectorType connectorType = NodeConnectorType.NONE)
         {
             foreach (NodeConnector connector in connectorStore)
             {
-                if (connector.AllowedNodeType == type || connector.AllowedNodeType == GetSuperiorType(type))
-                    return connector;
+                if (connector.AllowedNodeType == type || connector.AllowedNodeType == GetSuperiorType(type) || type == NodeType.NONE)
+                {
+                    if (connectorType == NodeConnectorType.NONE || connector.Type == connectorType)
+                        return connector;
+                }
             }
 
             return null;

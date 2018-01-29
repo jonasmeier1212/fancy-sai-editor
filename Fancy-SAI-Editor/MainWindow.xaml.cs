@@ -357,6 +357,14 @@ namespace NodeAI
 
         private void HandlePositionNodes(object sender, RoutedEventArgs e)
         {
+            /*
+             * The positioning system works like this:
+             * 1. Search all NPC nodes which should has the SAI
+             * 2. Call PositionRight for every node connected to an output connector:
+             *      -> Position all nodes right of the NPC node
+             *      -> Call PositionRight for every to an output connector connected node
+             *      -> Call PositionLeft for every to an input connector connected node which isn't the reference node(Important because otherwise there would be an endless loop!)
+             */
             foreach (Node node in nodeStore)
             {
                 if (node.Type == NodeType.GENERAL_NPC && node is Nodes.GeneralNodes.Npc npcNode && npcNode.GetDirectlyConnectedNodes(NodeType.EVENT).Count != 0)

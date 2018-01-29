@@ -157,6 +157,7 @@ namespace NodeAI
     /// </summary>
     public enum NodeConnectorType
     {
+        NONE,
         INPUT,
         OUTPUT,
     }

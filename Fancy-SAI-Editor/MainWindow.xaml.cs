@@ -353,6 +353,40 @@ namespace NodeAI
 
         #endregion
 
+        private int GetMaxTopologicalDepth()
+        {
+            //First find the NPCs which should be affected
+            List<Nodes.GeneralNodes.Npc> npcNodes = new List<Nodes.GeneralNodes.Npc>();
+            foreach (Node node in nodeStore)
+            {
+                if (node.Type == NodeType.GENERAL_NPC && node is Nodes.GeneralNodes.Npc npcNode && npcNode.GetDirectlyConnectedNodes(NodeType.EVENT).Count != 0)
+                    npcNodes.Add(npcNode);
+            }
+            
+            int depth = 0;
+            if (npcNodes.Count > 0)
+                depth = GetTopologicalDepth(npcNodes.First());
+            
+
+            
+            return depth;
+        }
+
+        private int GetTopologicalDepth(Node node)
+        {
+            int depth = 1;
+
+            List<Node> connectedNodes = node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.OUTPUT);
+            foreach(Node connectedNode in connectedNodes)
+            {
+                int newDepth = GetTopologicalDepth(connectedNode);
+                if (newDepth >= depth)
+                    return newDepth + depth;
+            }
+
+            return depth;
+        }
+
         /// <summary>
         /// Checks if the passed node collides with any other node
         /// </summary>

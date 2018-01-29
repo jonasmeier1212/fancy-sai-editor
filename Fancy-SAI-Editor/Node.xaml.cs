@@ -28,7 +28,7 @@ namespace NodeAI
         public Node()
         {
             InitializeComponent();
-            LoadTooltip();
+            //LoadTooltip();
             connectorStore = new List<NodeConnector>();
             paramStore = new Dictionary<ParamId, Func<string>>();
         }
@@ -413,49 +413,55 @@ namespace NodeAI
         /// <returns>Return the node of the passed type. If there is no such node it returns null.</returns>
         public Node GetDirectlyConnectedNode(NodeType type)
         {
-            NodeConnector connector = FindNodeConnectorWithAllowedType(type);
+            List<NodeConnector> connectors = FindNodeConnectorsWithAllowedType(type);
 
-            if (connector == null)
-                return null;
-
-            if(connector.AllowedConnectionCount > 1)
+            if (connectors.Count > 1)
             {
                 MessageBox.Show("Connector can have more than one node connected!");
                 return null;
             }
 
-            if (connector.ConnectedNodeConnectors.Count > 0)
-                return connector.ConnectedNodeConnectors.First().ParentNode;
+            foreach (NodeConnector connector in connectors)
+            {
+                if (connector.AllowedConnectionCount > 1)
+                {
+                    MessageBox.Show("Connector can have more than one node connected!");
+                    return null;
+                }
 
+                if (connector.ConnectedNodeConnectors.Count > 0)
+                    return connector.ConnectedNodeConnectors.First().ParentNode;
+            }
             return null;
         }
 
         public List<Node> GetDirectlyConnectedNodes(NodeType type, NodeConnectorType connectorType = NodeConnectorType.NONE)
         {
-            NodeConnector connector = FindNodeConnectorWithAllowedType(type, connectorType);
-
-            if (connector == null)
-                return new List<Node>();
+            List<NodeConnector> connectors = FindNodeConnectorsWithAllowedType(type, connectorType);
 
             List<Node> connectedNodes = new List<Node>();
-            foreach(NodeConnector connectedConnector in connector.ConnectedNodeConnectors)
-                connectedNodes.Add(connectedConnector.ParentNode);
+            foreach (NodeConnector connector in connectors)
+            {
+                foreach (NodeConnector connectedConnector in connector.ConnectedNodeConnectors)
+                    connectedNodes.Add(connectedConnector.ParentNode);
+            }
 
             return connectedNodes;
         }
 
-        private NodeConnector FindNodeConnectorWithAllowedType(NodeType type, NodeConnectorType connectorType = NodeConnectorType.NONE)
+        private List<NodeConnector> FindNodeConnectorsWithAllowedType(NodeType type, NodeConnectorType connectorType = NodeConnectorType.NONE)
         {
+            List<NodeConnector> connectors = new List<NodeConnector>();
             foreach (NodeConnector connector in connectorStore)
             {
                 if (connector.AllowedNodeType == type || connector.AllowedNodeType == GetSuperiorType(type) || type == NodeType.NONE)
                 {
                     if (connectorType == NodeConnectorType.NONE || connector.Type == connectorType)
-                        return connector;
+                        connectors.Add(connector);
                 }
             }
 
-            return null;
+            return connectors;
         }
 
         #endregion

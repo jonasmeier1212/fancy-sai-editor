@@ -299,8 +299,6 @@ namespace NodeAI
                 Canvas.SetLeft(this, Canvas.GetLeft(this) + (currentPoint.X - anchorPoint.X) * (2 - MainWindow.NodeEditorCanvasScaleTransfrom.ScaleX));
                 Canvas.SetTop(this, Canvas.GetTop(this) + (currentPoint.Y - anchorPoint.Y) * (2 - MainWindow.NodeEditorCanvasScaleTransfrom.ScaleY));
 
-                MainWindow.UpdateNodeConnections();
-
                 anchorPoint = currentPoint;
             }
             else if(Mouse.LeftButton != MouseButtonState.Pressed && System.Windows.Forms.Cursor.Clip.X != 0 && System.Windows.Forms.Cursor.Clip.Y != 0)

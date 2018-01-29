@@ -135,8 +135,6 @@ namespace NodeAI.Nodes.GeneralNodes
 
                 selectPanel.Visibility = Visibility.Collapsed;
                 dataPanel.Visibility = Visibility.Visible;
-                MainWindow.UpdateLayout();
-                MainWindow.UpdateNodeConnections();
             }
             catch (Exception exc)
             {
@@ -158,8 +156,6 @@ namespace NodeAI.Nodes.GeneralNodes
 
                 selectPanel.Visibility = Visibility.Collapsed;
                 dataPanel.Visibility = Visibility.Visible;
-                MainWindow.UpdateLayout();
-                MainWindow.UpdateNodeConnections();
             }
             catch (Exception exc)
             {

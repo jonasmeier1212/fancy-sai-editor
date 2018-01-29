@@ -249,7 +249,7 @@ namespace NodeAI
         /// <summary>
         /// Updates the node connection lines position.
         /// </summary>
-        public void UpdateNodeConnections()
+        private void UpdateNodeConnections()
         {
             foreach(Tuple<FrameworkElement, FrameworkElement, Path> nodeConnection in nodeConnectionStore)
             {
@@ -445,6 +445,10 @@ namespace NodeAI
             //Show node creation menu
             if(e.Source is Canvas)
                 ShowNodeSelectionMenuInNodeEditor(e.GetPosition(null));
+        }
+        private void Window_LayoutUpdated(object sender, EventArgs e)
+        {
+            UpdateNodeConnections();
         }
     }
 

@@ -369,15 +369,33 @@ namespace NodeAI
             {
                 if (node.Type == NodeType.GENERAL_NPC && node is Nodes.GeneralNodes.Npc npcNode && npcNode.GetDirectlyConnectedNodes(NodeType.EVENT).Count != 0)
                 {
+                    List<Node> rightNodes = new List<Node>();
+                    double y = Canvas.GetTop(node);
                     foreach (Node rightNode in node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.OUTPUT))
                     {
                         PositionRight(rightNode, node);
+                        rightNodes.Add(rightNode);
+                        y += rightNode.ActualHeight;
+                    }
+                    y -= (y - Canvas.GetTop(node)) / 2 + node.ActualHeight / 2;
+
+                    y += rightNodes.First().ActualHeight + 5;
+                    foreach (Node rightNode in rightNodes)
+                    {
+                        y -= rightNode.ActualHeight;
+                        Canvas.SetTop(rightNode, y);
+                        y -= 5;
                     }
                 }
             }
         }
 
-        public void PositionRight(Node node, Node referenceNode)
+        private void PositionTop(Node node, Node referenceNode)
+        {
+
+        }
+
+        private void PositionRight(Node node, Node referenceNode)
         {
             double newPosition = Canvas.GetLeft(referenceNode) + referenceNode.ActualWidth + 50;
             Canvas.SetLeft(node, newPosition);
@@ -392,7 +410,7 @@ namespace NodeAI
             }
         }
 
-        public void PositionLeft(Node node, Node referenceNode)
+        private void PositionLeft(Node node, Node referenceNode)
         {
             double newPosition = Canvas.GetLeft(referenceNode) - node.ActualWidth - 50;
             Canvas.SetLeft(node, newPosition);

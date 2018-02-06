@@ -113,9 +113,14 @@ namespace NodeAI
         ACTION_ATTACK_START,
         ACTION_CLOSE_GOSSIP,
         ACTION_ADD_AURA,
-        ACTION_SET_NPC_FLAG,
-        ACTION_ADD_NPC_FLAG,
-        ACTION_REMOVE_NPC_FLAG,
+        ACTION_NPC_FLAG,
+        ACTION_SIMPLE_TALK,
+        ACTION_INVOKER_CAST,
+        ACTION_CROSS_CAST,
+        ACTION_RANDOM_MOVE,
+        ACTION_INTERRUPT_SPELL,
+        ACTION_SEND_CUSTOM_ANIM,
+        ACTION_DYNAMIC_FLAG,
         ACTION_MAX,
 
         /// <summary>
@@ -234,6 +239,12 @@ namespace NodeAI
         UNIT_NPC_FLAG_REFORGER = 0x08000000,       // reforging
         UNIT_NPC_FLAG_TRANSMOGRIFIER = 0x10000000,       // transmogrification
         UNIT_NPC_FLAG_VAULTKEEPER = 0x20000000        // void storage
+    }
+
+    [Flags]
+    public enum DynamicFlags
+    {
+        //TODO!
     }
 
     public enum YesNo

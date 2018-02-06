@@ -7,27 +7,24 @@ using System.Threading.Tasks;
 namespace NodeAI.Nodes.EventNodes
 {
     /// <summary>
-    /// SMART_EVENT_TEXT_OVER
+    /// SMART_EVENT_ON_SPELLCLICK
     ///
     /// </summary>
-    [Node(MenuName = "Text over", Type = NodeType.EVENT_TEXT_OVER, AllowedTypes = new NodeType[] { NodeType.GENERAL_TEXT, NodeType.GENERAL_NPC, NodeType.ACTION })]
-    public class TextOver : EventNode
+    [Node(MenuName = "On spell click", Type = NodeType.EVENT_ON_SPELLCLICK, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    public class OnSpellClick : EventNode
     {
         /// <summary>
         /// Standard constructor.
         /// Initializes type, node name, tooltips and adds the connectors.
         /// </summary>
-        public TextOver()
+        public OnSpellClick()
         {
-            Type = NodeType.EVENT_TEXT_OVER;
+            Type = NodeType.EVENT_ON_SPELLCLICK;
 
-            EventId = "52";
+            EventId = "73";
 
             //Update text
-            NodeName.Content = "Text over";
-
-            AddParam<GeneralNodes.Text>(ParamId.PARAM_1, NodeType.GENERAL_TEXT, "Text");
-            AddParam<GeneralNodes.Npc>(ParamId.PARAM_2, NodeType.GENERAL_NPC, "NPC");
+            NodeName.Content = "On spell click";
         }
 
         /// <summary>
@@ -36,7 +33,7 @@ namespace NodeAI.Nodes.EventNodes
         /// <returns>Returns clone of this class.</returns>
         public override Node Clone()
         {
-            return new TextOver();
+            return new OnSpellClick();
         }
     }
 }

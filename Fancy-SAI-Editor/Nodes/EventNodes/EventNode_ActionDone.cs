@@ -7,27 +7,26 @@ using System.Threading.Tasks;
 namespace NodeAI.Nodes.EventNodes
 {
     /// <summary>
-    /// SMART_EVENT_TEXT_OVER
+    /// SMART_EVENT_ACTION_DONE
     ///
     /// </summary>
-    [Node(MenuName = "Text over", Type = NodeType.EVENT_TEXT_OVER, AllowedTypes = new NodeType[] { NodeType.GENERAL_TEXT, NodeType.GENERAL_NPC, NodeType.ACTION })]
-    public class TextOver : EventNode
+    [Node(MenuName = "Action done", Type = NodeType.EVENT_ACTION_DONE, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    public class ActionDone : EventNode
     {
         /// <summary>
         /// Standard constructor.
         /// Initializes type, node name, tooltips and adds the connectors.
         /// </summary>
-        public TextOver()
+        public ActionDone()
         {
-            Type = NodeType.EVENT_TEXT_OVER;
+            Type = NodeType.EVENT_ACTION_DONE;
 
-            EventId = "52";
+            EventId = "72";
 
             //Update text
-            NodeName.Content = "Text over";
+            NodeName.Content = "Action done";
 
-            AddParam<GeneralNodes.Text>(ParamId.PARAM_1, NodeType.GENERAL_TEXT, "Text");
-            AddParam<GeneralNodes.Npc>(ParamId.PARAM_2, NodeType.GENERAL_NPC, "NPC");
+            AddParam(ParamId.PARAM_1, "EventID:");
         }
 
         /// <summary>
@@ -36,7 +35,7 @@ namespace NodeAI.Nodes.EventNodes
         /// <returns>Returns clone of this class.</returns>
         public override Node Clone()
         {
-            return new TextOver();
+            return new ActionDone();
         }
     }
 }

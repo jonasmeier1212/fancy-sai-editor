@@ -313,7 +313,7 @@ namespace NodeAI
             selectedNode.NodeSelectionBorder.BorderThickness = new Thickness(1);
         }
 
-        private void DeselectNode(object sender, MouseButtonEventArgs e)
+        private void DeselectNode()
         {
             if (selectedNode != null)
             {
@@ -496,7 +496,72 @@ namespace NodeAI
         {
             UpdateNodeConnections();
         }
-    }
 
-    
+        private Point dragAnchorPoint;
+
+        private void NodeEditorCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(Mouse.LeftButton == MouseButtonState.Pressed && e.OriginalSource == NodeEditorCanvas)
+            {
+                Mouse.OverrideCursor = Cursors.ScrollAll;
+
+                Point curPoint = e.GetPosition(null);
+
+                double offsetX = dragAnchorPoint.X - curPoint.X;
+                double offsetY = dragAnchorPoint.Y - curPoint.Y;
+
+                //Check if offset is greater than minimum offset
+                //This must be done before scaling the offset because this config value
+                //should be independent of the panning ratio
+                if (Math.Abs(offsetX) < Properties.Settings.Default.PanningMinOffset)
+                    offsetX = 0;
+                if (Math.Abs(offsetY) < Properties.Settings.Default.PanningMinOffset)
+                    offsetY = 0;
+
+                //Scale offset to right value
+                offsetX = NodeEditorScrollViewer.ContentHorizontalOffset + offsetX * Properties.Settings.Default.PanningRatio;
+                offsetY = NodeEditorScrollViewer.ContentVerticalOffset + offsetY * Properties.Settings.Default.PanningRatio;
+
+                //Check if the horizontal offset exceeds the actual scrollable content
+                if (offsetX > NodeEditorScrollViewer.ScrollableWidth)
+                {
+                    //Enlarge editor canvas horizontally
+                    NodeEditorCanvas.Width = NodeEditorCanvas.ActualWidth + offsetX / Properties.Settings.Default.PanningRatio - NodeEditorScrollViewer.ContentHorizontalOffset;
+                    UpdateLayout();
+                }
+                //Check if the vertival offset exceeds the actual scrollable content
+                if (offsetY > NodeEditorScrollViewer.ScrollableHeight)
+                {
+                    //Enlarge editor canvas vertically
+                    NodeEditorCanvas.Height = NodeEditorCanvas.ActualHeight + offsetY / Properties.Settings.Default.PanningRatio - NodeEditorScrollViewer.ContentVerticalOffset;
+                    UpdateLayout();
+                }
+
+                NodeEditorScrollViewer.ScrollToHorizontalOffset(offsetX);
+                NodeEditorScrollViewer.ScrollToVerticalOffset(offsetY);
+
+                dragAnchorPoint = curPoint;
+            }
+        }
+
+        private void NodeEditorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DeselectNode();
+
+            dragAnchorPoint = e.GetPosition(null);
+        }
+
+        private void NodeEditorCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //Reset cursor
+            Mouse.OverrideCursor = Cursors.Arrow;
+        }
+
+        private void NodeEditorScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            //Route this event manually because I didn't figured out how to prevent this yet
+            NodeEditorCanvas_MouseWheel(sender, e);
+            e.Handled = true;
+        }
+    }
 }

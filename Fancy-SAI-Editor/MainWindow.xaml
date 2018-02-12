@@ -1,7 +1,7 @@
 ﻿<Window x:Class="NodeAI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="NodeAI" Height="1000" Width="1400" LayoutUpdated="Window_LayoutUpdated">
+        Title="NodeAI" Height="500" Width="700" LayoutUpdated="Window_LayoutUpdated">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="17.96"/>
@@ -17,19 +17,21 @@
                 <MenuItem Header="Export to SQL" Click="ExportToSql"/>
             </MenuItem>
         </Menu>
-        <Canvas x:Name="NodeEditorCanvas" Grid.Row="1" MouseLeftButtonDown="DeselectNode" PreviewKeyDown="HandleKeyboard" Background="White" Focusable="True" ContextMenuOpening="HandleContextMenuOpening" ContextMenuClosing="HandleContextMenuClosing" MouseWheel="NodeEditorCanvas_MouseWheel" MouseRightButtonDown="HandleRightClick">
-            <Canvas.RenderTransform>
-                <ScaleTransform x:Name="NodeEditorCanvasScaleTransfrom"/>
-            </Canvas.RenderTransform>
-            <Canvas.ContextMenu>
-                <ContextMenu>
-                    <MenuItem x:Name="selectionMenuActionNodes" Header="Action"/>
-                    <MenuItem x:Name="selectionMenuEventNodes" Header="Event"/>
-                    <MenuItem x:Name="selectionMenuGeneralNodes" Header="General"/>
-                    <MenuItem x:Name="selectionMenuTargetNodes" Header="Target"/>
-                </ContextMenu>
-            </Canvas.ContextMenu>
-        </Canvas>
+        <ScrollViewer x:Name="NodeEditorScrollViewer" HorizontalScrollBarVisibility="Visible" Grid.Row="1" CanContentScroll="True" PreviewMouseWheel="NodeEditorScrollViewer_PreviewMouseWheel">
+            <Canvas x:Name="NodeEditorCanvas" PreviewKeyDown="HandleKeyboard" Background="White" Focusable="True" ContextMenuOpening="HandleContextMenuOpening" ContextMenuClosing="HandleContextMenuClosing" MouseWheel="NodeEditorCanvas_MouseWheel" MouseRightButtonDown="HandleRightClick" MouseMove="NodeEditorCanvas_MouseMove" MouseLeftButtonDown="NodeEditorCanvas_MouseLeftButtonDown" MouseLeftButtonUp="NodeEditorCanvas_MouseLeftButtonUp">
+                <Canvas.RenderTransform>
+                    <ScaleTransform x:Name="NodeEditorCanvasScaleTransfrom"/>
+                </Canvas.RenderTransform>
+                <Canvas.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem x:Name="selectionMenuActionNodes" Header="Action"/>
+                        <MenuItem x:Name="selectionMenuEventNodes" Header="Event"/>
+                        <MenuItem x:Name="selectionMenuGeneralNodes" Header="General"/>
+                        <MenuItem x:Name="selectionMenuTargetNodes" Header="Target"/>
+                    </ContextMenu>
+                </Canvas.ContextMenu>
+            </Canvas>
+        </ScrollViewer>
         <Menu Grid.Row="2">
             <MenuItem x:Name="generalNode" Header="GeneralNode">
                 

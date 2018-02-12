@@ -82,5 +82,23 @@ namespace NodeAI.Properties {
                 this["MysqlServer"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float PanningMinOffset {
+            get {
+                return ((float)(this["PanningMinOffset"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float PanningRatio {
+            get {
+                return ((float)(this["PanningRatio"]));
+            }
+        }
     }
 }

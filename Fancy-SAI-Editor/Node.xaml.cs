@@ -296,8 +296,8 @@ namespace NodeAI
 
                 System.Windows.Forms.Cursor.Clip = new System.Drawing.Rectangle();
 
-                Canvas.SetLeft(this, Canvas.GetLeft(this) + (currentPoint.X - anchorPoint.X) * (2 - MainWindow.NodeEditorCanvasScaleTransfrom.ScaleX));
-                Canvas.SetTop(this, Canvas.GetTop(this) + (currentPoint.Y - anchorPoint.Y) * (2 - MainWindow.NodeEditorCanvasScaleTransfrom.ScaleY));
+                Canvas.SetLeft(this, Canvas.GetLeft(this) + currentPoint.X - anchorPoint.X);
+                Canvas.SetTop(this, Canvas.GetTop(this) + currentPoint.Y - anchorPoint.Y);
 
                 anchorPoint = currentPoint;
             }

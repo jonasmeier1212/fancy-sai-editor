@@ -188,7 +188,7 @@ namespace NodeAI
         /// <summary>
         /// Exports the selected node tree if it's complete and valid
         /// </summary>
-        public void ExportSelectedNodeTree()
+        public void ExportSelectedNodeTrees()
         {
 
         }

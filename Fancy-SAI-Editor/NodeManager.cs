@@ -16,6 +16,8 @@ namespace NodeAI
             nodeEditor = _nodeEditor;
 
             nodeTrees = new List<NodeTree>();
+            selectedNodes = new List<Node>();
+            copiedNodes = new List<Node>();
         }
 
         private static NodeManager _instance = null;
@@ -52,21 +54,25 @@ namespace NodeAI
         }
 
         /// <summary>
-        /// Copies the selected node.
-        /// To copy a node one must be selected.
+        /// Copies the selected nodes.
         /// </summary>
-        public void CopyNode()
+        public void CopyNodes()
         {
-
+            copiedNodes = selectedNodes;
         }
 
         /// <summary>
-        /// Pastes the copied node.
+        /// Pastes the copied nodes.
         /// Before pasting a node must be copied.
         /// </summary>
-        public void PasteNode()
+        public void PasteNodes()
         {
-
+            foreach(Node copiedNode in copiedNodes)
+            {
+                Node newNode = copiedNode.Clone();
+                AddNode(newNode);
+                //TODO: When connected nodes are copied connect the cloned nodes like the copied were connected
+            }
         }
 
         /// <summary>
@@ -178,5 +184,7 @@ namespace NodeAI
 
         private Canvas nodeEditor;
         private List<NodeTree> nodeTrees;
+        private List<Node> selectedNodes;
+        private List<Node> copiedNodes;
     }
 }

@@ -48,6 +48,7 @@ namespace NodeAI
             }
 
             node.NodeTree.AddNode(node); //Add the node to its node tree to handle positioning etc..
+            nodeEditor.Children.Add(node);
         }
 
         /// <summary>

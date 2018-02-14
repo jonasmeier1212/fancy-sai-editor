@@ -111,7 +111,7 @@ namespace NodeAI
                 {
                     if (originConnector.CanConnect(targetConnector) && targetConnector.CanConnect(originConnector))
                     {
-                        NodeManager.Instance.ConnectedNodeConnectors(originConnector, targetConnector);
+                        NodeManager.Instance.ConnectNodeConnectors(originConnector, targetConnector);
                         return true;
                     }
                 }

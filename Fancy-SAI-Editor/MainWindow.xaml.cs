@@ -182,13 +182,13 @@ namespace NodeAI
             switch (e.Key)
             {
                 case Key.Delete:
-                    NodeManager.Instance.DeleteNode();
+                    NodeManager.Instance.DeleteNodes();
                     break;
                 case Key.C:
-                    NodeManager.Instance.CopyNode();
+                    NodeManager.Instance.CopyNodes();
                     break;
                 case Key.V:
-                    NodeManager.Instance.PasteNode();
+                    NodeManager.Instance.PasteNodes();
                     break;
                 default:
                     break;

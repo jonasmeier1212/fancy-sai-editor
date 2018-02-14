@@ -76,11 +76,15 @@ namespace NodeAI
         }
 
         /// <summary>
-        /// Deletes the selected node
+        /// Deletes the selected nodes
         /// </summary>
-        public void DeleteNode()
+        public void DeleteNodes()
         {
-
+            foreach(Node selectedNode in selectedNodes)
+            {
+                selectedNode.NodeTree.RemoveNode(selectedNode);
+                nodeEditor.Children.Remove(selectedNode);
+            }
         }
 
         /// <summary>

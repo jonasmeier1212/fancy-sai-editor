@@ -28,6 +28,7 @@ namespace NodeAI
         public Node()
         {
             InitializeComponent();
+            Deselect(); //Node shouldn't be selected by default
             //LoadTooltip();
             connectorStore = new List<NodeConnector>();
             paramStore = new Dictionary<ParamId, Func<string>>();
@@ -117,6 +118,22 @@ namespace NodeAI
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// Activates visual selection elements
+        /// </summary>
+        public void Select()
+        {
+            NodeSelectionBorder.BorderBrush = Brushes.LightSkyBlue;
+        }
+
+        /// <summary>
+        /// Disables visual selection elements
+        /// </summary>
+        public void Deselect()
+        {
+            NodeSelectionBorder.BorderBrush = Brushes.White;
         }
 
         /// <summary>

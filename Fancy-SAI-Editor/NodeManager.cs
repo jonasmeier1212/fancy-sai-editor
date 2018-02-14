@@ -94,8 +94,8 @@ namespace NodeAI
         public void SelectNodes(List<Node> _nodes)
         {
             selectedNodes = _nodes;
-            foreach(Node selectedNode in selectedNodes)
-                selectedNode.NodeSelectionBorder.BorderBrush = Brushes.Blue;
+            foreach (Node selectedNode in selectedNodes)
+                selectedNode.Select();
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace NodeAI
         {
             selectedNodes.Clear();
             selectedNodes.Add(_node);
-            _node.NodeSelectionBorder.BorderBrush = Brushes.Blue;
+            _node.Select();
         }
 
         /// <summary>
@@ -113,8 +113,8 @@ namespace NodeAI
         /// </summary>
         public void DeselectNodes()
         {
-            foreach(Node selectedNode in selectedNodes)
-                selectedNode.NodeSelectionBorder.BorderBrush = nodeEditor.Background;
+            foreach (Node selectedNode in selectedNodes)
+                selectedNode.Deselect();
             selectedNodes.Clear();
         }
 
@@ -123,7 +123,7 @@ namespace NodeAI
         /// </summary>
         public void Scale(float delta)
         {
-
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace NodeAI
         /// </summary>
         public void Position()
         {
-
+            throw new NotImplementedException();
         }
         
         /// <summary>
@@ -139,7 +139,7 @@ namespace NodeAI
         /// </summary>
         public void Update()
         {
-
+            //throw new NotImplementedException();
         }
 
         /// <summary>

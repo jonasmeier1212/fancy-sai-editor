@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:NodeAI"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="200">
-    <Border x:Name="NodeSelectionBorder" BorderBrush="LightSkyBlue" BorderThickness="0">
+    <Border x:Name="NodeSelectionBorder" BorderBrush="LightSkyBlue" BorderThickness="1">
         <Border Background="#FF2D2D2D" BorderBrush="Black" BorderThickness="2" CornerRadius="15"  MouseMove="OnMouseMove" MouseLeftButtonDown="OnLeftMouseDown">
             <StackPanel>
                 <Label x:Name="NodeName" HorizontalAlignment="Center" Foreground="White" Background="{x:Null}" FontSize="15" FontWeight="Bold">Noname</Label>

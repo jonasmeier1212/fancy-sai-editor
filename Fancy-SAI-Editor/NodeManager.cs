@@ -26,14 +26,28 @@ namespace NodeAI
             set { Debug.Assert(_instance == null); _instance = value; }
         }
 
-
         /// <summary>
-        /// Adds a node to the node store and manage positioning of this node.
-        /// If the creator node is given the created node is going to be connected to the creator
+        /// Adds a node to it's corresponding node tree and manages positioning of this node.
+        /// If the creator node is given the created node is going to be connected to the creator.
         /// </summary>
         public void AddNode(Node node, Node creator = null)
         {
+            //Important: First handle connections and then sort in a node tree to ensure a correct classification!
+            if (creator != null)
+            {
+                if (creator.ConnectToNode(node))
+                    node.NodeTree = creator.NodeTree;
+            }
+            
+            //If the new node is in no tree created a new for this node
+            if(node.NodeTree == null)
+            {
+                NodeTree newTree = new NodeTree();
+                nodeTrees.Add(newTree);
+                node.NodeTree = newTree;
+            }
 
+            node.NodeTree.AddNode(node); //Add the node to its node tree to handle positioning etc..
         }
 
         /// <summary>

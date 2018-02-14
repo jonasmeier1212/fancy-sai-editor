@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Diagnostics;
+using System.Windows.Media;
 
 namespace NodeAI
 {
@@ -92,7 +93,9 @@ namespace NodeAI
         /// </summary>
         public void SelectNodes(List<Node> _nodes)
         {
-
+            selectedNodes = _nodes;
+            foreach(Node selectedNode in selectedNodes)
+                selectedNode.NodeSelectionBorder.BorderBrush = Brushes.Blue;
         }
 
         /// <summary>
@@ -100,7 +103,9 @@ namespace NodeAI
         /// </summary>
         public void SelectNode(Node _node)
         {
-
+            selectedNodes.Clear();
+            selectedNodes.Add(_node);
+            _node.NodeSelectionBorder.BorderBrush = Brushes.Blue;
         }
 
         /// <summary>
@@ -108,7 +113,9 @@ namespace NodeAI
         /// </summary>
         public void DeselectNodes()
         {
-
+            foreach(Node selectedNode in selectedNodes)
+                selectedNode.NodeSelectionBorder.BorderBrush = nodeEditor.Background;
+            selectedNodes.Clear();
         }
 
         /// <summary>

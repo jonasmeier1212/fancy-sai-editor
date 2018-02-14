@@ -166,31 +166,30 @@ namespace NodeAI
         /// </summary>
         public void Export()
         {
-            /*// Configure open file dialog box
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
-            {
-                FileName = "SAI", // Default file name
-                DefaultExt = ".sql", // Default file extension
-                Filter = "SQL File (.sql)|*.sql" // Filter files by extension
-            };
-
-            // Show open file dialog box
-            Nullable<bool> result = dlg.ShowDialog();
-
-            // Process open file dialog box results
-            if (result == true)
-            {
-                SqlExporter exporter = new SqlExporter(nodes);
-                exporter.Export(dlg.FileName);
-            }*/
+            foreach (NodeTree tree in nodeTrees)
+                SqlExporter.ExportNodeTree(tree);
         }
 
         /// <summary>
-        /// Exports the selected node tree if it's complete and valid
+        /// Exports the selected nodes trees associated with the selected nodes
         /// </summary>
         public void ExportSelectedNodeTrees()
         {
+            foreach (NodeTree tree in GetNodeTrees(selectedNodes))
+                SqlExporter.ExportNodeTree(tree);
+        }
 
+        /// <summary>
+        /// Returns a list with all node trees the passed nodes contains
+        /// </summary>
+        private HashSet<NodeTree> GetNodeTrees(List<Node> _nodes)
+        {
+            HashSet<NodeTree> nodeTrees = new HashSet<NodeTree>();
+
+            foreach (Node node in _nodes)
+                nodeTrees.Add(node.NodeTree);
+
+            return nodeTrees;
         }
 
         private Canvas nodeEditor;

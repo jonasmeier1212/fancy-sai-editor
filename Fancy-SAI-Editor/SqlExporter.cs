@@ -9,18 +9,11 @@ using System.IO;
 
 namespace NodeAI
 {
-    class SqlExporter
+    static class SqlExporter
     {
-        public SqlExporter(List<Node> _nodeStore)
+        public static void ExportNodeTree(NodeTree _tree)
         {
-            nodeStore = _nodeStore;
-        }
-
-        private List<Node> nodeStore;
-
-        public void Export(string fileName)
-        {
-            string update = "";
+            /*string update = "";
 
             //First find the NPCs which should be affected
             List<Npc> npcNodes = new List<Npc>();
@@ -147,7 +140,7 @@ namespace NodeAI
             catch (Exception e)
             {
                 MessageBox.Show("Unknow error while exporting!\nError: " + e.Message);
-            }
+            }*/
         }
     }
 

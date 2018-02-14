@@ -31,6 +31,7 @@ namespace NodeAI
             //LoadTooltip();
             connectorStore = new List<NodeConnector>();
             paramStore = new Dictionary<ParamId, Func<string>>();
+            nodeTree = null;
         }
 
         /// <summary>

@@ -99,28 +99,40 @@ namespace NodeAI
 
         /// <summary>
         /// Connects the node to the passed node.
+        /// Returns true if the connections was successful
         /// </summary>
         /// <param name="node">Node to connect to.</param>
-        public void ConnectToNode(Node node)
+        public bool ConnectToNode(Node node)
         {
-            NodeConnector originNodeConnector = null;
-            NodeConnector targetNodeConnector = null;
-            foreach (NodeConnector co in connectorStore)
+            foreach (NodeConnector originConnector in connectorStore)
             {
-                foreach(NodeConnector ct in node.connectorStore)
+                foreach(NodeConnector targetConnector in node.connectorStore)
                 {
-                    if (co.CanConnect(ct) && ct.CanConnect(co))
+                    if (originConnector.CanConnect(targetConnector) && targetConnector.CanConnect(originConnector))
                     {
-                        originNodeConnector = co;
-                        targetNodeConnector = ct;
+                        NodeManager.Instance.ConnectedNodeConnectors(originConnector, targetConnector);
+                        return true;
                     }
                 }
             }
+            return false;
+        }
 
-            if (originNodeConnector == null || targetNodeConnector == null)
-                return;
+        /// <summary>
+        /// Checks if this node is connected with the passed node
+        /// </summary>
+        public bool IsConnectedWith(Node _node)
+        {
+            foreach(NodeConnector connector in connectorStore)
+            {
+                foreach(NodeConnector connectedConnector in connector.ConnectedNodeConnectors)
+                {
+                    if (connectedConnector.ParentNode == _node)
+                        return true;
+                }
+            }
 
-            NodeManager.Instance.ConnectNodeConnectors(originNodeConnector, targetNodeConnector);
+            return false;
         }
 
         #region Node Layout

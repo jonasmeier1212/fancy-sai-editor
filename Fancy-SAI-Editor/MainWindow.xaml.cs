@@ -273,6 +273,8 @@ namespace NodeAI
                     UpdateLayout();
                 }
 
+                //TODO: Diminish canvas size if there is no content in the part outside the screen
+
                 NodeEditorScrollViewer.ScrollToHorizontalOffset(offsetX);
                 NodeEditorScrollViewer.ScrollToVerticalOffset(offsetY);
 

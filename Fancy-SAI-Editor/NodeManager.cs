@@ -120,8 +120,8 @@ namespace NodeAI
         }
 
         /// <summary>
-        /// Connects two node connectors with each other.
-        /// A visual path is going to be created and the new connected nodes are going to be sorted in the correct node tree.
+        /// Connects two node connectors visually with each other.
+        /// A spline is going to be created and the new connected nodes are going to be sorted in the correct node tree.
         /// </summary>
         public void ConnectNodeConnectors(NodeConnector origin, NodeConnector target)
         {

@@ -121,6 +121,7 @@
       <DependentUpon>NodeConnector.xaml</DependentUpon>
     </Compile>
     <Compile Include="NodeMenuItem.cs" />
+    <Compile Include="NodeManager.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_ActivateGObject.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_AddAura.cs" />
@@ -259,6 +260,7 @@
     <Compile Include="Nodes\TargetNodes\TargetNode_ThreatList.cs" />
     <Compile Include="Nodes\TargetNodes\TargetNode_VehicleAccessory.cs" />
     <Compile Include="Nodes\TargetNodes\TargetNode_Victim.cs" />
+    <Compile Include="NodeTree.cs" />
     <Compile Include="SharedDefines.cs" />
     <Compile Include="SqlExporter.cs" />
     <Page Include="DataWindow.xaml">

@@ -55,6 +55,7 @@ namespace NodeAI
 
         #region Fields & Attributes
         private MainWindow mainWindow;
+        private NodeTree nodeTree;
         private NodeType type;
         private List<NodeConnector> connectorStore;
         private NodeData nodeData;
@@ -83,6 +84,11 @@ namespace NodeAI
                 return mainWindow;
             }
         }
+
+        /// <summary>
+        /// Stores in which node tree this node is
+        /// </summary>
+        public NodeTree NodeTree { get => nodeTree; set => nodeTree = value; }
 
         /// <summary>
         /// Stores the data of the Node. Mostly loaded from the database. Prefer usage of an instance of a derivation class from DataTable in DataStructures.cs
@@ -114,9 +120,7 @@ namespace NodeAI
             if (originNodeConnector == null || targetNodeConnector == null)
                 return;
 
-            MainWindow.AddNodeConnectionVisual(originNodeConnector, targetNodeConnector);
-            originNodeConnector.ConnectTo(targetNodeConnector);
-            targetNodeConnector.ConnectTo(originNodeConnector);
+            NodeManager.Instance.ConnectNodeConnectors(originNodeConnector, targetNodeConnector);
         }
 
         #region Node Layout
@@ -282,7 +286,7 @@ namespace NodeAI
         {
             anchorPoint = new Point(System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y);
 
-            MainWindow.SelectNode(this);
+            NodeManager.Instance.SelectNode(this);
 
             e.Handled = true;
         }
@@ -294,10 +298,16 @@ namespace NodeAI
             {
                 currentPoint = new Point(System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y);
 
-                System.Windows.Forms.Cursor.Clip = new System.Drawing.Rectangle();
+                System.Windows.Forms.Cursor.Clip = new System.Drawing.Rectangle(System.Windows.Forms.Cursor.Position, new System.Drawing.Size(5,5));
 
-                Canvas.SetLeft(this, Canvas.GetLeft(this) + currentPoint.X - anchorPoint.X);
-                Canvas.SetTop(this, Canvas.GetTop(this) + currentPoint.Y - anchorPoint.Y);
+                double offsetX = currentPoint.X - anchorPoint.X;
+                double offsetY = currentPoint.Y - anchorPoint.Y;
+
+                double newPositionX = Canvas.GetLeft(this) + offsetX;
+                double newPositionY = Canvas.GetTop(this) + offsetY;
+
+                Canvas.SetLeft(this, newPositionX);
+                Canvas.SetTop(this, newPositionY);
 
                 anchorPoint = currentPoint;
             }

@@ -14,7 +14,7 @@
                 <MenuItem Header="Exit" />
             </MenuItem>
             <MenuItem Header="Export">
-                <MenuItem Header="Export to SQL" Click="ExportToSql"/>
+                <MenuItem Header="Export to SQL" Click="HandleMenu_ExportToSql"/>
             </MenuItem>
         </Menu>
         <ScrollViewer x:Name="NodeEditorScrollViewer" HorizontalScrollBarVisibility="Visible" Grid.Row="1" CanContentScroll="True" PreviewMouseWheel="NodeEditorScrollViewer_PreviewMouseWheel">

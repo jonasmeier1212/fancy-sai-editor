@@ -18,11 +18,28 @@ namespace NodeAI
         }
 
         /// <summary>
-        /// Adds a node to this tree and position it in this tree
+        /// Adds a node to this tree and position it in this tree.
+        /// Also removes the node from its old tree if it had one.
+        /// If the old tree had more than one node the two trees are combined.
         /// </summary>
         public void AddNode(Node _node)
         {
             nodes.Add(_node);
+
+            if (_node.NodeTree != null)
+            {
+                if (_node.NodeTree.nodes.Count == 1)
+                    _node.NodeTree.RemoveNode(_node);
+                else
+                {
+                    //Combine the two trees
+                    foreach(Node node in _node.NodeTree.nodes)
+                    {
+                        nodes.Add(node);
+                        _node.NodeTree.RemoveNode(node);
+                    }
+                }
+            }
 
             //Recalc height and width
             //TODO!

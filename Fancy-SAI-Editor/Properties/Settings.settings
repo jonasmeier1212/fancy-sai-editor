@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="SQLiteDatabase" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">../../NodeAIDatabase.db</Value>
     </Setting>
     <Setting Name="MysqlUsername" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

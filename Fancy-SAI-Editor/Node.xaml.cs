@@ -29,7 +29,7 @@ namespace NodeAI
         {
             InitializeComponent();
             Deselect(); //Node shouldn't be selected by default
-            //LoadTooltip();
+            LoadTooltip();
             connectorStore = new List<NodeConnector>();
             paramStore = new Dictionary<ParamId, Func<string>>();
             nodeTree = null;

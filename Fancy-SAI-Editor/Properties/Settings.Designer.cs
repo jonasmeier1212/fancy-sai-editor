@@ -25,7 +25,7 @@ namespace NodeAI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../NodeAIDatabase.db")]
         public string SQLiteDatabase {
             get {
                 return ((string)(this["SQLiteDatabase"]));

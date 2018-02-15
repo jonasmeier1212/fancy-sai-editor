@@ -31,11 +31,7 @@ namespace NodeAI
             //Initialize node manager
             NodeManager.Instance = new NodeManager(NodeEditorCanvas, NodeEditorCanvasScaleTransfrom);
 
-            Database.InitializeDatabase("SERVER=" + Properties.Settings.Default.MysqlServer + "; " +
-                "DATABASE=" + Properties.Settings.Default.MysqlWorldDatabase + ";" +
-                "UID=" + Properties.Settings.Default.MysqlUsername + ";" +
-                " PASSWORD=" + Properties.Settings.Default.MysqlPassword,
-                "Data Source=" + Properties.Settings.Default.SQLiteDatabase + "; Version=3;");
+            Database.InitializeDatabase();
 
             CreateNodeCreationMenu();
         }

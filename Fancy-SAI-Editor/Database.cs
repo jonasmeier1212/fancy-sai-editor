@@ -28,25 +28,35 @@ namespace NodeAI
         /// <summary>
         /// Initializes the connections with the databases.
         /// </summary>
-        /// <param name="mysqlConnectionString"></param>
-        /// <param name="sqliteConnectionString"></param>
-        public static void InitializeDatabase(string mysqlConnectionString, string sqliteConnectionString)
+        public static void InitializeDatabase()
         {
             try
             {
-                mySqlConnection = new MySqlConnection(mysqlConnectionString);
-                mySqlConnection.Open();
+                //Init Mysql connection
+                try
+                {
+                    mySqlConnection = new MySqlConnection(
+                        "SERVER=" + Properties.Settings.Default.MysqlServer + "; " +
+                        "DATABASE=" + Properties.Settings.Default.MysqlWorldDatabase + ";" +
+                        " PASSWORD=" + Properties.Settings.Default.MysqlPassword);
+                    mySqlConnection.Open();
 
-                sqliteConnection = new SQLiteConnection(sqliteConnectionString);
-                sqliteConnection.Open();
-            }
-            catch(MySqlException e)
-            {
-                MessageBox.Show("Can't connect to Mysql Database!\nError: " + e.Message);
-            }
-            catch (SQLiteException e)
-            {
-                MessageBox.Show("Can't connect to SQLite Database!\nError: " + e.Message);
+
+                }
+                catch (MySqlException e)
+                {
+                    MessageBox.Show("Can't connect to Mysql Database!\nError: " + e.Message);
+                }
+                //Init Sqlite Connection
+                try
+                {
+                    sqliteConnection = new SQLiteConnection("Data Source=" + Properties.Settings.Default.SQLiteDatabase + "; Version=3;");
+                    sqliteConnection.Open();
+                }
+                catch (SQLiteException e)
+                {
+                    MessageBox.Show("Can't connect to SQLite Database!\nError: " + e.Message);
+                }
             }
             catch (Exception e)
             {
@@ -190,7 +200,7 @@ namespace NodeAI
                     }
                 }
             }
-            catch (DbException e)
+            catch (Exception e)
             {
                 MessageBox.Show("Database Error!\nError: " + e.Message);
             }

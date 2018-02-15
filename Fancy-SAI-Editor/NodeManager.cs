@@ -186,8 +186,11 @@ namespace NodeAI
         /// </summary>
         public void ConnectNodeConnectors(NodeConnector _origin, NodeConnector _target)
         {
-            _origin.ConnectTo(_target);
-            _target.ConnectTo(_origin);
+            if(_origin.ConnectTo(_target) && _target.ConnectTo(_origin))
+            {
+                _origin.ParentNode.NodeTree.AddNode(_target.ParentNode);
+
+            }
         }
 
         /// <summary>

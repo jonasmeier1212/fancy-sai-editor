@@ -117,10 +117,14 @@ namespace NodeAI
         /// <summary>
         /// Connects this node connector to target node connector
         /// </summary>
-        public void ConnectTo(NodeConnector target)
+        public bool ConnectTo(NodeConnector target)
         {
             if (ConnectedNodeConnectors.Count < allowedConnectionCount)
+            {
                 ConnectedNodeConnectors.Add(target);
+                return true;
+            }
+            return false;
         }
 
         private void HandleDragInitiation(object sender, MouseEventArgs e)

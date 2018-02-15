@@ -1,7 +1,7 @@
 ﻿<Window x:Class="NodeAI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="NodeAI" Height="500" Width="700" LayoutUpdated="Window_LayoutUpdated">
+        Title="NodeAI" Height="500" Width="700" LayoutUpdated="Window_LayoutUpdated" KeyDown="HandleKeyboard">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="17.96"/>
@@ -18,7 +18,7 @@
             </MenuItem>
         </Menu>
         <ScrollViewer x:Name="NodeEditorScrollViewer" HorizontalScrollBarVisibility="Visible" Grid.Row="1" CanContentScroll="True" PreviewMouseWheel="NodeEditorScrollViewer_PreviewMouseWheel">
-            <Canvas x:Name="NodeEditorCanvas" PreviewKeyDown="HandleKeyboard" Background="White" Focusable="True" ContextMenuOpening="HandleContextMenuOpening" ContextMenuClosing="HandleContextMenuClosing" MouseWheel="NodeEditorCanvas_MouseWheel" MouseRightButtonDown="HandleRightClick" MouseMove="NodeEditorCanvas_MouseMove" MouseLeftButtonDown="NodeEditorCanvas_MouseLeftButtonDown" MouseLeftButtonUp="NodeEditorCanvas_MouseLeftButtonUp">
+            <Canvas x:Name="NodeEditorCanvas" ContextMenuOpening="HandleContextMenuOpening" ContextMenuClosing="HandleContextMenuClosing" MouseWheel="NodeEditorCanvas_MouseWheel" MouseRightButtonDown="HandleRightClick" MouseMove="NodeEditorCanvas_MouseMove" MouseLeftButtonDown="NodeEditorCanvas_MouseLeftButtonDown" MouseLeftButtonUp="NodeEditorCanvas_MouseLeftButtonUp">
                 <Canvas.RenderTransform>
                     <ScaleTransform x:Name="NodeEditorCanvasScaleTransfrom"/>
                 </Canvas.RenderTransform>

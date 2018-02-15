@@ -35,25 +35,25 @@ namespace NodeAI
         /// Adds a node to it's corresponding node tree and manages positioning of this node.
         /// If the creator node is given the created node is going to be connected to the creator.
         /// </summary>
-        public void AddNode(Node node, Node creator = null)
+        public void AddNode(Node _node, Node _creator = null)
         {
             //Important: First handle connections and then sort in a node tree to ensure a correct classification!
-            if (creator != null)
+            if (_creator != null)
             {
-                if (creator.ConnectToNode(node))
-                    node.NodeTree = creator.NodeTree;
+                if (_creator.ConnectToNode(_node))
+                    _node.NodeTree = _creator.NodeTree;
             }
             
             //If the new node is in no tree created a new for this node
-            if(node.NodeTree == null)
+            if(_node.NodeTree == null)
             {
                 NodeTree newTree = new NodeTree();
                 nodeTrees.Add(newTree);
-                node.NodeTree = newTree;
+                _node.NodeTree = newTree;
             }
 
-            node.NodeTree.AddNode(node); //Add the node to its node tree to handle positioning etc..
-            nodeEditor.Children.Add(node);
+            _node.NodeTree.AddNode(_node); //Add the node to its node tree to handle positioning etc..
+            nodeEditor.Children.Add(_node);
         }
 
         /// <summary>
@@ -123,12 +123,12 @@ namespace NodeAI
         /// <summary>
         /// Scales the editor for the given value
         /// </summary>
-        public void Scale(float delta)
+        public void Scale(float _delta)
         {
             //Take mouse position as scale center point
             nodeEditorScaleTransform.CenterX = Mouse.GetPosition(nodeEditor).X;
             nodeEditorScaleTransform.CenterY = Mouse.GetPosition(nodeEditor).Y;
-            if (delta > 0)
+            if (_delta > 0)
             {
                 nodeEditorScaleTransform.ScaleX *= Properties.Settings.Default.ScaleRatio;
                 nodeEditorScaleTransform.ScaleY *= Properties.Settings.Default.ScaleRatio;
@@ -169,10 +169,10 @@ namespace NodeAI
         /// Connects two node connectors visually with each other.
         /// A spline is going to be created and the new connected nodes are going to be sorted in the correct node tree.
         /// </summary>
-        public void ConnectNodeConnectors(NodeConnector origin, NodeConnector target)
+        public void ConnectNodeConnectors(NodeConnector _origin, NodeConnector _target)
         {
-            origin.ConnectTo(target);
-            target.ConnectTo(origin);
+            _origin.ConnectTo(_target);
+            _target.ConnectTo(_origin);
         }
 
         /// <summary>

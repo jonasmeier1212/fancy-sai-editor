@@ -100,5 +100,14 @@ namespace NodeAI.Properties {
                 return ((float)(this["PanningRatio"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.1")]
+        public float ScaleRatio {
+            get {
+                return ((float)(this["ScaleRatio"]));
+            }
+        }
     }
 }

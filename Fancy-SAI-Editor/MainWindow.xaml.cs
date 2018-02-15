@@ -29,7 +29,7 @@ namespace NodeAI
             InitializeComponent();
 
             //Initialize node manager
-            NodeManager.Instance = new NodeManager(NodeEditorCanvas);
+            NodeManager.Instance = new NodeManager(NodeEditorCanvas, NodeEditorCanvasScaleTransfrom);
 
             Database.InitializeDatabase("SERVER=" + Properties.Settings.Default.MysqlServer + "; " +
                 "DATABASE=" + Properties.Settings.Default.MysqlWorldDatabase + ";" +

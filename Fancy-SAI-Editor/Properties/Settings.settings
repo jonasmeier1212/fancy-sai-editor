@@ -23,5 +23,8 @@
     <Setting Name="PanningRatio" Type="System.Single" Scope="Application">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="ScaleRatio" Type="System.Single" Scope="Application">
+      <Value Profile="(Default)">1.1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -7,14 +7,16 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Diagnostics;
 using System.Windows.Media;
+using System.Windows.Input;
 
 namespace NodeAI
 {
     public class NodeManager
     {
-        public NodeManager(Canvas _nodeEditor)
+        public NodeManager(Canvas _nodeEditor, ScaleTransform _scaleTransform)
         {
             nodeEditor = _nodeEditor;
+            nodeEditorScaleTransform = _scaleTransform;
 
             nodeTrees = new List<NodeTree>();
             selectedNodes = new List<Node>();
@@ -123,7 +125,19 @@ namespace NodeAI
         /// </summary>
         public void Scale(float delta)
         {
-            throw new NotImplementedException();
+            //Take mouse position as scale center point
+            nodeEditorScaleTransform.CenterX = Mouse.GetPosition(nodeEditor).X;
+            nodeEditorScaleTransform.CenterY = Mouse.GetPosition(nodeEditor).Y;
+            if (delta > 0)
+            {
+                nodeEditorScaleTransform.ScaleX *= Properties.Settings.Default.ScaleRatio;
+                nodeEditorScaleTransform.ScaleY *= Properties.Settings.Default.ScaleRatio;
+            }
+            else
+            {
+                nodeEditorScaleTransform.ScaleX /= Properties.Settings.Default.ScaleRatio;
+                nodeEditorScaleTransform.ScaleY /= Properties.Settings.Default.ScaleRatio;
+            }
         }
 
         /// <summary>
@@ -193,6 +207,7 @@ namespace NodeAI
         }
 
         private Canvas nodeEditor;
+        private ScaleTransform nodeEditorScaleTransform;
         private List<NodeTree> nodeTrees;
         private List<Node> selectedNodes;
         private List<Node> copiedNodes;

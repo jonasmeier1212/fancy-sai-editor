@@ -140,6 +140,7 @@ namespace NodeAI
                 nodeEditorScaleTransform.ScaleX /= Properties.Settings.Default.ScaleRatio;
                 nodeEditorScaleTransform.ScaleY /= Properties.Settings.Default.ScaleRatio;
             }
+            
         }
 
         /// <summary>
@@ -155,7 +156,12 @@ namespace NodeAI
         /// </summary>
         public void Update()
         {
-            //throw new NotImplementedException();
+            //Remove every empty node tree
+            foreach(NodeTree nodeTree in nodeTrees)
+            {
+                if (nodeTree.NodeCount() == 0)
+                    nodeTrees.Remove(nodeTree);
+            }
         }
 
         /// <summary>

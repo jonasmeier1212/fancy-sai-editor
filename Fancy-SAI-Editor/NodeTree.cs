@@ -53,6 +53,14 @@ namespace NodeAI
             nodes.Remove(_node);
         }
 
+        /// <summary>
+        /// Returns the number of nodes in this tree
+        /// </summary>
+        public int NodeCount()
+        {
+            return nodes.Count;
+        }
+
         private List<Node> nodes; //I don't think this is really needed but eventually it's handy to have
         private Point position;
         private int height;

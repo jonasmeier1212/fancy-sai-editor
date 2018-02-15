@@ -53,6 +53,8 @@ namespace NodeAI
             }
 
             _node.NodeTree.AddNode(_node); //Add the node to its node tree to handle positioning etc..
+            Canvas.SetTop(_node, 0); //Init default canvas position
+            Canvas.SetLeft(_node, 0);
             nodeEditor.Children.Add(_node);
         }
 
@@ -157,12 +159,25 @@ namespace NodeAI
         }
 
         /// <summary>
-        /// Initiates the drag of a node from the given start point.
-        /// This start point is used to determine how far and in which direction the drag is going to be performed
+        /// Sets the position of the passed node to passed point
         /// </summary>
-        public void InitDrag(Point _initPoint)
+        /// <param name="_node"></param>
+        public void SetPosition(Node _node, Point _position)
         {
-            
+            Canvas.SetLeft(_node, _position.X);
+            Canvas.SetTop(_node, _position.Y);
+        }
+
+        /// <summary>
+        /// Displace the passed node with the passed offset values
+        /// </summary>
+        public void SetPosition(Node _node, double _offsetX, double _offsetY)
+        {
+            double x = Canvas.GetLeft(_node) + _offsetX;
+            double y = Canvas.GetTop(_node) + _offsetY;
+
+            Canvas.SetLeft(_node, x);
+            Canvas.SetTop(_node, y);
         }
 
         /// <summary>

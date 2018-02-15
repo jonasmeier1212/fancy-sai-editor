@@ -314,8 +314,8 @@ namespace NodeAI
 
         private void OnLeftMouseDown(object sender, MouseButtonEventArgs e)
         {
-            anchorPoint = new Point(System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y);
-
+            anchorPoint = Mouse.GetPosition(null);
+            Mouse.OverrideCursor = Cursors.ScrollAll;
             NodeManager.Instance.SelectNode(this);
 
             e.Handled = true;
@@ -324,27 +324,24 @@ namespace NodeAI
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
             //Prevent movement if the mouse is not pressed
-            if (Mouse.LeftButton == MouseButtonState.Pressed && !(e.Source is TextBox || e.Source is ComboBox || e.Source is ComboBoxItem))
+            if (Mouse.LeftButton == MouseButtonState.Pressed && !(e.Source is TextBox || e.Source is ComboBox || e.Source is ComboBoxItem)) //TODO: Any better solution for this???
             {
-                currentPoint = new Point(System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y);
+                currentPoint = Mouse.GetPosition(null);
 
-                System.Windows.Forms.Cursor.Clip = new System.Drawing.Rectangle(System.Windows.Forms.Cursor.Position, new System.Drawing.Size(5,5));
+                //System.Windows.Forms.Cursor.Clip = new System.Drawing.Rectangle(System.Windows.Forms.Cursor.Position, new System.Drawing.Size(5,5));
 
                 double offsetX = currentPoint.X - anchorPoint.X;
                 double offsetY = currentPoint.Y - anchorPoint.Y;
 
-                double newPositionX = Canvas.GetLeft(this) + offsetX;
-                double newPositionY = Canvas.GetTop(this) + offsetY;
-
-                Canvas.SetLeft(this, newPositionX);
-                Canvas.SetTop(this, newPositionY);
+                NodeManager.Instance.SetPosition(this, offsetX, offsetY);
 
                 anchorPoint = currentPoint;
             }
-            else if(Mouse.LeftButton != MouseButtonState.Pressed && System.Windows.Forms.Cursor.Clip.X != 0 && System.Windows.Forms.Cursor.Clip.Y != 0)
-            {
-                System.Windows.Forms.Cursor.Clip = new System.Drawing.Rectangle();
-            }
+        }
+
+        private void OnLeftMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
         }
 
         #endregion

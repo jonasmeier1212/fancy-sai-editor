@@ -140,8 +140,6 @@ namespace NodeAI
                     Stroke = Brushes.LightBlue,
                 };
 
-                //Force update of editor canvas to ensure correct visual parents
-                nodeEditor.UpdateLayout();
                 Point p1 = new Point(e1.TransformToAncestor(nodeEditor).Transform(new Point(0, 0)).X + e1.ActualWidth / 2, (e1.TransformToAncestor(nodeEditor).Transform(new Point(0, 0)).Y + e1.ActualHeight / 2));
                 Point p2 = new Point(e2.TransformToAncestor(nodeEditor).Transform(new Point(0, 0)).X + e2.ActualWidth / 2, (e2.TransformToAncestor(nodeEditor).Transform(new Point(0, 0)).Y + e2.ActualHeight / 2));
 

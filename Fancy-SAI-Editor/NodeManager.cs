@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Diagnostics;
 using System.Windows.Media;
 using System.Windows.Input;
+using System.Windows.Shapes;
 
 namespace NodeAI
 {
@@ -37,25 +38,31 @@ namespace NodeAI
         /// </summary>
         public void AddNode(Node _node, Node _creator = null)
         {
+            //Very important to do this first, because otherwise the connectors crashes because the visual parents aren't existing
+            nodeEditor.Children.Add(_node);
+            Canvas.SetTop(_node, 0); //Init default canvas position
+            Canvas.SetLeft(_node, 0);
+            nodeEditor.UpdateLayout();
+
             //Important: First handle connections and then sort in a node tree to ensure a correct classification!
             if (_creator != null)
-            {
-                if (_creator.ConnectToNode(_node))
-                    _node.NodeTree = _creator.NodeTree;
-            }
+                ConnectNodes(_creator, _node);
             
             //If the new node is in no tree created a new for this node
             if(_node.NodeTree == null)
             {
-                NodeTree newTree = new NodeTree();
-                nodeTrees.Add(newTree);
-                _node.NodeTree = newTree;
+                nodeTrees.Add(new NodeTree(_node, nodeEditor));
             }
+        }
 
-            _node.NodeTree.AddNode(_node); //Add the node to its node tree to handle positioning etc..
-            Canvas.SetTop(_node, 0); //Init default canvas position
-            Canvas.SetLeft(_node, 0);
-            nodeEditor.Children.Add(_node);
+        /// <summary>
+        /// Tries to connect the two passed nodes
+        /// Important: _n1 must have a node tree!
+        /// </summary>
+        public bool ConnectNodes(Node _n1, Node _n2)
+        {
+            _n1.NodeTree.AddNode(_n2, _n1);
+            return false;
         }
 
         /// <summary>
@@ -156,12 +163,14 @@ namespace NodeAI
         /// </summary>
         public void Update()
         {
-            //Remove every empty node tree
+            List<NodeTree> outdatetTrees = new List<NodeTree>();
             foreach(NodeTree nodeTree in nodeTrees)
             {
-                if (nodeTree.NodeCount() == 0)
-                    nodeTrees.Remove(nodeTree);
+                if (!nodeTree.Update())
+                    outdatetTrees.Add(nodeTree);
             }
+            foreach (NodeTree tree in outdatetTrees)
+                nodeTrees.Remove(tree);
         }
 
         /// <summary>
@@ -187,19 +196,6 @@ namespace NodeAI
         }
 
         /// <summary>
-        /// Connects two node connectors visually with each other.
-        /// A spline is going to be created and the new connected nodes are going to be sorted in the correct node tree.
-        /// </summary>
-        public void ConnectNodeConnectors(NodeConnector _origin, NodeConnector _target)
-        {
-            if(_origin.ConnectTo(_target) && _target.ConnectTo(_origin))
-            {
-                _origin.ParentNode.NodeTree.AddNode(_target.ParentNode);
-
-            }
-        }
-
-        /// <summary>
         /// Exports every complete and valid node tree
         /// </summary>
         public void Export()
@@ -218,7 +214,7 @@ namespace NodeAI
         }
 
         /// <summary>
-        /// Returns a list with all node trees the passed nodes contains
+        /// Returns a set with all node trees the passed nodes contains
         /// </summary>
         private HashSet<NodeTree> GetNodeTrees(List<Node> _nodes)
         {

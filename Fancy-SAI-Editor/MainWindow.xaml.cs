@@ -74,45 +74,38 @@ namespace NodeAI
             try
             {
                 if (sender is NodeMenuItem item)
-                {
-                    Node newNode = CreateNode(item.Type, item.CreatePosition);
-                    UpdateLayout();
-                    if (item.Origin != null)
-                    {
-                        newNode.ConnectToNode(item.Origin);
-                    }
-                }
+                    CreateNode(item.Type, item.Origin, item.CreatePosition);
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-                MessageBox.Show("Error at node creation!");
+                MessageBox.Show("Error at node creation!\nError: " + exc.Message);
             }
         }
 
         /// <summary>
         /// Creates node with passed type and returns this node if the creation was successfull.
         /// </summary>
-        /// <param name="nodeType">Type of the node to be created.</param>
-        public Node CreateNode(NodeType nodeType, Point createPosition = default(Point))
+        /// <param name="_nodeType">Type of the node to be created.</param>
+        public Node CreateNode(NodeType _nodeType, Node _creator = null, Point _createPosition = default(Point))
         {
             try
             {
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 foreach (var type in assembly.GetTypes())
                 {
-                    if (type.GetCustomAttribute<NodeAttribute>() != null && type.GetCustomAttribute<NodeAttribute>().Type == nodeType)
+                    if (type.GetCustomAttribute<NodeAttribute>() != null && type.GetCustomAttribute<NodeAttribute>().Type == _nodeType)
                     {
                         if(Activator.CreateInstance(type) is Node newNode)
                         {
-                            NodeManager.Instance.AddNode(newNode);
+                            NodeManager.Instance.AddNode(newNode, _creator);
                             return newNode;
                         }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                MessageBox.Show("Error at node creation!");
+                MessageBox.Show("Error at node creation!\nError: " + e.Message);
             }
             return null;
         }

@@ -97,44 +97,12 @@ namespace NodeAI
         /// </summary>
         public NodeData NodeData { get => nodeData; set => nodeData = value; }
 
+        /// <summary>
+        /// Stores all connectors of this node.
+        /// </summary>
+        public List<NodeConnector> Connectors { get => connectorStore; }
+
         #endregion
-
-        /// <summary>
-        /// Connects the node to the passed node.
-        /// Returns true if the connections was successful
-        /// </summary>
-        /// <param name="node">Node to connect to.</param>
-        public bool ConnectToNode(Node node)
-        {
-            foreach (NodeConnector originConnector in connectorStore)
-            {
-                foreach(NodeConnector targetConnector in node.connectorStore)
-                {
-                    if (originConnector.CanConnect(targetConnector) && targetConnector.CanConnect(originConnector))
-                    {
-                        NodeManager.Instance.ConnectNodeConnectors(originConnector, targetConnector);
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Activates visual selection elements
-        /// </summary>
-        public void Select()
-        {
-            NodeSelectionBorder.BorderBrush = Brushes.LightSkyBlue;
-        }
-
-        /// <summary>
-        /// Disables visual selection elements
-        /// </summary>
-        public void Deselect()
-        {
-            NodeSelectionBorder.BorderBrush = Brushes.White;
-        }
 
         /// <summary>
         /// Checks if this node is connected with the passed node
@@ -308,9 +276,21 @@ namespace NodeAI
 
         #region Drag and Selection Handling
 
-        private TranslateTransform transform = new TranslateTransform();
-        private Point anchorPoint;
-        private Point currentPoint;
+        /// <summary>
+        /// Activates visual selection elements
+        /// </summary>
+        public void Select()
+        {
+            NodeSelectionBorder.BorderBrush = Brushes.LightSkyBlue;
+        }
+
+        /// <summary>
+        /// Disables visual selection elements
+        /// </summary>
+        public void Deselect()
+        {
+            NodeSelectionBorder.BorderBrush = Brushes.White;
+        }
 
         private void OnLeftMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -343,6 +323,9 @@ namespace NodeAI
         {
             Mouse.OverrideCursor = Cursors.Arrow;
         }
+
+        private Point anchorPoint;
+        private Point currentPoint;
 
         #endregion
 

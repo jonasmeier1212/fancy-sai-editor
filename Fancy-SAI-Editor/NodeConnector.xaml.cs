@@ -156,7 +156,7 @@ namespace NodeAI
         {
             Node origin = Utility.GetParentWithType<Node>(e.Data.GetData("originConnector"));
             if (origin != null)
-                ParentNode.ConnectToNode(origin);
+                NodeManager.Instance.ConnectNodes(ParentNode, origin);
         }
 
         private void HandleDragOver(object sender, DragEventArgs e)
@@ -189,7 +189,7 @@ namespace NodeAI
                         Node newNode = ParentNode.MainWindow.CreateNode(AllowedNodeType);
                         ParentNode.MainWindow.UpdateLayout();
                         if (newNode != null)
-                            ParentNode.ConnectToNode(newNode);
+                            NodeManager.Instance.ConnectNodes(ParentNode, newNode);
                     }
                 }
                 else

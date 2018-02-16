@@ -67,7 +67,10 @@ namespace NodeAI
 
             //Check if no connection possible
             if (origin == null || target == null)
+            {
+                MessageBox.Show("Nodes can't be connected!");
                 return;
+            }
 
             //Link the connectors
             origin.ConnectTo(target);

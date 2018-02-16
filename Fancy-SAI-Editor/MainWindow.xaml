@@ -33,15 +33,10 @@
             </Canvas>
         </ScrollViewer>
         <Menu Grid.Row="2">
-            <MenuItem x:Name="generalNode" Header="GeneralNode">
-                
-            </MenuItem>
-            <MenuItem x:Name="eventNode" Header="EventNode">
-                
-            </MenuItem>
-            <MenuItem x:Name="actionNode" Header="ActionNode">
-                
-            </MenuItem>
+            <MenuItem x:Name="generalNodesMenu" Header="General Nodes"/>
+            <MenuItem x:Name="eventNodesMenu" Header="Event Nodes"/>
+            <MenuItem x:Name="actionNodesMenu" Header="Action Nodes"/>
+            <MenuItem x:Name="targetNodesMenu" Header="Target Nodes"/>
         </Menu>
     </Grid>
 </Window>

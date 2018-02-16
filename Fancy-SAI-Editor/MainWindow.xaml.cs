@@ -51,15 +51,19 @@ namespace NodeAI
 
                     if (type.IsSubclassOf(typeof(Nodes.ActionNodes.ActionNode)))
                     {
-                        actionNode.Items.Add(menuItem);
+                        actionNodesMenu.Items.Add(menuItem);
                     }
                     else if (type.IsSubclassOf(typeof(Nodes.EventNodes.EventNode)))
                     {
-                        eventNode.Items.Add(menuItem);
+                        eventNodesMenu.Items.Add(menuItem);
                     }
                     else if (type.IsSubclassOf(typeof(Nodes.GeneralNodes.GeneralNode)))
                     {
-                        generalNode.Items.Add(menuItem);
+                        generalNodesMenu.Items.Add(menuItem);
+                    }
+                    else if(type.IsSubclassOf(typeof(Nodes.TargetNodes.TargetNode)))
+                    {
+                        targetNodesMenu.Items.Add(menuItem);
                     }
                 }
             }

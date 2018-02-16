@@ -17,6 +17,8 @@ using System.Windows.Controls.Primitives;
 
 namespace NodeAI
 {
+    public delegate string NodeParamCallback();
+
     /// <summary>
     /// Interaktionslogik für Node.xaml
     /// </summary>
@@ -31,7 +33,7 @@ namespace NodeAI
             Deselect(); //Node shouldn't be selected by default
             LoadTooltip();
             connectorStore = new List<NodeConnector>();
-            paramStore = new Dictionary<ParamId, Func<string>>();
+            paramStore = new Dictionary<ParamId, NodeParamCallback>();
             nodeTree = null;
         }
 
@@ -61,7 +63,7 @@ namespace NodeAI
         private NodeType type;
         private List<NodeConnector> connectorStore;
         private NodeData nodeData;
-        private Dictionary<ParamId, Func<string>> paramStore; //The Func object stores the method to get the value of this param
+        private Dictionary<ParamId, NodeParamCallback> paramStore; //The delegate returns the method the value of this parameter
 
         /// <summary>
         /// Attribute to get, set the node type.
@@ -149,7 +151,7 @@ namespace NodeAI
             paramGrid.Children.Add(label);
             paramGrid.Children.Add(input);
 
-            paramStore.Add(id, new Func<string>(() =>
+            paramStore.Add(id, (() =>
             {
                 return input.Text;
             }));
@@ -192,9 +194,8 @@ namespace NodeAI
             if (!selection.Items.IsEmpty)
                 (selection.Items[0] as ComboBoxItem).IsSelected = true;
 
-            paramStore.Add(id, new Func<string>(() =>
+            paramStore.Add(id, (() =>
             {
-                
                 return ((int)Enum.Parse(typeof(T), (selection.SelectedValue as ComboBoxItem).Content.ToString())).ToString();
             }));
         }
@@ -205,7 +206,7 @@ namespace NodeAI
         public void AddParam<T>(ParamId id, NodeType type, string description) where T : Nodes.GeneralNodes.GeneralNode
         {
             AddInputConnector(description, type);
-            paramStore.Add(id, new Func<string>(() => {
+            paramStore.Add(id, (() => {
                 Node connectedNode = GetDirectlyConnectedNode(type);
                 if (connectedNode != null && connectedNode is Nodes.GeneralNodes.GeneralNode generalNode)
                 {

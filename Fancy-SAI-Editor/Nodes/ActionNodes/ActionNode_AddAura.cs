@@ -18,7 +18,7 @@ namespace NodeAI.Nodes.ActionNodes
             //Update text
             NodeName.Content = "Add aura";
 
-            AddParam<GeneralNodes.Spell>(ParamId.PARAM_1, NodeType.ACTION_ADD_AURA, "Aura");
+            AddParam<GeneralNodes.Spell>(ParamId.PARAM_1, NodeType.GENERAL_SPELL, "Aura");
         }
 
         public override Node Clone()

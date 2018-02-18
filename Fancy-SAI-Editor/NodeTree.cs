@@ -21,7 +21,6 @@ namespace NodeAI
             nodes = new List<Node>();
             visualConnectionsStore = new List<VisualConnection>();
             visualBuckets = new List<VisualBucket>();
-            visualChanged = true;
             nodes.Add(_creatorNode);
             _creatorNode.NodeTree = this;
 
@@ -126,6 +125,7 @@ namespace NodeAI
             Debug.Assert(index >= 0); //This must not happen because in the first bucket with index 0 are only nodes with output connectors normally
 
             visualBuckets[index].Add(_node);
+            AutoPosition();
         }
 
         /// <summary>
@@ -173,40 +173,22 @@ namespace NodeAI
             * 
             * This means there are 4 buckets maximum. This buckets are arranged horizontal.
             */
-            visualBuckets.Add(new VisualBucket());
-            visualBuckets.Add(new VisualBucket());
-            visualBuckets.Add(new VisualBucket());
-            visualBuckets.Add(new VisualBucket());
 
-            foreach (Node node in nodes)
-            {
-                if (node.GetSuperiorType() == NodeType.EVENT)
-                    visualBuckets[1].Add(node); //Every event node must be in the second bucket
-                else if (node.GetSuperiorType() == NodeType.ACTION)
-                    visualBuckets[2].Add(node); //Every action node must be in the third bucket
-                else if (node.GetSuperiorType() == NodeType.TARGET)
-                    visualBuckets[3].Add(node); //Every target node must be in the fourth bucket
-                else if (node.Type == NodeType.GENERAL_NPC && (node as Nodes.GeneralNodes.Npc).IsSAIOwner())
-                {
-                    visualBuckets[0].Add(node); //The SAI owner node must be in the first bucket
-                    continue;
-                }
-                else //Some other general node
-                {
-                    if (node.GetDirectlyConnectedNodes(NodeType.EVENT).Count > 0)
-                        visualBuckets[0].Add(node);
-                    else if (node.GetDirectlyConnectedNodes(NodeType.ACTION).Count > 0)
-                        visualBuckets[1].Add(node);
-                    else if (node.GetDirectlyConnectedNodes(NodeType.TARGET).Count > 0)
-                        visualBuckets[2].Add(node);
-                }
-            }
-
-            double offset = 0;
+            double offsetX = 0;
+            double offsetY = 0;
+            //Find bucket with highest height
+            double maxHeight = 0;
             foreach (VisualBucket bucket in visualBuckets)
             {
-                bucket.Position(new Point(offset, 0));
-                offset += bucket.Width + 10;
+                if (bucket.Height > maxHeight)
+                    maxHeight = bucket.Height;
+            }
+
+            foreach (VisualBucket bucket in visualBuckets)
+            {
+                offsetY = (maxHeight - bucket.Height) / 2;
+                bucket.Update(new Point(offsetX, offsetY));
+                offsetX += bucket.Width + maxHeight / 10;
             }
         }
 
@@ -221,11 +203,6 @@ namespace NodeAI
         private List<Node> nodes; //I don't think this is really needed but eventually it's handy to have
         private List<VisualConnection> visualConnectionsStore;
         private Canvas nodeEditor;
-
-        // Indicates if any visual change occured to the tree.
-        // For example adding or removing nodes are such changes.
-        // If there occured no changes the position method doesn't have to recalc the layout buckets. 
-        private bool visualChanged;
         private List<VisualBucket> visualBuckets;
 
         private class VisualBucket
@@ -235,27 +212,55 @@ namespace NodeAI
                 nodes = new List<Node>();
                 width = 0;
                 height = 0;
+                position = new Point(0, 0);
             }
 
             public void Add(Node node)
             {
-                if (width < node.ActualWidth)
-                    width = node.ActualWidth;
-                if (height < node.ActualHeight)
-                    height = node.ActualHeight;
+                if(node.ActualWidth > width)
+                    width += node.ActualWidth;
+
+                height += node.ActualHeight;
+
+                node.VerticalPositionIndex = nodes.Count;
 
                 nodes.Add(node);
             }
 
-            public void Position(Point leftTop)
+            public void Update(Point _position = default(Point))
             {
-                double offset = leftTop.Y;
-                foreach(Node node in nodes)
+                //Sort nodes in vertical direction
+                nodes.Sort((Node _n1, Node _n2) =>
+                {
+                    return CalcPositionIndex(_n1) - CalcPositionIndex(_n2);
+                });
+
+                if (_position != default(Point))
+                    position = _position;
+
+                double offset = position.Y;
+                foreach (Node node in nodes)
                 {
                     Canvas.SetTop(node, offset);
                     offset += node.ActualHeight + 10;
-                    Canvas.SetLeft(node, leftTop.X);
+                    Canvas.SetLeft(node, position.X);
                 }
+            }
+
+            private int CalcPositionIndex(Node _node)
+            {
+                int index = 0;
+                var inputs = _node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.INPUT);
+                if (inputs.Count > 0 && inputs.First() is Node input)
+                {
+                    index += input.VerticalPositionIndex * 10; //Weight the input node position index more than the connector position index
+                    if(input.GetConnectorConnectedTo(_node) is NodeConnector connector1)
+                        index += connector1.PositionIndex;
+                    if (_node.GetConnectorConnectedTo(input) is NodeConnector connector2)
+                        index += connector2.PositionIndex;
+                }
+
+                return index;
             }
 
             public bool HasNode(Node _node)
@@ -266,6 +271,7 @@ namespace NodeAI
             List<Node> nodes;
             double width;
             double height;
+            Point position;
 
             public double Width { get => width; }
             public double Height { get => height; }

@@ -123,6 +123,23 @@ namespace NodeAI
             return false;
         }
 
+        public NodeConnector GetConnectorConnectedTo(Node node)
+        {
+            foreach(NodeConnector connector in connectorStore)
+            {
+                foreach(NodeConnector connected in connector.ConnectedNodeConnectors)
+                {
+                    if (connected.ParentNode == node)
+                        return connector;
+                }
+            }
+
+            return null;
+        }
+
+        public int VerticalPositionIndex { get; set; }
+        public int HorizontalPositionIndex { get; set; }
+
         #region Node Layout
 
         #region Params

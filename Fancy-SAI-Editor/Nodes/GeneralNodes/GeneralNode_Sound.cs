@@ -12,14 +12,14 @@ namespace NodeAI.Nodes.GeneralNodes
     {
         public Sound()
         {
-            NodeData = new NodeData();
+            NodeData = new SoundData();
 
             Type = NodeType.GENERAL_SOUND;
 
             //Update text
             NodeName.Content = "Sound";
 
-            //TODO
+            AddDatabaseSelectionFrame(new DataSelectionPossibility("Name:", "name"));
         }
 
         public override Node Clone()

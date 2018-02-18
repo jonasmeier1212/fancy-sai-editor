@@ -16,14 +16,14 @@ namespace NodeAI.Nodes.GeneralNodes
     {
         public Faction()
         {
-            NodeData = new SpellData();
+            NodeData = new FactionData();
 
             Type = NodeType.GENERAL_FACTION;
 
             //Update text
             NodeName.Content = "Faction";
 
-            //TODO
+            AddDatabaseSelectionFrame(new DataSelectionPossibility("Name:", "name"));
         }
 
         public override Node Clone()

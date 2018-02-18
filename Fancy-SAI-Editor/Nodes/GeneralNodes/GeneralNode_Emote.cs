@@ -23,7 +23,7 @@ namespace NodeAI.Nodes.GeneralNodes
             //Update text
             NodeName.Content = "Emote";
 
-            //TODO
+            AddDatabaseSelectionFrame(new DataSelectionPossibility("Name:", "name"));
         }
 
         public override Node Clone()

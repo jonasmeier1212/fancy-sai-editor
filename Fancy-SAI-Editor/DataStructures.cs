@@ -110,6 +110,10 @@ namespace NodeAI
         {
             Columns.Add("ID").ReadOnly = true;
             Columns.Add("Name").ReadOnly = true;
+
+            sqlite = true;
+
+            selectTableName = "factions_wotlk";
         }
     }
 
@@ -119,6 +123,23 @@ namespace NodeAI
         {
             Columns.Add("ID").ReadOnly = true;
             Columns.Add("Name").ReadOnly = true;
+
+            sqlite = true;
+
+            selectTableName = "emotes_wotlk";
+        }
+    }
+
+    public class SoundData : NodeData
+    {
+        public SoundData()
+        {
+            Columns.Add("ID").ReadOnly = true;
+            Columns.Add("Name").ReadOnly = true;
+
+            sqlite = true;
+
+            selectTableName = "sound_entries_wotlk";
         }
     }
 

@@ -9,6 +9,7 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.Data.SQLite;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace NodeAI
 {
@@ -197,31 +198,18 @@ namespace NodeAI
                     //Check if the select field is a text or a number field
                     using (DataTable schema = sqliteConnection.GetSchema("Tables"))
                     {
-                        var schemaData = schema.AsEnumerable().Where((DataRow row) => 
-                        {
-                            return false;
-                        });
+                        String[] columnsRestrictions = new String[4];
+                        columnsRestrictions[2] = data.SelectTableName;
+                        columnsRestrictions[3] = selectColumnName;
+                        DataTable columnsTable = sqliteConnection.GetSchema("Columns", columnsRestrictions);
 
-                        foreach (DataRow dataRow in schema.Rows)
-                        {
-                            String tableName = dataRow["TABLE_NAME"].ToString();
-                            if (!String.IsNullOrEmpty(tableName) && tableName.Equals(data.SelectTableName))
-                            {
-                                DataTable columnsTable = sqliteConnection.GetSchema("Columns");
+                        Debug.Assert(columnsTable.Rows.Count == 1, "More or less than one column or table matches the restrictions!");
+                        string columnType = columnsTable.Rows[0]["DATA_TYPE"].ToString();
 
-                                foreach (DataRow row in columnsTable.Rows)
-                                {
-                                    if (row["COLUMN_NAME"].ToString().Equals(selectColumnName))
-                                    {
-                                        string columnType = row["DATA_TYPE"].ToString();
-                                        if (columnType == "char" || columnType == "varchar" || columnType == "tinytext" || columnType == "text" || columnType == "mediumtext" || columnType == "longtext")
-                                            searchTerm = " LIKE '%" + searchTerm + "%'";
-                                        else
-                                            searchTerm = "=" + searchTerm;
-                                    }
-                                }
-                            }
-                        }
+                        if (columnType == "char" || columnType == "varchar" || columnType == "tinytext" || columnType == "text" || columnType == "mediumtext" || columnType == "longtext")
+                            searchTerm = " LIKE '%" + searchTerm + "%'";
+                        else
+                            searchTerm = "=" + searchTerm;
                     }
 
                     query.CommandText = "SELECT " + fieldNames + " FROM " + data.SelectTableName + " WHERE " + selectColumnName + searchTerm + " LIMIT 100";

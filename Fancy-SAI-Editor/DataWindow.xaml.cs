@@ -37,7 +37,10 @@ namespace NodeAI
                 try
                 {
                     DataSelectionPossibility selectionPossibility = selectionPossibilties[SearchElementType.SelectedIndex];
-                    await Database.SelectMySqlData(selectionPossibility.SelectColumn, SearchTerm.Text, CreatorNode.NodeData);
+                    if(CreatorNode.NodeData.Sqlite)
+                        await Database.SelectSqliteData(selectionPossibility.SelectColumn, SearchTerm.Text, CreatorNode.NodeData);
+                    else
+                        await Database.SelectMySqlData(selectionPossibility.SelectColumn, SearchTerm.Text, CreatorNode.NodeData);
                     SearchData.ItemsSource = CreatorNode.NodeData.DefaultView;
                 }
                 catch (Exception exc)

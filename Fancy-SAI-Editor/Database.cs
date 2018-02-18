@@ -181,6 +181,67 @@ namespace NodeAI
         #region SQLite
 
         /// <summary>
+        /// Selects data specified by the parameters from world database.
+        /// </summary>
+        /// <param name="selectColumnName">Name of database column to search for.</param>
+        /// <param name="searchTerm"></param>
+        /// <param name="data">NodeData object to be filled with data from world database containing the columns which should be selected.</param>
+        public static async Task SelectSqliteData(string selectColumnName, string searchTerm, NodeData data)
+        {
+            try
+            {
+                data.Clear();
+                using (SQLiteCommand query = new SQLiteCommand(sqliteConnection))
+                {
+                    string fieldNames = DetermineFieldNames(data);
+                    //Check if the select field is a text or a number field
+                    using (DataTable schema = sqliteConnection.GetSchema("Tables"))
+                    {
+                        var schemaData = schema.AsEnumerable().Where((DataRow row) => 
+                        {
+                            return false;
+                        });
+
+                        foreach (DataRow dataRow in schema.Rows)
+                        {
+                            String tableName = dataRow["TABLE_NAME"].ToString();
+                            if (!String.IsNullOrEmpty(tableName) && tableName.Equals(data.SelectTableName))
+                            {
+                                DataTable columnsTable = sqliteConnection.GetSchema("Columns");
+
+                                foreach (DataRow row in columnsTable.Rows)
+                                {
+                                    if (row["COLUMN_NAME"].ToString().Equals(selectColumnName))
+                                    {
+                                        string columnType = row["DATA_TYPE"].ToString();
+                                        if (columnType == "char" || columnType == "varchar" || columnType == "tinytext" || columnType == "text" || columnType == "mediumtext" || columnType == "longtext")
+                                            searchTerm = " LIKE '%" + searchTerm + "%'";
+                                        else
+                                            searchTerm = "=" + searchTerm;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    query.CommandText = "SELECT " + fieldNames + " FROM " + data.SelectTableName + " WHERE " + selectColumnName + searchTerm + " LIMIT 100";
+                    using (SQLiteDataAdapter dataAdp = new SQLiteDataAdapter(query))
+                    {
+                        dataAdp.Fill(data); //TODO: Make this async
+                        foreach (DataColumn c in data.Columns)
+                            c.ReadOnly = true;
+                        return;
+                    }
+                }
+            }
+            catch (SQLiteException e)
+            {
+                MessageBox.Show("Database Error!\nError: " + e.Message);
+            }
+            return;
+        }
+
+        /// <summary>
         /// Trys to find a tooltip for the given NodeType.
         /// </summary>
         /// <param name="type"></param>

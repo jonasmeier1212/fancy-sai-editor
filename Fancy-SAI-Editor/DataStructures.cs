@@ -28,8 +28,10 @@ namespace NodeAI
     public class NodeData : DataTable
     {
         protected string selectTableName;
+        protected bool sqlite = false;
 
         public string SelectTableName { get => selectTableName; }
+        public bool Sqlite { get => sqlite; }
     }
 
     /*
@@ -95,6 +97,10 @@ namespace NodeAI
         {
             Columns.Add("ID").ReadOnly = true;
             Columns.Add("Name").ReadOnly = true;
+
+            sqlite = true;
+
+            selectTableName = "spells_wotlk";
         }
     }
 

@@ -61,7 +61,7 @@ namespace NodeAI
         /// </summary>
         public bool ConnectNodes(Node _n1, Node _n2)
         {
-            _n1.NodeTree.AddNode(_n2, _n1);
+            _n1.NodeTree.ConnectNode(_n2, _n1);
             return false;
         }
 

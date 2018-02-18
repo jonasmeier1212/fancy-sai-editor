@@ -24,6 +24,21 @@ namespace NodeAI
             visualChanged = true;
             nodes.Add(_creatorNode);
             _creatorNode.NodeTree = this;
+
+            visualBuckets.Add(new VisualBucket());
+            visualBuckets.Add(new VisualBucket());
+            visualBuckets.Add(new VisualBucket());
+            visualBuckets.Add(new VisualBucket());
+
+            //Sort the creator node in the right tree
+            if (_creatorNode.GetSuperiorType() == NodeType.EVENT)
+                visualBuckets[1].Add(_creatorNode);
+            else if (_creatorNode.GetSuperiorType() == NodeType.ACTION)
+                visualBuckets[2].Add(_creatorNode);
+            else if (_creatorNode.GetSuperiorType() == NodeType.TARGET)
+                visualBuckets[3].Add(_creatorNode);
+            else
+                visualBuckets[0].Add(_creatorNode);
         }
 
         /// <summary>
@@ -42,17 +57,17 @@ namespace NodeAI
         }
 
         /// <summary>
-        /// Adds a node to this tree adding connection and handling positioning.
+        /// Connects a node to a node inside this tree
         /// The old tree of the node is combined with this tree.
         /// </summary>
-        public void AddNode(Node _node, Node _connectTo)
+        public void ConnectNode(Node _node, Node _originNode)
         {
             // Node tree of _connectTo node must be this tree!
-            Debug.Assert(_connectTo.NodeTree == this);
+            Debug.Assert(_originNode.NodeTree == this);
 
             NodeConnector origin = null;
             NodeConnector target = null;
-            foreach(NodeConnector originConnector in _connectTo.Connectors)
+            foreach(NodeConnector originConnector in _originNode.Connectors)
             {
                 foreach(NodeConnector targetConnector in _node.Connectors)
                 {
@@ -99,8 +114,18 @@ namespace NodeAI
 
             nodes.Add(_node);
 
-            //Recalc height and width
-            //TODO!
+            //Sort the new node in right bucket
+            int index = GetNodeVisualBucketIndex(_originNode);
+            Debug.Assert(index != -1); //If the index is -1 the origin node is in no bucket -> Must not happen!
+
+            if (origin.Type == NodeConnectorType.INPUT)
+                index--;
+            else if (origin.Type == NodeConnectorType.OUTPUT)
+                index++;
+
+            Debug.Assert(index >= 0); //This must not happen because in the first bucket with index 0 are only nodes with output connectors normally
+
+            visualBuckets[index].Add(_node);
         }
 
         /// <summary>
@@ -185,6 +210,14 @@ namespace NodeAI
             }
         }
 
+        private int GetNodeVisualBucketIndex(Node _node)
+        {
+            return visualBuckets.FindIndex((VisualBucket visualBucket) =>
+            {
+                return visualBucket.HasNode(_node);
+            });
+        }
+
         private List<Node> nodes; //I don't think this is really needed but eventually it's handy to have
         private List<VisualConnection> visualConnectionsStore;
         private Canvas nodeEditor;
@@ -223,6 +256,11 @@ namespace NodeAI
                     offset += node.ActualHeight + 10;
                     Canvas.SetLeft(node, leftTop.X);
                 }
+            }
+
+            public bool HasNode(Node _node)
+            {
+                return nodes.Contains(_node);
             }
 
             List<Node> nodes;

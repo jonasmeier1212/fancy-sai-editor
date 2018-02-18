@@ -200,6 +200,20 @@ namespace NodeAI
             });
         }
 
+        public List<Nodes.GeneralNodes.Npc> GetSAIOwnerNodes()
+        {
+            List<Nodes.GeneralNodes.Npc> saiOwnerNodes = new List<Nodes.GeneralNodes.Npc>();
+            foreach(Node node in nodes)
+            {
+                if(node is Nodes.GeneralNodes.Npc npcNode)
+                {
+                    if (npcNode.IsSAIOwner())
+                        saiOwnerNodes.Add(npcNode);
+                }
+            }
+            return saiOwnerNodes;
+        }
+
         private List<Node> nodes; //I don't think this is really needed but eventually it's handy to have
         private List<VisualConnection> visualConnectionsStore;
         private Canvas nodeEditor;

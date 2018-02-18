@@ -35,6 +35,7 @@ namespace NodeAI
             connectorStore = new List<NodeConnector>();
             paramStore = new Dictionary<ParamId, NodeParamCallback>();
             nodeTree = null;
+            canDrag = false;
         }
 
         /// <summary>
@@ -319,17 +320,20 @@ namespace NodeAI
 
         private void OnLeftMouseDown(object sender, MouseButtonEventArgs e)
         {
+            e.Handled = true;
+
+            if (e.Source is NodeConnector)
+                return;
             anchorPoint = Mouse.GetPosition(null);
+            canDrag = true;
             Mouse.OverrideCursor = Cursors.ScrollAll;
             NodeManager.Instance.SelectNode(this);
-
-            e.Handled = true;
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
             //Prevent movement if the mouse is not pressed
-            if (Mouse.LeftButton == MouseButtonState.Pressed && !(e.Source is TextBox || e.Source is ComboBox || e.Source is ComboBoxItem)) //TODO: Any better solution for this???
+            if (Mouse.LeftButton == MouseButtonState.Pressed && canDrag && !(e.Source is TextBox || e.Source is ComboBox || e.Source is ComboBoxItem)) //TODO: Any better solution for this???
             {
                 currentPoint = Mouse.GetPosition(null);
 
@@ -347,10 +351,12 @@ namespace NodeAI
         private void OnLeftMouseUp(object sender, MouseButtonEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Arrow;
+            canDrag = false;
         }
 
         private Point anchorPoint;
         private Point currentPoint;
+        private bool canDrag;
 
         #endregion
 

@@ -259,6 +259,15 @@ namespace NodeAI
                     if (_node.GetConnectorConnectedTo(input) is NodeConnector connector2)
                         index += connector2.PositionIndex;
                 }
+                var outputs = _node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.OUTPUT);
+                if(outputs.Count > 0 && outputs.First() is Node output) //TODO: There can be more than one output
+                {
+                    index += output.VerticalPositionIndex * 10; //Weight the input node position index more than the connector position index
+                    if (output.GetConnectorConnectedTo(_node) is NodeConnector connector1)
+                        index += connector1.PositionIndex;
+                    if (_node.GetConnectorConnectedTo(output) is NodeConnector connector2)
+                        index += connector2.PositionIndex;
+                }
 
                 return index;
             }

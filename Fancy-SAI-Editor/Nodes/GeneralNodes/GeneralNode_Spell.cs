@@ -23,7 +23,7 @@ namespace NodeAI.Nodes.GeneralNodes
             //Update text
             NodeName.Content = "Spell";
 
-            
+            AddDatabaseSelectionFrame(new DataSelectionPossibility("Spell:", "Name"));
         }
 
         public override Node Clone()

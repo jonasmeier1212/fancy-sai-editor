@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
+using System.Diagnostics;
 
 namespace NodeAI
 {
@@ -34,19 +35,22 @@ namespace NodeAI
 
         private async void HandleSearch(object sender, RoutedEventArgs e)
         {
-                try
-                {
-                    DataSelectionPossibility selectionPossibility = selectionPossibilties[SearchElementType.SelectedIndex];
-                    if(CreatorNode.NodeData.Sqlite)
-                        await Database.SelectSqliteData(selectionPossibility.SelectColumn, SearchTerm.Text, CreatorNode.NodeData);
-                    else
-                        await Database.SelectMySqlData(selectionPossibility.SelectColumn, SearchTerm.Text, CreatorNode.NodeData);
-                    SearchData.ItemsSource = CreatorNode.NodeData.DefaultView;
-                }
-                catch (Exception exc)
-                {
-                    MessageBox.Show("Something went wrong at searching data\nError:" + exc.Message);
-                }
+            try
+            {
+                DataSelectionPossibility selectionPossibility = selectionPossibilties[SearchElementType.SelectedIndex];
+
+                Debug.Assert(CreatorNode.NodeData.Columns.Contains(selectionPossibility.SelectColumn), "No data column matches the select column name!");
+
+                if(CreatorNode.NodeData.Sqlite)
+                    await Database.SelectSqliteData(selectionPossibility.SelectColumn, SearchTerm.Text, CreatorNode.NodeData);
+                else
+                    await Database.SelectMySqlData(selectionPossibility.SelectColumn, SearchTerm.Text, CreatorNode.NodeData);
+                SearchData.ItemsSource = CreatorNode.NodeData.DefaultView;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Something went wrong at searching data\nError:" + exc.Message);
+            }
         }
 
         /// <summary>

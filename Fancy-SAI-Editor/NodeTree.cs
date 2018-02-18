@@ -109,6 +109,20 @@ namespace NodeAI
         public void RemoveNode(Node _node)
         {
             nodes.Remove(_node);
+            //Remove attached visual connections
+            var connectionsToRemove = visualConnectionsStore.Where(connection =>
+            {
+                foreach(var connector in _node.Connectors)
+                {
+                    if (connection.ContainConnector(connector))
+                        return true;
+                }
+
+                return false;
+            });
+            foreach(var c in connectionsToRemove)
+                c.Remove();
+            visualConnectionsStore.RemoveAll(c => connectionsToRemove.Contains(c));
         }
 
         /// <summary>
@@ -230,7 +244,7 @@ namespace NodeAI
                 Ellipse e1 = connector1.ellipse;
                 Ellipse e2 = connector2.ellipse;
 
-                Path connectionPath = new Path
+                connectionPath = new Path
                 {
                     Stroke = Brushes.LightBlue,
                 };
@@ -271,10 +285,23 @@ namespace NodeAI
                 (connection.Segments.First() as BezierSegment).Point3 = p2;
             }
 
+            public void Remove()
+            {
+                nodeEditor.Children.Remove(connectionPath);
+            }
+
+            public bool ContainConnector(NodeConnector _connector)
+            {
+                if (connector1 == _connector || connector2 == _connector)
+                    return true;
+                return false;
+            }
+
             private NodeConnector connector1;
             private NodeConnector connector2;
             private Canvas nodeEditor;
             private PathFigure connection;
+            private Path connectionPath;
         }
     }
 }

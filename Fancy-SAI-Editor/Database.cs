@@ -38,6 +38,7 @@ namespace NodeAI
                     mySqlConnection = new MySqlConnection(
                         "SERVER=" + Properties.Settings.Default.MysqlServer + "; " +
                         "DATABASE=" + Properties.Settings.Default.MysqlWorldDatabase + ";" +
+                        "UID=" + Properties.Settings.Default.MysqlUsername + ";" +
                         " PASSWORD=" + Properties.Settings.Default.MysqlPassword);
                     mySqlConnection.Open();
 

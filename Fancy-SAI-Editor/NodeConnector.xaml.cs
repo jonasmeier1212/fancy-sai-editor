@@ -113,7 +113,7 @@ namespace NodeAI
         public List<NodeConnector> ConnectedNodeConnectors { get => connectedNodeConnectors; }
         /// <summary>
         /// Position index of this connector.
-        /// Indicates the horizontal position of the connector.
+        /// Indicates the vertical position of the connector.
         /// Must be unique for input or output connectors in one node!
         /// </summary>
         public int PositionIndex { get => positionIndex; }

@@ -32,6 +32,7 @@ namespace NodeAI
         {
             InitializeComponent();
 
+            Debug.Assert(_type != NodeConnectorType.NONE); //A node connector can't have NONE as type. It must be either an input or an output connector
             type = _type;
             ParentNode = _parentNode;
             allowedNodeType = _allowedNodeType;
@@ -194,10 +195,8 @@ namespace NodeAI
                 {
                     if (ParentNode.MainWindow != null)
                     {
-                        Node newNode = ParentNode.MainWindow.CreateNode(AllowedNodeType);
+                        Node newNode = ParentNode.MainWindow.CreateNode(AllowedNodeType, ParentNode);
                         ParentNode.MainWindow.UpdateLayout();
-                        if (newNode != null)
-                            NodeManager.Instance.ConnectNodes(ParentNode, newNode);
                     }
                 }
                 else

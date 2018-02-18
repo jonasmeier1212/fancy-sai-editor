@@ -114,7 +114,7 @@ namespace NodeAI
         /// </summary>
         public void SelectNode(Node _node)
         {
-            selectedNodes.Clear();
+            DeselectNodes();
             selectedNodes.Add(_node);
             _node.Select();
         }

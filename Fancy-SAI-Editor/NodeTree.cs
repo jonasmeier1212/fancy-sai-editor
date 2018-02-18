@@ -20,9 +20,8 @@ namespace NodeAI
 
             nodes = new List<Node>();
             visualConnectionsStore = new List<VisualConnection>();
-            height = 0;
-            width = 0;
-            position = new Point();
+            visualBuckets = new List<VisualBucket>();
+            visualChanged = true;
             nodes.Add(_creatorNode);
             _creatorNode.NodeTree = this;
         }
@@ -120,12 +119,105 @@ namespace NodeAI
             return nodes.Count;
         }
 
+        public void AutoPosition()
+        {
+            /*
+            * Visual order of the nodes in horizontal direction
+            * 1. SAI owner
+            * 2. Event nodes
+            * 3. Action nodes
+            * 4. Target nodes
+            * The other general nodes are left of it's owner
+            * If an action node for example has an emote node connected this emote node is
+            * arranged under the horizontal visual predecessor of the action node
+            * -> In this example the event node
+            * 
+            * This means there are 4 buckets maximum. This buckets are arranged horizontal.
+            */
+            visualBuckets.Add(new VisualBucket());
+            visualBuckets.Add(new VisualBucket());
+            visualBuckets.Add(new VisualBucket());
+            visualBuckets.Add(new VisualBucket());
+
+            foreach (Node node in nodes)
+            {
+                if (node.GetSuperiorType() == NodeType.EVENT)
+                    visualBuckets[1].Add(node); //Every event node must be in the second bucket
+                else if (node.GetSuperiorType() == NodeType.ACTION)
+                    visualBuckets[2].Add(node); //Every action node must be in the third bucket
+                else if (node.GetSuperiorType() == NodeType.TARGET)
+                    visualBuckets[3].Add(node); //Every target node must be in the fourth bucket
+                else if (node.Type == NodeType.GENERAL_NPC && (node as Nodes.GeneralNodes.Npc).IsSAIOwner())
+                {
+                    visualBuckets[0].Add(node); //The SAI owner node must be in the first bucket
+                    continue;
+                }
+                else //Some other general node
+                {
+                    if (node.GetDirectlyConnectedNodes(NodeType.EVENT).Count > 0)
+                        visualBuckets[0].Add(node);
+                    else if (node.GetDirectlyConnectedNodes(NodeType.ACTION).Count > 0)
+                        visualBuckets[1].Add(node);
+                    else if (node.GetDirectlyConnectedNodes(NodeType.TARGET).Count > 0)
+                        visualBuckets[2].Add(node);
+                }
+            }
+
+            double offset = 0;
+            foreach (VisualBucket bucket in visualBuckets)
+            {
+                bucket.Position(new Point(offset, 0));
+                offset += bucket.Width + 10;
+            }
+        }
+
         private List<Node> nodes; //I don't think this is really needed but eventually it's handy to have
         private List<VisualConnection> visualConnectionsStore;
         private Canvas nodeEditor;
-        private Point position;
-        private int height;
-        private int width;
+
+        // Indicates if any visual change occured to the tree.
+        // For example adding or removing nodes are such changes.
+        // If there occured no changes the position method doesn't have to recalc the layout buckets. 
+        private bool visualChanged;
+        private List<VisualBucket> visualBuckets;
+
+        private class VisualBucket
+        {
+            public VisualBucket()
+            {
+                nodes = new List<Node>();
+                width = 0;
+                height = 0;
+            }
+
+            public void Add(Node node)
+            {
+                if (width < node.ActualWidth)
+                    width = node.ActualWidth;
+                if (height < node.ActualHeight)
+                    height = node.ActualHeight;
+
+                nodes.Add(node);
+            }
+
+            public void Position(Point leftTop)
+            {
+                double offset = leftTop.Y;
+                foreach(Node node in nodes)
+                {
+                    Canvas.SetTop(node, offset);
+                    offset += node.ActualHeight + 10;
+                    Canvas.SetLeft(node, leftTop.X);
+                }
+            }
+
+            List<Node> nodes;
+            double width;
+            double height;
+
+            public double Width { get => width; }
+            public double Height { get => height; }
+        }
 
         private class VisualConnection
         {

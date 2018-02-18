@@ -60,5 +60,18 @@ namespace NodeAI.Nodes.GeneralNodes
                 throw new ExportException("Not all NPC Nodes has a selected NPC!");
             }
         }
+
+        public bool IsSAIOwner()
+        {
+            //TODO: This doesn't work with every event node! Some event nodes have more than one connector for npcs
+
+            bool correct = true;
+            var dirConEventNodes = GetDirectlyConnectedNodes(NodeType.EVENT, NodeConnectorType.OUTPUT);
+            
+            if (dirConEventNodes.Count == 0)
+                return false;
+
+            return correct;
+        }
     }
 }

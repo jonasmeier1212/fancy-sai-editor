@@ -155,7 +155,8 @@ namespace NodeAI
         /// </summary>
         public void Position()
         {
-            throw new NotImplementedException();
+            foreach (NodeTree tree in nodeTrees)
+                tree.AutoPosition();
         }
         
         /// <summary>

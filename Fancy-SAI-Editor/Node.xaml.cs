@@ -264,7 +264,14 @@ namespace NodeAI
 
         private void AddConnector(NodeConnectorType type, string label, NodeType allowedNode, int nmbAllowedConnections)
         {
-            NodeConnector newConnector = new NodeConnector(label, type, this, allowedNode, nmbAllowedConnections);
+            int index = 0;
+            if (type == NodeConnectorType.INPUT)
+                index = (from NodeConnector in connectorStore where NodeConnector.Type == NodeConnectorType.INPUT select NodeConnector).Count();
+            else if (type == NodeConnectorType.OUTPUT)
+                index = (from NodeConnector in connectorStore where NodeConnector.Type == NodeConnectorType.OUTPUT select NodeConnector).Count();
+
+            NodeConnector newConnector = new NodeConnector(label, type, this, allowedNode, index, nmbAllowedConnections);
+
             if (type == NodeConnectorType.INPUT)
                 inputNodesPanel.Children.Add(newConnector);
             else

@@ -28,7 +28,7 @@ namespace NodeAI
         /// <param name="_parentNode">Node which contains this new NodeConnector.</param>
         /// <param name="_allowedNodeType">Type of node which is allowed to connector to this connector. If you want all nodes of a base type to be allowed use EVENT, ACTION or GENERAL</param>
         /// <param name="_allowedConnectionCount">Number of allowed connections to this node</param>
-        public NodeConnector(string _label, NodeConnectorType _type, Node _parentNode, NodeType _allowedNodeType, int _allowedConnectionCount = 1)
+        public NodeConnector(string _label, NodeConnectorType _type, Node _parentNode, NodeType _allowedNodeType, int _positionIndex, int _allowedConnectionCount = 1)
         {
             InitializeComponent();
 
@@ -36,6 +36,7 @@ namespace NodeAI
             ParentNode = _parentNode;
             allowedNodeType = _allowedNodeType;
             allowedConnectionCount = _allowedConnectionCount;
+            positionIndex = _positionIndex;
 
             ellipse.Fill = type == NodeConnectorType.INPUT ? Brushes.Aqua : Brushes.IndianRed;
             ellipse.AllowDrop = true;
@@ -108,11 +109,18 @@ namespace NodeAI
         /// List with all connected node connector.
         /// </summary>
         public List<NodeConnector> ConnectedNodeConnectors { get => connectedNodeConnectors; }
+        /// <summary>
+        /// Position index of this connector.
+        /// Indicates the horizontal position of the connector.
+        /// Must be unique for input or output connectors in one node!
+        /// </summary>
+        public int PositionIndex { get => positionIndex; }
 
         private NodeConnectorType type;
         private NodeType allowedNodeType;
         private List<NodeConnector> connectedNodeConnectors;
         private int allowedConnectionCount;
+        private int positionIndex;
 
         /// <summary>
         /// Connects this node connector to target node connector

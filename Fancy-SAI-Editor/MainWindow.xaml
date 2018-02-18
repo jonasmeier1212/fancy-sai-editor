@@ -1,7 +1,7 @@
 ﻿<Window x:Class="NodeAI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="NodeAI" Height="500" Width="700" LayoutUpdated="Window_LayoutUpdated" KeyDown="HandleKeyboard">
+        Title="NodeAI" Height="700" Width="1300" LayoutUpdated="Window_LayoutUpdated" KeyDown="HandleKeyboard">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="17.96"/>

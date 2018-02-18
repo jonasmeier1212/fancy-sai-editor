@@ -93,7 +93,7 @@ namespace NodeAI
             visualConnectionsStore.Add(new VisualConnection(origin, target, nodeEditor));
 
             //Combine the two trees if the new node has one
-            if (_node.NodeTree != null)
+            if (_node.NodeTree != null && _node.NodeTree != this)
             {
                 if (_node.NodeTree.NodeCount() > 0)
                 {

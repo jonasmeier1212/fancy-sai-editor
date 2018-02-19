@@ -20,7 +20,7 @@ namespace NodeAI.Nodes.ActionNodes
             NodeName.Content = "Morph to entry or model";
 
             AddParam<GeneralNodes.Npc>(ParamId.PARAM_1, NodeType.GENERAL_NPC, "Creature Entry");
-            AddParam<GeneralNodes.NpcModel>(ParamId.PARAM_1, NodeType.GENERAL_NPC_MODEL, "NPC Model");
+            AddParam<GeneralNodes.NpcModel>(ParamId.PARAM_2, NodeType.GENERAL_NPC_MODEL, "NPC Model");
         }
 
         public override Node Clone()

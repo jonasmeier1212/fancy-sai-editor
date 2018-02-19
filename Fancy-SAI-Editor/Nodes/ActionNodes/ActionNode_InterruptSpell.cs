@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.ActionNodes
 
             AddParam<YesNo>(ParamId.PARAM_1, "With delay:");
             AddParam<GeneralNodes.Spell>(ParamId.PARAM_2, NodeType.GENERAL_SPELL, "Spell");
-            AddParam<YesNo>(ParamId.PARAM_2, "Instant:");
+            AddParam<YesNo>(ParamId.PARAM_3, "Instant:");
         }
 
         public override Node Clone()

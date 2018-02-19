@@ -70,6 +70,30 @@ namespace NodeAI
 
         #region MySql
 
+        public static async Task<DataTable> SelectMysqlData(string tableName, string selectColumnName, string searchTerm)
+        {
+            DataTable data = new DataTable();
+            try
+            {
+                using (MySqlCommand query = mySqlConnection.CreateCommand())
+                {
+                    query.CommandText = "SELECT " + "*" + " FROM " + tableName + " WHERE " + selectColumnName + "=" + searchTerm + " LIMIT 100";
+                    using (MySqlDataAdapter dataAdp = new MySqlDataAdapter(query))
+                    {
+                        await dataAdp.FillAsync(data);
+                        foreach (DataColumn c in data.Columns)
+                            c.ReadOnly = true;
+                        return data;
+                    }
+                }
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show("Database Error!\nError: " + e.Message);
+            }
+            return data;
+        }
+
         /// <summary>
         /// Selects data specified by the parameters from world database.
         /// </summary>

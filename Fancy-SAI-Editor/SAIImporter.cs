@@ -39,7 +39,7 @@ namespace NodeAI
                 {
                     if (type.GetCustomAttribute<NodeAttribute>() is NodeAttribute attribute)
                     {
-                        switch (attribute.Type)
+                        switch (Node.GetSuperiorType(attribute.Type))
                         {
                             case NodeType.EVENT:
                                 if (Node.GetRealId(attribute.Type, NodeType.EVENT) == event_type)

@@ -322,7 +322,7 @@ namespace NodeAI
         {
             e.Handled = true;
 
-            if (e.Source is NodeConnector)
+            if (e.Source is NodeConnector && e.OriginalSource is Ellipse)
                 return;
             NodeManager.Instance.InitDrag(Mouse.GetPosition(null));
             NodeManager.Instance.SelectNode(this);

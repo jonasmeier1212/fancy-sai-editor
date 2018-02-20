@@ -264,6 +264,14 @@ namespace NodeAI
             foreach(Node node in selectedNodes)
                 SetPosition(node, offsetX, offsetY);
 
+            foreach(NodeTree tree in nodeTrees)
+            {
+                if(tree.GetNodes().All(i=>selectedNodes.Contains(i)))
+                {
+                    tree.Move(offsetX, offsetY);
+                }
+            }
+
             anchorPoint = dragPosition;
 
         }

@@ -27,6 +27,12 @@ namespace NodeAI
             visualBuckets[0] = new VisualBucket();
 
             visualBuckets[0].Add(_creatorNode);
+
+            position = new Point()
+            {
+                X = Canvas.GetLeft(_creatorNode),
+                Y = Canvas.GetTop(_creatorNode),
+            };
         }
 
         /// <summary>
@@ -163,7 +169,7 @@ namespace NodeAI
             * This means there are 4 buckets maximum. This buckets are arranged horizontal.
             */
 
-            double offsetX = 0;
+            double offsetX = position.X;
             double offsetY = 0;
             //Find bucket with highest height
             double maxHeight = 0;
@@ -175,7 +181,7 @@ namespace NodeAI
 
             foreach (VisualBucket bucket in visualBuckets.Values)
             {
-                offsetY = (maxHeight - bucket.Height) / 2;
+                offsetY = (maxHeight - bucket.Height) / 2 + position.Y;
                 bucket.Update(new Point(offsetX, offsetY));
                 offsetX += bucket.Width + maxHeight / 10;
             }
@@ -207,10 +213,16 @@ namespace NodeAI
             return nodes;
         }
 
+        public void Move(double offsetX, double offsetY)
+        {
+            position.Offset(offsetX, offsetY);
+        }
+
         private List<Node> nodes;
         private List<VisualConnection> visualConnectionsStore;
         private Canvas nodeEditor;
         private SortedDictionary<int, VisualBucket> visualBuckets;
+        private Point position;
 
         private class VisualBucket
         {

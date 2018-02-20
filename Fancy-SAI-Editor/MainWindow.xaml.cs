@@ -195,9 +195,25 @@ namespace NodeAI
 
         private void HandleContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
-            //Prevent opening of an empty node selection context menu somewhere in the canvas
-            if(selectionMenuTargetNodes.Items.IsEmpty && selectionMenuActionNodes.Items.IsEmpty && selectionMenuEventNodes.Items.IsEmpty && selectionMenuGeneralNodes.Items.IsEmpty)
-                e.Handled = true;
+            if (selectionMenuEventNodes.Items.IsEmpty)
+                selectionMenuEventNodes.Visibility = Visibility.Collapsed;
+            else
+                selectionMenuEventNodes.Visibility = Visibility.Visible;
+
+            if (selectionMenuActionNodes.Items.IsEmpty)
+                selectionMenuActionNodes.Visibility = Visibility.Collapsed;
+            else
+                selectionMenuActionNodes.Visibility = Visibility.Visible;
+
+            if (selectionMenuTargetNodes.Items.IsEmpty)
+                selectionMenuTargetNodes.Visibility = Visibility.Collapsed;
+            else
+                selectionMenuTargetNodes.Visibility = Visibility.Visible;
+
+            if (selectionMenuGeneralNodes.Items.IsEmpty)
+                selectionMenuGeneralNodes.Visibility = Visibility.Collapsed;
+            else
+                selectionMenuGeneralNodes.Visibility = Visibility.Visible;
         }
 
         private void HandleContextMenuClosing(object sender, ContextMenuEventArgs e)

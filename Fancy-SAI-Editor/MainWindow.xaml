@@ -13,6 +13,9 @@
                 <MenuItem Header="Position nodes" Click="HandlePositionNodes"/>
                 <MenuItem Header="Exit" />
             </MenuItem>
+            <MenuItem Header="Import">
+                <MenuItem Header="Import SAI" Click="MenuItemImportSAI_Click"/>
+            </MenuItem>
             <MenuItem Header="Export">
                 <MenuItem Header="Export to SQL" Click="HandleMenu_ExportToSql"/>
             </MenuItem>

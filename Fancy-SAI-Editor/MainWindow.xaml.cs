@@ -299,5 +299,11 @@ namespace NodeAI
         {
             NodeManager.Instance.Export();
         }
+
+        private void MenuItemImportSAI_Click(object sender, RoutedEventArgs e)
+        {
+            SAIImport import = new SAIImport();
+            import.ShowDialog();
+        }
     }
 }

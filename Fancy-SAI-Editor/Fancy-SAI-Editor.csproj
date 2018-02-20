@@ -265,6 +265,10 @@
     <Compile Include="Nodes\TargetNodes\TargetNode_VehicleAccessory.cs" />
     <Compile Include="Nodes\TargetNodes\TargetNode_Victim.cs" />
     <Compile Include="NodeTree.cs" />
+    <Compile Include="SAIImport.xaml.cs">
+      <DependentUpon>SAIImport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SAIImporter.cs" />
     <Compile Include="SharedDefines.cs" />
     <Compile Include="SqlExporter.cs" />
     <Page Include="DataWindow.xaml">
@@ -297,6 +301,10 @@
     <Page Include="Nodes\GeneralNodes\CreatureTextCreation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SAIImport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

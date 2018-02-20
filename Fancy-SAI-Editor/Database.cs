@@ -18,11 +18,6 @@ namespace NodeAI
     /// </summary>
     public static class Database
     {
-        static Database()
-        {
-
-        }
-
         private static MySqlConnection mySqlConnection;
         private static SQLiteConnection sqliteConnection;
 

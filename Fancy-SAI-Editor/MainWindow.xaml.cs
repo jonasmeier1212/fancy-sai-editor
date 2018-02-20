@@ -227,65 +227,31 @@ namespace NodeAI
         }
 
         private Point dragAnchorPoint;
+        private Point selectAnchorPoint;
+        private Rectangle selectionRect;
 
         private void NodeEditorCanvas_MouseMove(object sender, MouseEventArgs e)
         {
             if(Mouse.LeftButton == MouseButtonState.Pressed && e.OriginalSource == NodeEditorCanvas)
             {
-                Mouse.OverrideCursor = Cursors.ScrollAll;
-
-                Point curPoint = e.GetPosition(null);
-
-                double offsetX = dragAnchorPoint.X - curPoint.X;
-                double offsetY = dragAnchorPoint.Y - curPoint.Y;
-
-                //Check if offset is greater than minimum offset
-                //This must be done before scaling the offset because this config value
-                //should be independent of the panning ratio
-                if (Math.Abs(offsetX) < Properties.Settings.Default.PanningMinOffset)
-                    offsetX = 0;
-                if (Math.Abs(offsetY) < Properties.Settings.Default.PanningMinOffset)
-                    offsetY = 0;
-
-                //Scale offset to right value
-                offsetX = NodeEditorScrollViewer.ContentHorizontalOffset + offsetX * Properties.Settings.Default.PanningRatio;
-                offsetY = NodeEditorScrollViewer.ContentVerticalOffset + offsetY * Properties.Settings.Default.PanningRatio;
-
-                //Check if the horizontal offset exceeds the actual scrollable content
-                if (offsetX > NodeEditorScrollViewer.ScrollableWidth)
-                {
-                    //Enlarge editor canvas horizontally
-                    NodeEditorCanvas.Width = NodeEditorCanvas.ActualWidth + offsetX / Properties.Settings.Default.PanningRatio - NodeEditorScrollViewer.ContentHorizontalOffset;
-                    UpdateLayout();
-                }
-                //Check if the vertival offset exceeds the actual scrollable content
-                if (offsetY > NodeEditorScrollViewer.ScrollableHeight)
-                {
-                    //Enlarge editor canvas vertically
-                    NodeEditorCanvas.Height = NodeEditorCanvas.ActualHeight + offsetY / Properties.Settings.Default.PanningRatio - NodeEditorScrollViewer.ContentVerticalOffset;
-                    UpdateLayout();
-                }
-
-                //TODO: Diminish canvas size if there is no content in the part outside the screen
-
-                NodeEditorScrollViewer.ScrollToHorizontalOffset(offsetX);
-                NodeEditorScrollViewer.ScrollToVerticalOffset(offsetY);
-
-                dragAnchorPoint = curPoint;
+                //DragEditor(e); //Temporary disabled
+                SelectMany();
             }
         }
+
+        
 
         private void NodeEditorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             NodeManager.Instance.DeselectNodes();
-
-            dragAnchorPoint = e.GetPosition(null);
+            //InitDragEditor(e);
+            InitSelectMany();
         }
 
         private void NodeEditorCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //Reset cursor
-            Mouse.OverrideCursor = Cursors.Arrow;
+            //EndDragEditor();
+            EndSelectMany();
         }
 
         private void NodeEditorScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -304,6 +270,103 @@ namespace NodeAI
         {
             SAIImport import = new SAIImport();
             import.ShowDialog();
+        }
+
+        private void InitDragEditor(MouseButtonEventArgs e)
+        {
+            dragAnchorPoint = e.GetPosition(null);
+        }
+
+        private void DragEditor(MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.ScrollAll;
+
+            Point curPoint = e.GetPosition(null);
+
+            double offsetX = dragAnchorPoint.X - curPoint.X;
+            double offsetY = dragAnchorPoint.Y - curPoint.Y;
+
+            //Check if offset is greater than minimum offset
+            //This must be done before scaling the offset because this config value
+            //should be independent of the panning ratio
+            if (Math.Abs(offsetX) < Properties.Settings.Default.PanningMinOffset)
+                offsetX = 0;
+            if (Math.Abs(offsetY) < Properties.Settings.Default.PanningMinOffset)
+                offsetY = 0;
+
+            //Scale offset to right value
+            offsetX = NodeEditorScrollViewer.ContentHorizontalOffset + offsetX * Properties.Settings.Default.PanningRatio;
+            offsetY = NodeEditorScrollViewer.ContentVerticalOffset + offsetY * Properties.Settings.Default.PanningRatio;
+
+            //Check if the horizontal offset exceeds the actual scrollable content
+            if (offsetX > NodeEditorScrollViewer.ScrollableWidth)
+            {
+                //Enlarge editor canvas horizontally
+                NodeEditorCanvas.Width = NodeEditorCanvas.ActualWidth + offsetX / Properties.Settings.Default.PanningRatio - NodeEditorScrollViewer.ContentHorizontalOffset;
+                UpdateLayout();
+            }
+            //Check if the vertival offset exceeds the actual scrollable content
+            if (offsetY > NodeEditorScrollViewer.ScrollableHeight)
+            {
+                //Enlarge editor canvas vertically
+                NodeEditorCanvas.Height = NodeEditorCanvas.ActualHeight + offsetY / Properties.Settings.Default.PanningRatio - NodeEditorScrollViewer.ContentVerticalOffset;
+                UpdateLayout();
+            }
+
+            //TODO: Diminish canvas size if there is no content in the part outside the screen
+
+            NodeEditorScrollViewer.ScrollToHorizontalOffset(offsetX);
+            NodeEditorScrollViewer.ScrollToVerticalOffset(offsetY);
+
+            dragAnchorPoint = curPoint;
+        }
+
+        private void EndDragEditor()
+        {
+            //Reset cursor
+            Mouse.OverrideCursor = Cursors.Arrow;
+        }
+
+        private void InitSelectMany()
+        {
+            selectAnchorPoint = Mouse.GetPosition(null);
+
+            selectionRect = new Rectangle()
+            {
+                Stroke = Brushes.Aquamarine,
+            };
+            Canvas.SetLeft(selectionRect, selectAnchorPoint.X);
+            Canvas.SetTop(selectionRect, selectAnchorPoint.Y);
+            NodeEditorCanvas.Children.Add(selectionRect);
+        }
+
+        private void SelectMany()
+        {
+            if (selectAnchorPoint == default(Point) || selectionRect == null)
+                return;
+
+            Point curPoint = Mouse.GetPosition(null);
+
+            double offsetX = selectAnchorPoint.X - curPoint.X;
+            double offsetY = selectAnchorPoint.Y - curPoint.Y;
+
+            if(offsetX > 0)
+                Canvas.SetLeft(selectionRect, curPoint.X);
+            if (offsetY > 0)
+                Canvas.SetTop(selectionRect, curPoint.Y);
+
+            selectionRect.Width = Math.Abs(offsetX);
+            selectionRect.Height = Math.Abs(offsetY);
+        }
+
+        private void EndSelectMany()
+        {
+            if (selectAnchorPoint != null && selectionRect != null)
+                NodeManager.Instance.SelectNodesInRect(selectionRect);
+
+            selectAnchorPoint = default(Point);
+            NodeEditorCanvas.Children.Remove(selectionRect);
+            selectionRect = null;
         }
     }
 }

@@ -104,7 +104,6 @@ namespace NodeAI
 
             //Sort the new node in right bucket
             int index = GetNodeVisualBucketIndex(_originNode);
-            Debug.Assert(index != -1); //If the index is -1 the origin node is in no bucket -> Must not happen!
 
             if (origin.Type == NodeConnectorType.INPUT)
                 index--;

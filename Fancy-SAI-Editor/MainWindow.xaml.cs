@@ -295,7 +295,7 @@ namespace NodeAI
             e.Handled = true;
         }
 
-        private void HandleMenu_ExportToSql(object sender, RoutedEventArgs e)
+        private void MenutItemExport_Click(object sender, RoutedEventArgs e)
         {
             NodeManager.Instance.Export();
         }

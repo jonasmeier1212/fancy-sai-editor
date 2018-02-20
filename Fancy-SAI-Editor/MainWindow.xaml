@@ -17,7 +17,7 @@
                 <MenuItem Header="Import SAI" Click="MenuItemImportSAI_Click"/>
             </MenuItem>
             <MenuItem Header="Export">
-                <MenuItem Header="Export to SQL" Click="HandleMenu_ExportToSql"/>
+                <MenuItem Header="Export to SQL" Click="MenutItemExport_Click"/>
             </MenuItem>
         </Menu>
         <ScrollViewer x:Name="NodeEditorScrollViewer" HorizontalScrollBarVisibility="Visible" Grid.Row="1" CanContentScroll="True" PreviewMouseWheel="NodeEditorScrollViewer_PreviewMouseWheel">

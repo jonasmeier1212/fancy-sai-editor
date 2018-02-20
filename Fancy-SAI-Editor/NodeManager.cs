@@ -114,7 +114,6 @@ namespace NodeAI
         /// </summary>
         public void SelectNode(Node _node)
         {
-            DeselectNodes();
             selectedNodes.Add(_node);
             _node.Select();
         }
@@ -247,6 +246,35 @@ namespace NodeAI
 
             return nodeTrees;
         }
+
+        public void InitDrag(Point initPosition)
+        {
+            anchorPoint = initPosition;
+            Mouse.OverrideCursor = Cursors.ScrollAll;
+        }
+
+        public void ProcessDrag(Point dragPosition)
+        {
+            if (anchorPoint == default(Point))
+                return;
+
+            double offsetX = dragPosition.X - anchorPoint.X;
+            double offsetY = dragPosition.Y - anchorPoint.Y;
+
+            foreach(Node node in selectedNodes)
+                SetPosition(node, offsetX, offsetY);
+
+            anchorPoint = dragPosition;
+
+        }
+
+        public void EndDrag()
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
+            anchorPoint = default(Point);
+        }
+
+        private Point anchorPoint;
 
         private Canvas nodeEditor;
         private ScaleTransform nodeEditorScaleTransform;

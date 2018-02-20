@@ -36,7 +36,6 @@ namespace NodeAI
             connectorStore = new List<NodeConnector>();
             paramStore = new Dictionary<ParamId, NodeParamCallback>();
             nodeTree = null;
-            canDrag = false;
         }
 
         /// <summary>
@@ -325,40 +324,23 @@ namespace NodeAI
 
             if (e.Source is NodeConnector)
                 return;
-            anchorPoint = Mouse.GetPosition(null);
-            canDrag = true;
-            Mouse.OverrideCursor = Cursors.ScrollAll;
+            NodeManager.Instance.InitDrag(Mouse.GetPosition(null));
             NodeManager.Instance.SelectNode(this);
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
             //Prevent movement if the mouse is not pressed
-            if (Mouse.LeftButton == MouseButtonState.Pressed && canDrag && !(e.Source is TextBox || e.Source is ComboBox || e.Source is ComboBoxItem)) //TODO: Any better solution for this???
+            if (Mouse.LeftButton == MouseButtonState.Pressed && !(e.Source is TextBox || e.Source is ComboBox || e.Source is ComboBoxItem)) //TODO: Any better solution for this???
             {
-                currentPoint = Mouse.GetPosition(null);
-
-                //System.Windows.Forms.Cursor.Clip = new System.Drawing.Rectangle(System.Windows.Forms.Cursor.Position, new System.Drawing.Size(5,5));
-
-                double offsetX = currentPoint.X - anchorPoint.X;
-                double offsetY = currentPoint.Y - anchorPoint.Y;
-
-                NodeManager.Instance.SetPosition(this, offsetX, offsetY);
-
-                anchorPoint = currentPoint;
+                NodeManager.Instance.ProcessDrag(Mouse.GetPosition(null));
             }
         }
 
         private void OnLeftMouseUp(object sender, MouseButtonEventArgs e)
         {
-            Mouse.OverrideCursor = Cursors.Arrow;
-            canDrag = false;
+            NodeManager.Instance.EndDrag();
         }
-
-        private Point anchorPoint;
-        private Point currentPoint;
-        private bool canDrag;
-
         #endregion
 
         #region Helper Functions

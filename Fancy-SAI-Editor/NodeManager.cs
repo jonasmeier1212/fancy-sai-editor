@@ -129,6 +129,27 @@ namespace NodeAI
             selectedNodes.Clear();
         }
 
+        public void SelectNodesInRect(Rectangle rect)
+        {
+            Rect selectionRect = new Rect(Canvas.GetLeft(rect), Canvas.GetTop(rect), rect.ActualWidth, rect.ActualHeight);
+            Rect nodeRect = default(Rect);
+            List<Node> selectNodes = new List<Node>();
+            foreach(NodeTree tree in nodeTrees)
+            {
+                foreach(Node node in tree.GetNodes())
+                {
+                    nodeRect.X = Canvas.GetLeft(node);
+                    nodeRect.Y = Canvas.GetTop(node);
+                    nodeRect.Width = node.ActualWidth;
+                    nodeRect.Height = node.ActualHeight;
+
+                    if (selectionRect.IntersectsWith(nodeRect))
+                        selectNodes.Add(node);
+                }
+            }
+            SelectNodes(selectNodes);
+        }
+
         /// <summary>
         /// Scales the editor for the given value
         /// </summary>

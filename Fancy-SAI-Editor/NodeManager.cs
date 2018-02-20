@@ -20,7 +20,7 @@ namespace NodeAI
             nodeEditorScaleTransform = _scaleTransform;
 
             nodeTrees = new List<NodeTree>();
-            selectedNodes = new List<Node>();
+            selectedNodes = new HashSet<Node>();
             copiedNodes = new List<Node>();
         }
 
@@ -70,7 +70,7 @@ namespace NodeAI
         /// </summary>
         public void CopyNodes()
         {
-            copiedNodes = selectedNodes;
+            copiedNodes = selectedNodes.ToList();
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace NodeAI
         /// </summary>
         public void SelectNodes(List<Node> _nodes)
         {
-            selectedNodes = _nodes;
+            selectedNodes.UnionWith(_nodes);
             foreach (Node selectedNode in selectedNodes)
                 selectedNode.Select();
         }
@@ -231,7 +231,7 @@ namespace NodeAI
         /// </summary>
         public void ExportSelectedNodeTrees()
         {
-            foreach (NodeTree tree in GetNodeTrees(selectedNodes))
+            foreach (NodeTree tree in GetNodeTrees(selectedNodes.ToList()))
                 SqlExporter.ExportNodeTree(tree);
         }
 
@@ -251,7 +251,7 @@ namespace NodeAI
         private Canvas nodeEditor;
         private ScaleTransform nodeEditorScaleTransform;
         private List<NodeTree> nodeTrees;
-        private List<Node> selectedNodes;
+        private HashSet<Node> selectedNodes;
         private List<Node> copiedNodes;
     }
 }

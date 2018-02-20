@@ -20,24 +20,13 @@ namespace NodeAI
 
             nodes = new List<Node>();
             visualConnectionsStore = new List<VisualConnection>();
-            visualBuckets = new List<VisualBucket>();
+            visualBuckets = new SortedDictionary<int, VisualBucket>();
             nodes.Add(_creatorNode);
             _creatorNode.NodeTree = this;
 
-            visualBuckets.Add(new VisualBucket());
-            visualBuckets.Add(new VisualBucket());
-            visualBuckets.Add(new VisualBucket());
-            visualBuckets.Add(new VisualBucket());
+            visualBuckets[0] = new VisualBucket();
 
-            //Sort the creator node in the right tree
-            if (_creatorNode.GetSuperiorType() == NodeType.EVENT)
-                visualBuckets[1].Add(_creatorNode);
-            else if (_creatorNode.GetSuperiorType() == NodeType.ACTION)
-                visualBuckets[2].Add(_creatorNode);
-            else if (_creatorNode.GetSuperiorType() == NodeType.TARGET)
-                visualBuckets[3].Add(_creatorNode);
-            else
-                visualBuckets[0].Add(_creatorNode);
+            visualBuckets[0].Add(_creatorNode);
         }
 
         /// <summary>
@@ -56,7 +45,7 @@ namespace NodeAI
         }
 
         /// <summary>
-        /// Connects a node to a node inside this tree
+        /// Connects a node to a node inside this tree.
         /// The old tree of the node is combined with this tree.
         /// </summary>
         public void ConnectNode(Node _node, Node _originNode)
@@ -122,7 +111,8 @@ namespace NodeAI
             else if (origin.Type == NodeConnectorType.OUTPUT)
                 index++;
 
-            Debug.Assert(index >= 0); //This must not happen because in the first bucket with index 0 are only nodes with output connectors normally
+            if (!visualBuckets.ContainsKey(index))
+                visualBuckets[index] = new VisualBucket();
 
             visualBuckets[index].Add(_node);
             AutoPosition();
@@ -178,13 +168,13 @@ namespace NodeAI
             double offsetY = 0;
             //Find bucket with highest height
             double maxHeight = 0;
-            foreach (VisualBucket bucket in visualBuckets)
+            foreach (VisualBucket bucket in visualBuckets.Values)
             {
                 if (bucket.Height > maxHeight)
                     maxHeight = bucket.Height;
             }
 
-            foreach (VisualBucket bucket in visualBuckets)
+            foreach (VisualBucket bucket in visualBuckets.Values)
             {
                 offsetY = (maxHeight - bucket.Height) / 2;
                 bucket.Update(new Point(offsetX, offsetY));
@@ -194,10 +184,9 @@ namespace NodeAI
 
         private int GetNodeVisualBucketIndex(Node _node)
         {
-            return visualBuckets.FindIndex((VisualBucket visualBucket) =>
-            {
-                return visualBucket.HasNode(_node);
-            });
+            var index = from VisualBucket in visualBuckets where VisualBucket.Value.HasNode(_node) select VisualBucket.Key;
+
+            return index.First();
         }
 
         public List<Nodes.GeneralNodes.Npc> GetSAIOwnerNodes()
@@ -214,10 +203,15 @@ namespace NodeAI
             return saiOwnerNodes;
         }
 
-        private List<Node> nodes; //I don't think this is really needed but eventually it's handy to have
+        public List<Node> GetNodes()
+        {
+            return nodes;
+        }
+
+        private List<Node> nodes;
         private List<VisualConnection> visualConnectionsStore;
         private Canvas nodeEditor;
-        private List<VisualBucket> visualBuckets;
+        private SortedDictionary<int, VisualBucket> visualBuckets;
 
         private class VisualBucket
         {

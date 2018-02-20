@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_AI_INIT;
 
-            EventId = "37";
+            
 
             //Update text
             NodeName.Content = "AI init";

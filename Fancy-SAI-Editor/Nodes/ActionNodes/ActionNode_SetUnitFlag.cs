@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_SET_UNIT_FLAG;
 
-            ActionId = "18";
+            
 
             //Update text
             NodeName.Content = "SetUnitFlag";

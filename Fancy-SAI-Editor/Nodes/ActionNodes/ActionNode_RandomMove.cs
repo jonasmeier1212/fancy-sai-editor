@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_RANDOM_MOVE;
 
-            ActionId = "89";
+            
 
             //Update text
             NodeName.Content = "Random move";

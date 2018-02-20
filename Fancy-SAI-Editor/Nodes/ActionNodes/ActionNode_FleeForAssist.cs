@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_FLEE_FOR_ASSIST;
 
-            ActionId = "25";
+            
 
             //Update text
             NodeName.Content = "Flee for assist";

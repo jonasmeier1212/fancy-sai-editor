@@ -21,19 +21,17 @@ namespace NodeAI.Nodes.EventNodes
         {
             EventData data = new EventData
             {
+                type = GetRealId(Type, NodeType.EVENT).ToString(),
                 param1 = GetParam(ParamId.PARAM_1),
                 param2 = GetParam(ParamId.PARAM_2),
                 param3 = GetParam(ParamId.PARAM_3),
                 param4 = GetParam(ParamId.PARAM_4)
             };
-            if (GetParam(ParamId.PARAM_SPECIFIC_TYPE) != "")
-                data.type = GetParam(ParamId.PARAM_SPECIFIC_TYPE);
-            else
-                data.type = EventId;
 
             return data;
         }
 
+        [Obsolete]
         public string EventId { get; set; }
     }
 }

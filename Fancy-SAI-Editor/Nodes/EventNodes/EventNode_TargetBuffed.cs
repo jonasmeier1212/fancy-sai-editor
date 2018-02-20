@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_TARGET_BUFFED;
 
-            EventId = "24";
+            
 
             //Update text
             NodeName.Content = "Target buffed";

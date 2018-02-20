@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_JUST_SUMMONED;
 
-            EventId = "54";
+            
 
             //Update text
             NodeName.Content = "Just summoned";

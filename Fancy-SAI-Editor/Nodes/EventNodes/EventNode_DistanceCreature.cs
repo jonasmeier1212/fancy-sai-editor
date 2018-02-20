@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_DISTANCE_CREATURE;
 
-            EventId = "75";
+            
 
             //Update text
             NodeName.Content = "Distance creature";

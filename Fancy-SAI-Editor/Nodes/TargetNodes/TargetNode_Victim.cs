@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_VICTIM;
 
-            TargetId = "2";
+            
 
             NodeName.Content = "Victim";
         }

@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_FOLLOW;
 
-            ActionId = "29";
+            
 
             //Update text
             NodeName.Content = "Follow";

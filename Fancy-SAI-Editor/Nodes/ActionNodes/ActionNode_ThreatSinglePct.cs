@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_THREAT_SINGLE_PCT;
 
-            ActionId = "13";
+            
 
             //Update text
             NodeName.Content = "ThreatSinglePct";

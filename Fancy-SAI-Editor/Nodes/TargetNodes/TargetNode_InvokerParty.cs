@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_INVOKER_PARTY;
 
-            TargetId = "1";
+            
 
             NodeName.Content = "Invoker party";
         }

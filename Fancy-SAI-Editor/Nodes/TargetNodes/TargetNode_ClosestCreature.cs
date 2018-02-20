@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_CLOSEST_CREATURE;
 
-            TargetId = "19";
+            
 
             NodeName.Content = "Closest creature";
         }

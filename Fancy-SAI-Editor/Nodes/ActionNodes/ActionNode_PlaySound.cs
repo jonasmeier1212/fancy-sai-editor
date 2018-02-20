@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_PLAY_SOUND;
 
-            ActionId = "4";
+            
 
             //Update text
             NodeName.Content = "Play Sound";

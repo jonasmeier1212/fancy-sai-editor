@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_EVADE;
 
-            ActionId = "24";
+            
 
             //Update text
             NodeName.Content = "Evade";

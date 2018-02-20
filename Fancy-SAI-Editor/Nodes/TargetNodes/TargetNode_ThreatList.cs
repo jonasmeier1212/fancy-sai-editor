@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_THREAT_LIST;
 
-            TargetId = "24";
+            
 
             NodeName.Content = "Threat list";
         }

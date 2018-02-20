@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_FAIL_QUEST;
 
-            ActionId = "6";
+            
 
             //Update text
             NodeName.Content = "Fail Quest";

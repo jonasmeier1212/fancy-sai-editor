@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using System.Windows.Controls.Primitives;
+using System.Diagnostics;
 
 namespace NodeAI
 {
@@ -513,6 +514,22 @@ namespace NodeAI
             }
 
             return connectors;
+        }
+
+        public static int GetRealId(NodeType type, NodeType targetType)
+        {
+            Debug.Assert(targetType == NodeType.EVENT || targetType == NodeType.ACTION || targetType == NodeType.TARGET);
+
+            switch (targetType)
+            {
+                case NodeType.EVENT:
+                    return type - NodeType.EVENT - 1;
+                case NodeType.ACTION:
+                    return type - NodeType.ACTION - 1;
+                case NodeType.TARGET:
+                    return type - NodeType.TARGET - 1;
+            }
+            return 0;
         }
 
         #endregion

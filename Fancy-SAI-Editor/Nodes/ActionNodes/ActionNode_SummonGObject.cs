@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace NodeAI.Nodes.ActionNodes
 {
-    [Node(MenuName = "Summon Gameobject", Type = NodeType.ACTION_SUMMON_GAMEOBJECT, AllowedTypes = new NodeType[] { NodeType.GENERAL_GAMEOBJECT, NodeType.EVENT, NodeType.TARGET })]
+    [Node(MenuName = "Summon Gameobject", Type = NodeType.ACTION_SUMMON_GO, AllowedTypes = new NodeType[] { NodeType.GENERAL_GAMEOBJECT, NodeType.EVENT, NodeType.TARGET })]
     class SummonGObject : ActionNode
     {
         public SummonGObject()
         {
-            Type = NodeType.ACTION_PLAY_SOUND;
-
-            ActionId = "4";
+            Type = NodeType.ACTION_SUMMON_GO;
 
             //Update text
             NodeName.Content = "Summon Gameobject";

@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_PLAY_SOUND;
 
-            ActionId = "51";
+            
 
             //Update text
             NodeName.Content = "Kill Unit";

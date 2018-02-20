@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_SPELLHIT_TARGET;
 
-            EventId = "31";
+            
 
             //Update text
             NodeName.Content = "Spellhit target";

@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_FRIENDLY_MISSING_BUFF;
 
-            EventId = "16";
+            
 
             //Update text
             NodeName.Content = "Friendly missing buff";

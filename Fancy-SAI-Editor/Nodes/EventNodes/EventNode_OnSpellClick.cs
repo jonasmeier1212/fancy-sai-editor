@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_ON_SPELLCLICK;
 
-            EventId = "73";
+            
 
             //Update text
             NodeName.Content = "On spell click";

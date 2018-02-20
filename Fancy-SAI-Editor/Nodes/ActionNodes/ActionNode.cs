@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             ActionData data = new ActionData()
             {
-                type = ActionId,
+                type = GetRealId(Type, NodeType.ACTION).ToString(),
                 param1 = GetParam(ParamId.PARAM_1),
                 param2 = GetParam(ParamId.PARAM_2),
                 param3 = GetParam(ParamId.PARAM_3),
@@ -33,6 +33,7 @@ namespace NodeAI.Nodes.ActionNodes
             return data;
         }
 
+        [Obsolete]
         public string ActionId { get; set; }
     }
 }

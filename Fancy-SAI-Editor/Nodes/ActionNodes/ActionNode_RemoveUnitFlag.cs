@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_REMOVE_UNIT_FLAG;
 
-            ActionId = "19";
+            
 
             //Update text
             NodeName.Content = "Remove UnitFlags";

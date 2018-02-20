@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_GO_EVENT_INFORM;
 
-            EventId = "71";
+            
 
             //Update text
             NodeName.Content = "GameObject event inform";

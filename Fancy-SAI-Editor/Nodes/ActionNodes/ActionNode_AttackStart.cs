@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_ATTACK_START;
 
-            ActionId = "49";
+            
 
             //Update text
             NodeName.Content = "Attack start";

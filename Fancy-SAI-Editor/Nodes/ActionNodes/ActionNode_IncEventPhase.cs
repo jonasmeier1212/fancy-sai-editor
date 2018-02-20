@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_INC_EVENT_PHASE;
 
-            ActionId = "23";
+            
 
             //Update text
             NodeName.Content = "Increase event phase";

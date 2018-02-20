@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_CREATURE_RANGE;
 
-            TargetId = "9";
+            
 
             NodeName.Content = "Creature range";
 

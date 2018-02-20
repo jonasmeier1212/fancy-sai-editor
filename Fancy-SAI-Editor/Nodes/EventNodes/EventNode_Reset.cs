@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_RESET;
 
-            EventId = "25";
+            
 
             //Update text
             NodeName.Content = "Reset";

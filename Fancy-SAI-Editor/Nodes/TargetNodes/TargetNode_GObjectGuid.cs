@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_GAMEOBJECT_GUID;
 
-            TargetId = "14";
+            
 
             NodeName.Content = "Gameobject GUID";
         }

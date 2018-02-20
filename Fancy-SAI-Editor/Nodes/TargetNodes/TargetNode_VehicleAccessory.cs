@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_VEHICLE_ACCESSORY;
 
-            TargetId = "29";
+            
 
             NodeName.Content = "Vehicle Accessory";
 

@@ -10,31 +10,24 @@ namespace NodeAI.Nodes.EventNodes
     /// SMART_EVENT_UPDATE_IC
     /// SMART_EVENT_UPDATE_OOC
     /// </summary>
-    [Node(MenuName = "Update", Type = NodeType.EVENT_UPDATE, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
-    public class Update : EventNode
+    [Node(MenuName = "Update in combat", Type = NodeType.EVENT_UPDATE_IC, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    public class UpdateIC : EventNode
     {
         /// <summary>
         /// Standard constructor.
         /// Initializes type, node name, tooltips and adds the connectors.
         /// </summary>
-        public Update()
+        public UpdateIC()
         {
-            Type = NodeType.EVENT_UPDATE;
+            Type = NodeType.EVENT_UPDATE_IC;
 
             //Update text
-            NodeName.Content = "Update";
+            NodeName.Content = "Update in combat";
 
-            AddParam<UpdateTypes>(ParamId.PARAM_SPECIFIC_TYPE, "Type");
             AddParam(ParamId.PARAM_1, "Initial min");
             AddParam(ParamId.PARAM_2, "Initial max");
             AddParam(ParamId.PARAM_3, "Repeat min");
             AddParam(ParamId.PARAM_4, "Repeat max");
-        }
-
-        enum UpdateTypes
-        {
-            UPDATE_IC = 0,
-            UPDATE_OCC = 1,
         }
 
         /// <summary>
@@ -43,7 +36,7 @@ namespace NodeAI.Nodes.EventNodes
         /// <returns>Returns clone of this class.</returns>
         public override Node Clone()
         {
-            return new Update();
+            return new UpdateIC();
         }
     }
 }

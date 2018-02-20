@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_DAMAGED;
 
-            EventId = "32";
+            
 
             //Update text
             NodeName.Content = "Damaged";

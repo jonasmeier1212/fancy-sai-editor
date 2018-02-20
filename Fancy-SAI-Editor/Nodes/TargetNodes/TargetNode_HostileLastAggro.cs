@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_HOSTILE_LAST_AGGRO;
 
-            TargetId = "4";
+            
 
             NodeName.Content = "Hostile last aggro";
         }

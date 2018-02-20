@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_REMOVEAURASFROMSPELL;
 
-            ActionId = "28";
+            
 
             //Update text
             NodeName.Content = "Remove Auras From Spell";

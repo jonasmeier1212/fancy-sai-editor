@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_IS_BEHIND_TARGET;
 
-            EventId = "67";
+            
 
             //Update text
             NodeName.Content = "Is behind target";

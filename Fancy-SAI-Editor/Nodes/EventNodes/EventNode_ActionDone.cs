@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_ACTION_DONE;
 
-            EventId = "72";
+            
 
             //Update text
             NodeName.Content = "Action done";

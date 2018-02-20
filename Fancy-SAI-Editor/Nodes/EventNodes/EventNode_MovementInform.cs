@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_MOVEMENTINFORM;
 
-            EventId = "34";
+            
 
             //Update text
             NodeName.Content = "Movement inform";

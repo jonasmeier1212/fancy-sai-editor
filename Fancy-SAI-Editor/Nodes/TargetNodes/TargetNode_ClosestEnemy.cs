@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_CLOSEST_ENEMY;
 
-            TargetId = "26";
+            
 
             NodeName.Content = "Closest enemy";
 

@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_SELF;
 
-            TargetId = "1";
+            
 
             NodeName.Content = "Closest Gameobject";
 

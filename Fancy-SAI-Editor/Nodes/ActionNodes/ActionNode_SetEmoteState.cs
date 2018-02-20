@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_SET_EMOTE_STATE;
 
-            ActionId = "17";
+            
 
             //Update text
             NodeName.Content = "Set Emote State";

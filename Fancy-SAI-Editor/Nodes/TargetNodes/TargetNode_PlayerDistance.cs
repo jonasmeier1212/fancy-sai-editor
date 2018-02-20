@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_PLAYER_DISTANCE;
 
-            TargetId = "18";
+            
 
             NodeName.Content = "Player distance";
 

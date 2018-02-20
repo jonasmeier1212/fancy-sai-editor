@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_PLAY_EMOTE;
 
-            ActionId = "5";
+            
 
             //Update text
             NodeName.Content = "Play Emote";

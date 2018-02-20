@@ -10,29 +10,22 @@ namespace NodeAI.Nodes.EventNodes
     /// SMART_EVENT_WAYPOINT_REACHED
     /// SMART_EVENT_WAYPOINT_START
     /// </summary>
-    [Node(MenuName = "Waypoint", Type = NodeType.EVENT_WAYPOINT, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
-    public class Waypoint : EventNode
+    [Node(MenuName = "Waypoint reached", Type = NodeType.EVENT_WAYPOINT_REACHED, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    public class WaypointReached : EventNode
     {
         /// <summary>
         /// Standard constructor.
         /// Initializes type, node name, tooltips and adds the connectors.
         /// </summary>
-        public Waypoint()
+        public WaypointReached()
         {
-            Type = NodeType.EVENT_WAYPOINT;
+            Type = NodeType.EVENT_WAYPOINT_REACHED;
             
             //Update text
-            NodeName.Content = "Waypoint";
-            AddParam<WaypointEventTypes>(ParamId.PARAM_SPECIFIC_TYPE, "Type");
+            NodeName.Content = "Waypoint reached";
 
             AddParam(ParamId.PARAM_1, "Point Id:");
             AddParam(ParamId.PARAM_2, "Path Id:"); // TODO: Replace with general node
-        }
-
-        enum WaypointEventTypes
-        {
-            WAYPOINT_REACHED = 40,
-            WAYPOINT_START = 39,
         }
 
         /// <summary>
@@ -41,7 +34,7 @@ namespace NodeAI.Nodes.EventNodes
         /// <returns>Returns clone of this class.</returns>
         public override Node Clone()
         {
-            return new Waypoint();
+            return new WaypointReached();
         }
     }
 }

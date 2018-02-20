@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_SUMMONED_UNIT;
 
-            EventId = "17";
+            
 
             //Update text
             NodeName.Content = "Summoned Unit";

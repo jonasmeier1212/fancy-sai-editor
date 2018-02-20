@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_CLOSE_GOSSIP;
 
-            ActionId = "75";
+            
 
             //Update text
             NodeName.Content = "Add aura";

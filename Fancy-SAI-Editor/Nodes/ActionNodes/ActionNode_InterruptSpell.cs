@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_INTERRUPT_SPELL;
 
-            ActionId = "92";
+            
 
             //Update text
             NodeName.Content = "Interrupt spell";

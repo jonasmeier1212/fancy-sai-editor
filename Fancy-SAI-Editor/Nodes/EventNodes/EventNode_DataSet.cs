@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_DATA_SET;
 
-            EventId = "38";
+            
 
             //Update text
             NodeName.Content = "Data set";

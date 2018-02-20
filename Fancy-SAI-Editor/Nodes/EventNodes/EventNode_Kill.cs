@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_MANA_PTC;
 
-            EventId = "5";
+            
 
             //Update text
             NodeName.Content = "Kill";

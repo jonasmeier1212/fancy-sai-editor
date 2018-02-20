@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_TARGET_MANA_PCT;
 
-            EventId = "18";
+            
 
             //Update text
             NodeName.Content = "Target mana percentage";

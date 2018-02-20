@@ -7,31 +7,22 @@ using System.Windows;
 
 namespace NodeAI.Nodes.ActionNodes
 {
-    [Node(MenuName = "Offer Quest", Type = NodeType.ACTION_OFFER_QUEST, AllowedTypes = new NodeType[] { NodeType.GENERAL_QUEST, NodeType.EVENT, NodeType.TARGET })]
-    class OfferQuest : ActionNode
+    [Node(MenuName = "Add Quest", Type = NodeType.ACTION_ADD_QUEST, AllowedTypes = new NodeType[] { NodeType.GENERAL_QUEST, NodeType.EVENT, NodeType.TARGET })]
+    class AddQuest : ActionNode
     {
-        public OfferQuest()
+        public AddQuest()
         {
-            Type = NodeType.ACTION_OFFER_QUEST;
-
-            ActionId = "7";
+            Type = NodeType.ACTION_ADD_QUEST;
 
             //Update text
-            NodeName.Content = "Offer Quest";
+            NodeName.Content = "Add Quest";
 
             AddParam<GeneralNodes.Quest>(ParamId.PARAM_1, NodeType.GENERAL_QUEST, "Quest");
-            AddParam<DirectAdd>(ParamId.PARAM_2, "Direct add");
-        }
-
-        enum DirectAdd
-        {
-            NO,
-            YES,
         }
 
         public override Node Clone()
         {
-            return new OfferQuest();
+            return new AddQuest();
         }
     }
 }

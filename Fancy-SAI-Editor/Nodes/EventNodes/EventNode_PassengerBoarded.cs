@@ -10,31 +10,22 @@ namespace NodeAI.Nodes.EventNodes
     /// SMART_EVENT_RESPAWN
     /// 
     /// </summary>
-    [Node(MenuName = "Passenger", Type = NodeType.EVENT_PASSENGER, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
-    public class Passenger : EventNode
+    [Node(MenuName = "Passenger boarded", Type = NodeType.EVENT_PASSENGER_BOARDED, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    public class PassengerBoarded : EventNode
     {
         /// <summary>
         /// Standard constructor.
         /// Initializes type, node name, tooltips and adds the connectors.
         /// </summary>
-        public Passenger()
+        public PassengerBoarded()
         {
-            Type = NodeType.EVENT_PASSENGER;
-
-            EventId = "11";
+            Type = NodeType.EVENT_PASSENGER_BOARDED;
 
             //Update text
-            NodeName.Content = "Passenger";
+            NodeName.Content = "Passenger boarded";
 
-            AddParam<PassengerEventTypes>(ParamId.PARAM_SPECIFIC_TYPE, "Type:");
             AddParam(ParamId.PARAM_1, "Cooldown min:");
             AddParam(ParamId.PARAM_2, "Cooldown max:");
-        }
-
-        enum PassengerEventTypes
-        {
-            BOARDED = 27,
-            REMOVED = 28,
         }
 
         /// <summary>
@@ -43,7 +34,7 @@ namespace NodeAI.Nodes.EventNodes
         /// <returns>Returns clone of this class.</returns>
         public override Node Clone()
         {
-            return new Passenger();
+            return new PassengerBoarded();
         }
     }
 }

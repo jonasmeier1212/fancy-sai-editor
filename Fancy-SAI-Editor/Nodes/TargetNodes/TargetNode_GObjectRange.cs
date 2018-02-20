@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_GAMEOBJECT_RANGE;
 
-            TargetId = "13";
+            
 
             NodeName.Content = "Gameobject Range";
         }

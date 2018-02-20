@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_FARTHEST;
 
-            TargetId = "28";
+            
 
             NodeName.Content = "Farthest";
 

@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_CLOSEST_PLAYER;
 
-            TargetId = "21";
+            
 
             NodeName.Content = "Closest Player";
 

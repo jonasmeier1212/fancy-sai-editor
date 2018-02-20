@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_FOLLOW_COMPLETED;
 
-            EventId = "65";
+            
 
             //Update text
             NodeName.Content = "Follow completed";

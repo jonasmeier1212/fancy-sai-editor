@@ -20,7 +20,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             TargetData data = new TargetData()
             {
-                targetType = TargetId,
+                targetType = GetRealId(Type, NodeType.TARGET).ToString(),
                 targetParam1 = GetParam(ParamId.PARAM_1),
                 targetParam2 = GetParam(ParamId.PARAM_2),
                 targetParam3 = GetParam(ParamId.PARAM_3),
@@ -33,6 +33,7 @@ namespace NodeAI.Nodes.TargetNodes
             return data;
         }
 
+        [Obsolete]
         public string TargetId { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_RESET_GOBJECT;
 
-            ActionId = "32";
+            
 
             //Update text
             NodeName.Content = "Reset Gameobject";

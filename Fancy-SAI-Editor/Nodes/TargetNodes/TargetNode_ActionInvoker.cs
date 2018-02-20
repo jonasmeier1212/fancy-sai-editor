@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_ACTION_INVOKER;
 
-            TargetId = "7";
+            
 
             NodeName.Content = "Action Invoker";
         }

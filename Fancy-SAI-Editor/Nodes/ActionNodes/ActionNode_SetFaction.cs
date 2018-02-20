@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_SET_FACTION;
 
-            ActionId = "2";
+            
 
             //Update text
             NodeName.Content = "Set Faction";

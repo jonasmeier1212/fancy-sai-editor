@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_TEXT_OVER;
 
-            EventId = "52";
+            
 
             //Update text
             NodeName.Content = "Text over";

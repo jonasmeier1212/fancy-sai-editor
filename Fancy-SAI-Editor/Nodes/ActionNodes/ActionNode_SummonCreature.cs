@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_SUMMON_CREATURE;
 
-            ActionId = "12";
+            
 
             //Update text
             NodeName.Content = "Summon creature";

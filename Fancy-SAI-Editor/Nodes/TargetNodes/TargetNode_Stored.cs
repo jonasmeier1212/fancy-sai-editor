@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_STORED;
 
-            TargetId = "12";
+            
 
             NodeName.Content = "Stored";
 

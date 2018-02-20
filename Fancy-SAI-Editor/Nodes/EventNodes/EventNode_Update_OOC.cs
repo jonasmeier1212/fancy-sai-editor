@@ -7,27 +7,25 @@ using System.Threading.Tasks;
 namespace NodeAI.Nodes.EventNodes
 {
     /// <summary>
-    /// SMART_EVENT_FRIENDLY_HEALTH
-    /// 
+    /// SMART_EVENT_UPDATE_IC
+    /// SMART_EVENT_UPDATE_OOC
     /// </summary>
-    [Node(MenuName = "Friendly health", Type = NodeType.EVENT_FRIENDLY_HEALTH, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
-    public class FriendlyHP : EventNode
+    [Node(MenuName = "Update Out of Combat", Type = NodeType.EVENT_UPDATE, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    public class UpdateOOC : EventNode
     {
         /// <summary>
         /// Standard constructor.
         /// Initializes type, node name, tooltips and adds the connectors.
         /// </summary>
-        public FriendlyHP()
+        public UpdateOOC()
         {
-            Type = NodeType.EVENT_FRIENDLY_HEALTH;
-
-            
+            Type = NodeType.EVENT_UPDATE_OOC;
 
             //Update text
-            NodeName.Content = "Friendly health";
+            NodeName.Content = "Update Out of Combat";
 
-            AddParam(ParamId.PARAM_1, "HP Deficit");
-            AddParam(ParamId.PARAM_2, "Radius");
+            AddParam(ParamId.PARAM_1, "Initial min");
+            AddParam(ParamId.PARAM_2, "Initial max");
             AddParam(ParamId.PARAM_3, "Repeat min");
             AddParam(ParamId.PARAM_4, "Repeat max");
         }
@@ -38,7 +36,7 @@ namespace NodeAI.Nodes.EventNodes
         /// <returns>Returns clone of this class.</returns>
         public override Node Clone()
         {
-            return new FriendlyHP();
+            return new UpdateOOC();
         }
     }
 }

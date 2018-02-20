@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_FRIENDLY_IS_CC;
 
-            EventId = "15";
+            
 
             //Update text
             NodeName.Content = "Friendly is CC";

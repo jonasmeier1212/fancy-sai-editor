@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_COUNTER_SET;
 
-            EventId = "77";
+            
 
             //Update text
             NodeName.Content = "Counter set";

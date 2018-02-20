@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_RESPAWN;
 
-            EventId = "22";
+            
 
             //Update text
             NodeName.Content = "Receive emote";

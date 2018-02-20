@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_CREATURE_GUID;
 
-            TargetId = "10";
+            
 
             NodeName.Content = "Creature GUID";
 

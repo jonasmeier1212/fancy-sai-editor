@@ -10,28 +10,21 @@ namespace NodeAI.Nodes.EventNodes
     /// SMART_EVENT_GAME_EVENT_START
     /// SMART_EVENT_GAME_EVENT_END
     /// </summary>
-    [Node(MenuName = "Game event", Type = NodeType.EVENT_AGGRO, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
-    public class GameEvent : EventNode
+    [Node(MenuName = "Game event start", Type = NodeType.EVENT_GAME_EVENT_START, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    public class GameEventStart : EventNode
     {
         /// <summary>
         /// Standard constructor.
         /// Initializes type, node name, tooltips and adds the connectors.
         /// </summary>
-        public GameEvent()
+        public GameEventStart()
         {
-            Type = NodeType.EVENT_AGGRO;
+            Type = NodeType.EVENT_GAME_EVENT_START;
 
             //Update text
-            NodeName.Content = "Game event";
+            NodeName.Content = "Game event start";
 
-            AddParam<GameEventSpecificType>(ParamId.PARAM_SPECIFIC_TYPE, "Type:");
             AddParam(ParamId.PARAM_1, "Game event:"); //TODO: Make general node!
-        }
-
-        enum GameEventSpecificType
-        {
-            EVENT_GAME_EVENT_START  = 68,
-            EVENT_GAME_EVENT_END    = 69,
         }
 
         /// <summary>
@@ -40,7 +33,7 @@ namespace NodeAI.Nodes.EventNodes
         /// <returns>Returns clone of this class.</returns>
         public override Node Clone()
         {
-            return new GameEvent();
+            return new GameEventStart();
         }
     }
 }

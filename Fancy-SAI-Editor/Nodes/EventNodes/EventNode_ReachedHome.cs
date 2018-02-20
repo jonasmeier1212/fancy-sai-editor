@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_RESPAWN;
 
-            EventId = "21";
+            
 
             //Update text
             NodeName.Content = "Reached home";

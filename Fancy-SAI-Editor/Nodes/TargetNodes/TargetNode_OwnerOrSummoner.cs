@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_OWNER_OR_SUMMONER;
 
-            TargetId = "23";
+            
 
             NodeName.Content = "Owner or summoner";
         }

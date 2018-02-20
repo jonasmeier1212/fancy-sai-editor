@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_COMBAT_STOP;
 
-            ActionId = "27";
+            
 
             //Update text
             NodeName.Content = "CombatStop";

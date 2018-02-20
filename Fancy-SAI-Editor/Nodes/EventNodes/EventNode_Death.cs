@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_DEATH;
 
-            EventId = "6";
+            
 
             //Update text
             NodeName.Content = "Death";

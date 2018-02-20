@@ -10,7 +10,7 @@ namespace NodeAI.Nodes.EventNodes
     /// SMART_EVENT_AGGRO
     ///
     /// </summary>
-    [Node(MenuName = "Summon despawned", Type = NodeType.EVENT_SUMMON_DESPAWN, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Summon despawned", Type = NodeType.EVENT_SUMMON_DESPAWNED, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
     public class SummonDespawned : EventNode
     {
         /// <summary>
@@ -19,9 +19,7 @@ namespace NodeAI.Nodes.EventNodes
         /// </summary>
         public SummonDespawned()
         {
-            Type = NodeType.EVENT_AGGRO;
-
-            EventId = "35";
+            Type = NodeType.EVENT_SUMMON_DESPAWNED;
 
             //Update text
             NodeName.Content = "Summon despawned";

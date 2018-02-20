@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_POSITION;
 
-            TargetId = "8";
+            
 
             NodeName.Content = "Position";
 

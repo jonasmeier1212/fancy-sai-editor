@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_CHARMED_TARGET;
 
-            EventId = "30";
+            
 
             //Update text
             NodeName.Content = "Charmed target";

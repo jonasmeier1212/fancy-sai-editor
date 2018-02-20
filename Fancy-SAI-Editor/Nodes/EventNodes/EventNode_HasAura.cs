@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_HAS_AURA;
 
-            EventId = "23";
+            
 
             //Update text
             NodeName.Content = "Has aura";

@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_HOSTILE_RANDOM;
 
-            TargetId = "5";
+            
 
             NodeName.Content = "Hostile random";
         }

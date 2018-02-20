@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_RECEIVE_HEAL;
 
-            EventId = "53";
+            
 
             //Update text
             NodeName.Content = "Receive heal";

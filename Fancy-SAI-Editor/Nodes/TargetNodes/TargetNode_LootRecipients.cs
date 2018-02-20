@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_LOOT_RECIPIENTS;
 
-            TargetId = "27";
+            
 
             NodeName.Content = "Loot recipients";
         }

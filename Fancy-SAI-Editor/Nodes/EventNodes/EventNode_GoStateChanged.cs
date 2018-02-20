@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_GO_STATE_CHANGED;
 
-            EventId = "70";
+            
 
             //Update text
             NodeName.Content = "GameObject state changed";

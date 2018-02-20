@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_CROSS_CAST;
 
-            ActionId = "86";
+            
 
             //Update text
             NodeName.Content = "Cross cast";

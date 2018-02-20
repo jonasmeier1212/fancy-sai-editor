@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_FRIENDLY_HEALTH_PCT;
 
-            EventId = "74";
+            
 
             //Update text
             NodeName.Content = "Friendly health pct";

@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_HEALTH_PTC;
 
-            EventId = "2";
+            
 
             //Update text
             NodeName.Content = "Health Percentage";

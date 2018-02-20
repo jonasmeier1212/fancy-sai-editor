@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_CORPSE_REMOVED;
 
-            EventId = "36";
+            
 
             //Update text
             NodeName.Content = "Corpse removed";

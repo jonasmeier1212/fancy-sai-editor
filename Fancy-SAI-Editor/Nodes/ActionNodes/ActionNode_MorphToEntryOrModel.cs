@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_MORPH_TO_ENTRY_OR_MODEL;
 
-            ActionId = "43";
+            
 
             //Update text
             NodeName.Content = "Morph to entry or model";

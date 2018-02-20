@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_AGGRO;
 
-            EventId = "4";
+            
 
             //Update text
             NodeName.Content = "Aggro";

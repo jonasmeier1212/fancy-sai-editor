@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_SELF;
 
-            TargetId = "26";
+            
 
             NodeName.Content = "Closest friendly";
 

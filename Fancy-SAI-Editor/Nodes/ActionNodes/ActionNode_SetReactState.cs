@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_SET_REACT_STATE;
 
-            ActionId = "8";
+            
 
             //Update text
             NodeName.Content = "Set React State";

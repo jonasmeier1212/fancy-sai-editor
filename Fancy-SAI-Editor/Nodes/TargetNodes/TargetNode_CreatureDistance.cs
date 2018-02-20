@@ -13,7 +13,7 @@ namespace NodeAI.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_CREATURE_DISTANCE;
 
-            TargetId = "11";
+            
 
             NodeName.Content = "Creature distance";
 

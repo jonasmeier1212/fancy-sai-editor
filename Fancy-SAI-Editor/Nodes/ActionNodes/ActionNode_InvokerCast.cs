@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_CAST;
 
-            ActionId = "85";
+            
 
             //Update text
             NodeName.Content = "Invoker cast";

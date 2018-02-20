@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_RANGE;
 
-            EventId = "9";
+            
 
             //Update text
             NodeName.Content = "Range";

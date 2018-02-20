@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_GOSSIP_HELLO;
 
-            EventId = "64";
+            
 
             //Update text
             NodeName.Content = "Gossip hello";

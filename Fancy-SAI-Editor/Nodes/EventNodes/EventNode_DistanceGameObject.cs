@@ -21,7 +21,7 @@ namespace NodeAI.Nodes.EventNodes
         {
             Type = NodeType.EVENT_DISTANCE_GAMEOBJECT;
 
-            EventId = "76";
+            
 
             //Update text
             NodeName.Content = "Distance gameobject";

@@ -14,7 +14,7 @@ namespace NodeAI.Nodes.ActionNodes
         {
             Type = NodeType.ACTION_SIMPLE_TALK;
 
-            ActionId = "84";
+            
 
             //Update text
             NodeName.Content = "Simple talk";

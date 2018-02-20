@@ -37,20 +37,20 @@ namespace NodeAI
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 foreach (var type in assembly.GetTypes())
                 {
-                    if (type.GetCustomAttribute<NodeAttribute>() != null)
+                    if (type.GetCustomAttribute<NodeAttribute>() is NodeAttribute attribute)
                     {
-                        switch (Node.GetSuperiorType(type.GetCustomAttribute<NodeAttribute>().Type))
+                        switch (attribute.Type)
                         {
                             case NodeType.EVENT:
-                                if (Node.GetRealId(type.GetCustomAttribute<NodeAttribute>().Type, NodeType.EVENT) == event_type)
+                                if (Node.GetRealId(attribute.Type, NodeType.EVENT) == event_type)
                                     eventNode = Activator.CreateInstance(type) as Node;
                                 break;
                             case NodeType.ACTION:
-                                if (Node.GetRealId(type.GetCustomAttribute<NodeAttribute>().Type, NodeType.ACTION) == action_type)
+                                if (Node.GetRealId(attribute.Type, NodeType.ACTION) == action_type)
                                     actionNode = Activator.CreateInstance(type) as Node;
                                 break;
                             case NodeType.TARGET:
-                                if (Node.GetRealId(type.GetCustomAttribute<NodeAttribute>().Type, NodeType.TARGET) == target_type)
+                                if (Node.GetRealId(attribute.Type, NodeType.TARGET) == target_type)
                                     targetNode = Activator.CreateInstance(type) as Node;
                                 break;
                         }

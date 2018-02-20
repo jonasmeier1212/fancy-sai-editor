@@ -255,8 +255,6 @@ namespace NodeAI
             }
         }
 
-        
-
         private void NodeEditorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             NodeManager.Instance.DeselectNodes();

@@ -141,6 +141,9 @@ namespace NodeAI
         {
             if (sender is Ellipse && e.LeftButton == MouseButtonState.Pressed)
             {
+                if (ParentNode.MainWindow.IsSelecting())
+                    return;
+
                 DataObject data = new DataObject("originConnector", this);
                 DragDrop.DoDragDrop(ellipse, data, DragDropEffects.Copy);
             }

@@ -384,5 +384,13 @@ namespace NodeAI
             NodeEditorCanvas.Children.Remove(selectionRect);
             selectionRect = null;
         }
+
+        public bool IsSelecting()
+        {
+            if (selectAnchorPoint != default(Point) && selectionRect != null)
+                return true;
+
+            return false;
+        }
     }
 }

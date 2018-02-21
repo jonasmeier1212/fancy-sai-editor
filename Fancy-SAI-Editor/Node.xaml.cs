@@ -292,6 +292,10 @@ namespace NodeAI
 
         public void SetParam(ParamId id, string value)
         {
+            //Changed param value for SMART_ACTION_AUTO_ATTACK to fit for node param
+            if (GetRealId(Type, NodeType.ACTION) == 20 && Convert.ToInt32(value) > 1)
+                value = "1";
+
             if (paramStore.ContainsKey(id))
                 paramStore[id].Set(value);
         }

@@ -390,5 +390,10 @@ namespace NodeAI
 
             return false;
         }
+        private void NodeEditorCanvas_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
+            NodeEditorCanvas.Children.Remove(selectionRect);
+        }
     }
 }

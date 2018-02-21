@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NodeAI"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="200">
+             d:DesignHeight="200" d:DesignWidth="200" SizeChanged="NodeUserControl_SizeChanged">
     <Border x:Name="NodeSelectionBorder" BorderBrush="LightSkyBlue" BorderThickness="1">
         <Border Background="#FF2D2D2D" BorderBrush="Black" BorderThickness="2" CornerRadius="15"  MouseMove="OnMouseMove" MouseLeftButtonDown="OnLeftMouseDown" MouseLeftButtonUp="OnLeftMouseUp">
             <StackPanel>

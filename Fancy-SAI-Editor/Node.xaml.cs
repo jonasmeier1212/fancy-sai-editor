@@ -562,6 +562,12 @@ namespace NodeAI
         }
 
         #endregion
+
+        private void NodeUserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(NodeTree != null)
+                NodeTree.RecalcSize();
+        }
     }
 
     /// <summary>

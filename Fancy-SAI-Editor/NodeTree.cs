@@ -128,6 +128,9 @@ namespace NodeAI
         /// </summary>
         public void RemoveNode(Node _node)
         {
+            if (!nodes.Contains(_node))
+                return;
+
             nodes.Remove(_node);
             //Remove attached visual connections
             var connectionsToRemove = visualConnectionsStore.Where(connection =>
@@ -218,6 +221,13 @@ namespace NodeAI
             position.Offset(offsetX, offsetY);
         }
 
+        public void RecalcSize()
+        {
+            foreach (VisualBucket bucket in visualBuckets.Values)
+                bucket.RecalcSize();
+            AutoPosition();
+        }
+
         private List<Node> nodes;
         private List<VisualConnection> visualConnectionsStore;
         private Canvas nodeEditor;
@@ -237,7 +247,7 @@ namespace NodeAI
             public void Add(Node node)
             {
                 if(node.ActualWidth > width)
-                    width += node.ActualWidth;
+                    width = node.ActualWidth;
 
                 height += node.ActualHeight;
 
@@ -263,6 +273,17 @@ namespace NodeAI
                     Canvas.SetTop(node, offset);
                     offset += node.ActualHeight + 10;
                     Canvas.SetLeft(node, position.X);
+                }
+            }
+
+            public void RecalcSize()
+            {
+                foreach(Node node in nodes)
+                {
+                    if (node.ActualWidth > width)
+                        width = node.ActualWidth;
+
+                    height += node.ActualHeight;
                 }
             }
 

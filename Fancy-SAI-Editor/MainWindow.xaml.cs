@@ -348,6 +348,9 @@ namespace NodeAI
         {
             selectAnchorPoint = Mouse.GetPosition(null);
 
+            if (selectAnchorPoint.X < 0 || selectAnchorPoint.Y < 0) //Sometimes after rightclick the mouse position is negativ I don't know why... -> Prevent this
+                selectAnchorPoint = default(Point);
+
             selectionRect = new Rectangle()
             {
                 Stroke = Brushes.Aquamarine,
@@ -422,6 +425,7 @@ namespace NodeAI
         {
             Mouse.OverrideCursor = Cursors.Arrow;
             NodeEditorCanvas.Children.Remove(selectionRect);
+            selectionRect = null;
         }
     }
 }

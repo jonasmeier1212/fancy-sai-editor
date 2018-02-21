@@ -74,9 +74,10 @@ namespace NodeAI.Nodes.GeneralNodes
             return correct;
         }
 
-        public override void SetParamValue(string value)
+        public async override void SetParamValue(string value)
         {
-            throw new NotImplementedException();
+            await Database.SelectMySqlData("entry", value, NodeData);
+            SelectData(NodeData);
         }
     }
 }

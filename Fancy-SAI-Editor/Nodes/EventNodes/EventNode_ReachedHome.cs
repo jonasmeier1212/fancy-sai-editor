@@ -10,7 +10,7 @@ namespace NodeAI.Nodes.EventNodes
     /// SMART_EVENT_REACHED_HOME
     /// 
     /// </summary>
-    [Node(MenuName = "Reached home", Type = NodeType.EVENT_RESPAWN, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Reached home", Type = NodeType.EVENT_REACHED_HOME, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
     public class ReachedHome : EventNode
     {
         /// <summary>
@@ -19,7 +19,7 @@ namespace NodeAI.Nodes.EventNodes
         /// </summary>
         public ReachedHome()
         {
-            Type = NodeType.EVENT_RESPAWN;
+            Type = NodeType.EVENT_REACHED_HOME;
 
             
 

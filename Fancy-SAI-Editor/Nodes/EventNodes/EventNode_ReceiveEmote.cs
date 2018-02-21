@@ -10,7 +10,7 @@ namespace NodeAI.Nodes.EventNodes
     /// SMART_EVENT_RESPAWN
     /// 
     /// </summary>
-    [Node(MenuName = "Receive emote", Type = NodeType.EVENT_RESPAWN, AllowedTypes = new NodeType[] { NodeType.GENERAL_EMOTE, NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Receive emote", Type = NodeType.EVENT_RECEIVE_EMOTE, AllowedTypes = new NodeType[] { NodeType.GENERAL_EMOTE, NodeType.GENERAL_NPC, NodeType.ACTION })]
     public class ReceiveEmote : EventNode
     {
         /// <summary>
@@ -19,9 +19,7 @@ namespace NodeAI.Nodes.EventNodes
         /// </summary>
         public ReceiveEmote()
         {
-            Type = NodeType.EVENT_RESPAWN;
-
-            
+            Type = NodeType.EVENT_RECEIVE_EMOTE;
 
             //Update text
             NodeName.Content = "Receive emote";

@@ -130,6 +130,7 @@ namespace NodeAI
         ACTION_INC_EVENT_PHASE,
         ACTION_EVADE,
         ACTION_FLEE_FOR_ASSIST,
+        ACTION_CALL_GROUPEVENTHAPPENS,
         ACTION_COMBAT_STOP,
         ACTION_REMOVEAURASFROMSPELL,
         ACTION_FOLLOW,
@@ -149,6 +150,7 @@ namespace NodeAI
         ACTION_MOUNT_TO_ENTRY_OR_MODEL,     
         ACTION_SET_INGAME_PHASE_MASK,     
         ACTION_SET_DATA,     
+        ACTION_UNUSED_46,
         ACTION_SET_VISIBILITY,     
         ACTION_SET_ACTIVE,     
         ACTION_ATTACK_START,     
@@ -220,6 +222,7 @@ namespace NodeAI
         ACTION_RANDOM_SOUND,    
         ACTION_SET_CORPSE_DELAY,    
         ACTION_DISABLE_EVADE,    
+        ACTION_GO_SET_GO_STATE,
         ACTION_SET_CAN_FLY,    
         ACTION_REMOVE_AURAS_BY_TYPE,    
         ACTION_SET_SIGHT_DIST,    
@@ -362,8 +365,8 @@ namespace NodeAI
 
     public enum YesNo
     {
-        NO,
-        YES,
+        No,
+        Yes,
     }
 
 #pragma warning restore 1591

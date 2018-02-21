@@ -563,11 +563,11 @@ namespace NodeAI
             switch (targetType)
             {
                 case NodeType.EVENT:
-                    return type - NodeType.EVENT - 1;
+                    return type - NodeType.EVENT - 1; //Only event is nullbased
                 case NodeType.ACTION:
-                    return type - NodeType.ACTION - 1;
+                    return type - NodeType.ACTION;
                 case NodeType.TARGET:
-                    return type - NodeType.TARGET - 1;
+                    return type - NodeType.TARGET;
             }
             return 0;
         }

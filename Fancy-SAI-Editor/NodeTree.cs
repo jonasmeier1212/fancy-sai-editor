@@ -278,6 +278,7 @@ namespace NodeAI
 
             public void RecalcSize()
             {
+                height = 0;
                 foreach(Node node in nodes)
                 {
                     if (node.ActualWidth > width)

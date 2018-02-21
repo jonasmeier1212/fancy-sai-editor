@@ -148,6 +148,17 @@ namespace NodeAI.Nodes.GeneralNodes
         {
             try
             {
+                if(data.Rows.Count < 1)
+                {
+                    if (valueTexts.Count >= 1)
+                        valueTexts.First().Text = "No data found!";
+
+                    selectPanel.Visibility = Visibility.Collapsed;
+                    dataPanel.Visibility = Visibility.Visible;
+
+                    return;
+                }
+
                 DataRow selectedRow = data.Rows[0] as DataRow;
                 int i = 0;
                 foreach (TextBlock valueText in valueTexts)

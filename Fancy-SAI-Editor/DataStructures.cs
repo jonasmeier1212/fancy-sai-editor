@@ -187,9 +187,6 @@ namespace NodeAI
         /// <returns>Return true if the data is valid. Returns false if it's not.</returns>
         public bool VerifyData()
         {
-            if (type == "0")
-                return false;
-
             if (param1 == "" || param2 == "" || param3 == "" || param4 == "" || type == "")
                 return false;
 

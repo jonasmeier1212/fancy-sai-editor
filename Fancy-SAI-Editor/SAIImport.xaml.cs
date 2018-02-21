@@ -30,9 +30,16 @@ namespace NodeAI
             {
                 SAIImporter.ImportSAI(Convert.ToInt32(entry.Text));
             }
+
+        private void entry_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                Convert.ToInt32(e.Text);
+            }
             catch(FormatException)
             {
-                MessageBox.Show($"Entry {entry} is not a valid entry!");
+                e.Handled = true;
             }
             this.Close();
         }

@@ -241,14 +241,25 @@ namespace NodeAI
             paramStore.Add(id, new NodeParam(
                 () =>
                 {
-                    return (Enum.Parse(typeof(T), (selection.SelectedValue as ComboBoxItem).Content.ToString())).ToString();
+                    try
+                    {
+                        return ((int)Enum.Parse(typeof(T), (selection.SelectedValue as ComboBoxItem).Content.ToString())).ToString();
+                    }
+                    catch(Exception)
+                    {
+                        throw new ExportException($"Node {NodeName} has no value selected for parameter {id}: {name.Content.ToString().TrimEnd(':')}");
+                    }
                 },
 
                 (value) =>
                 {
                     try
                     {
-                        selection.SelectedValue = Enum.GetName(typeof(T), Convert.ToInt32(value));
+                        selection.SelectedIndex = Convert.ToInt32(value);
+                    }
+                    catch(FormatException)
+                    {
+                        MessageBox.Show($"{NodeName}: {value} is not a valid value for {id}: {name.Content.ToString().TrimEnd(':')}");
                     }
                     catch(Exception)
                     {

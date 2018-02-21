@@ -26,7 +26,14 @@ namespace NodeAI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SAIImporter.ImportSAI(Convert.ToInt32(entry.Text));
+            try
+            {
+                SAIImporter.ImportSAI(Convert.ToInt32(entry.Text));
+            }
+            catch(FormatException)
+            {
+                MessageBox.Show($"Entry {entry} is not a valid entry!");
+            }
             this.Close();
         }
     }

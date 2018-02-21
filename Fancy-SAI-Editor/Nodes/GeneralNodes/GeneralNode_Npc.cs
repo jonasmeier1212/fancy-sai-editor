@@ -79,5 +79,17 @@ namespace NodeAI.Nodes.GeneralNodes
             await Database.SelectMySqlData("entry", value, NodeData);
             SelectData(NodeData);
         }
+
+        public string GetNpcName()
+        {
+            try
+            {
+                return NodeData.Rows[0].ItemArray[1].ToString();
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new ExportException("Not all NPC Nodes has a selected NPC!");
+            }
+        }
     }
 }

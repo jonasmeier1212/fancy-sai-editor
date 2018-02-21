@@ -15,7 +15,10 @@ namespace NodeAI
         {
             DataTable data = await Database.SelectMysqlData("smart_scripts", "entryorguid", entry.ToString());
             if (data.Rows.Count == 0)
+            {
+                MessageBox.Show($"No SAI found for entry: {entry}");
                 return;
+            }
 
             Node saiOwnerNode = new Nodes.GeneralNodes.Npc();
             if (saiOwnerNode == null)

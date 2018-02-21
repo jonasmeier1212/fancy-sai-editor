@@ -417,8 +417,8 @@ namespace NodeAI
                 }
             }
 
-            NodeEditorCanvas.Height = height;
-            NodeEditorCanvas.Width = width;
+            NodeEditorCanvas.MinHeight = height;
+            NodeEditorCanvas.MinWidth = width;
         }
 
         private void NodeEditorCanvas_MouseLeave(object sender, MouseEventArgs e)

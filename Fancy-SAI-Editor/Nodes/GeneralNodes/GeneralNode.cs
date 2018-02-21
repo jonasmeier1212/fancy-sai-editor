@@ -117,8 +117,15 @@ namespace NodeAI.Nodes.GeneralNodes
 
                 ++i;
             }
+            Button researchButton = new Button
+            {
+                Content = "...",
+                Padding = new Thickness(1, 0, 1, 0),
+            };
+            researchButton.Click += OpenSelectionWindow;
 
             dataPanel.Children.Add(dataGrid);
+            dataPanel.Children.Add(researchButton);
             nodeMainPanel.Children.Add(dataPanel);
             #endregion
         }

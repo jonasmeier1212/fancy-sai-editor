@@ -272,7 +272,7 @@ namespace NodeAI
                 {
                     Canvas.SetTop(node, offset);
                     offset += node.ActualHeight + 10;
-                    Canvas.SetLeft(node, position.X);
+                    Canvas.SetLeft(node, position.X + (Width - node.ActualWidth) / 2);
                 }
             }
 

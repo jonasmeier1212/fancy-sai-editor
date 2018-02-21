@@ -178,10 +178,16 @@ namespace NodeAI
                     NodeManager.Instance.DeleteNodes();
                     break;
                 case Key.C:
-                    NodeManager.Instance.CopyNodes();
+                    if(Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+                        NodeManager.Instance.CopyNodes();
                     break;
                 case Key.V:
-                    NodeManager.Instance.PasteNodes();
+                    if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+                        NodeManager.Instance.PasteNodes();
+                    break;
+                case Key.A:
+                    if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+                        NodeManager.Instance.SelectAllNodes();
                     break;
                 default:
                     break;

@@ -110,6 +110,21 @@ namespace NodeAI
         }
 
         /// <summary>
+        /// Selects all nodes
+        /// </summary>
+        public void SelectAllNodes()
+        {
+            foreach(NodeTree tree in nodeTrees)
+            {
+                foreach(Node node in tree.GetNodes())
+                {
+                    node.Select();
+                    selectedNodes.Add(node);
+                }
+            }
+        }
+
+        /// <summary>
         /// Selects the passed node
         /// </summary>
         public void SelectNode(Node _node)

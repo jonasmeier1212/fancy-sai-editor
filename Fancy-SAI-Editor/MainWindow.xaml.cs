@@ -240,6 +240,9 @@ namespace NodeAI
         private void Window_LayoutUpdated(object sender, EventArgs e)
         {
             NodeManager.Instance.Update();
+            if (NodeEditorCanvas.ActualWidth != 0 && NodeEditorCanvas.ActualHeight != 0 && normalSize == default(Point))
+                normalSize = new Point(NodeEditorCanvas.ActualWidth, NodeEditorCanvas.ActualHeight);
+            ResizeNodeEditor();
         }
 
         private Point dragAnchorPoint;
@@ -390,6 +393,31 @@ namespace NodeAI
 
             return false;
         }
+
+        private Point normalSize;
+
+        private void ResizeNodeEditor()
+        {
+            double height = normalSize.Y;
+            double width = normalSize.X;
+
+            foreach (FrameworkElement element in NodeEditorCanvas.Children)
+            {
+                double x = Canvas.GetLeft(element);
+                double y = Canvas.GetTop(element);
+                if (!Double.IsNaN(x) && !Double.IsNaN(y))
+                {
+                    if (x + element.ActualWidth > width)
+                        width = x + element.ActualWidth;
+                    if (y + element.ActualHeight > height)
+                        height = y + element.ActualHeight;
+                }
+            }
+
+            NodeEditorCanvas.Height = height;
+            NodeEditorCanvas.Width = width;
+        }
+
         private void NodeEditorCanvas_MouseLeave(object sender, MouseEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Arrow;

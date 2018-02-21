@@ -18,7 +18,8 @@ using System.Diagnostics;
 
 namespace NodeAI
 {
-    public delegate string NodeParamCallback();
+    public delegate string NodeParamGetCallback();
+    public delegate void NodeParamSetCallback(int value);
 
     /// <summary>
     /// Interaktionslogik für Node.xaml
@@ -34,7 +35,7 @@ namespace NodeAI
             Deselect(); //Node shouldn't be selected by default
             LoadTooltip();
             connectorStore = new List<NodeConnector>();
-            paramStore = new Dictionary<ParamId, NodeParamCallback>();
+            paramStore = new Dictionary<ParamId, NodeParam>();
             nodeTree = null;
         }
 
@@ -64,7 +65,7 @@ namespace NodeAI
         private NodeType type;
         private List<NodeConnector> connectorStore;
         private NodeData nodeData;
-        private Dictionary<ParamId, NodeParamCallback> paramStore; //The delegate returns the method the value of this parameter
+        private Dictionary<ParamId, NodeParam> paramStore; //The delegate returns the method the value of this parameter
 
         /// <summary>
         /// Attribute to get, set the node type.
@@ -144,6 +145,28 @@ namespace NodeAI
         #region Node Layout
 
         #region Params
+
+        class NodeParam
+        {
+            public NodeParam(NodeParamGetCallback _getCallback, NodeParamSetCallback _setCallback)
+            {
+                getCallback = _getCallback;
+                setCallback = _setCallback;
+            }
+
+            public string Get()
+            {
+                return getCallback();
+            }
+
+            public void Set(int value)
+            {
+                setCallback(value);
+            }
+
+            private NodeParamGetCallback getCallback;
+            private NodeParamSetCallback setCallback;
+        }
         /// <summary>
         /// Adds param as text input
         /// </summary>
@@ -169,9 +192,12 @@ namespace NodeAI
             paramGrid.Children.Add(label);
             paramGrid.Children.Add(input);
 
-            paramStore.Add(id, (() =>
-            {
-                return input.Text;
+            paramStore.Add(id, new NodeParam(
+                () => 
+                { return input.Text; },
+
+                (value) => 
+                { input.Text = value.ToString();
             }));
         }
 
@@ -212,10 +238,17 @@ namespace NodeAI
             if (!selection.Items.IsEmpty)
                 (selection.Items[0] as ComboBoxItem).IsSelected = true;
 
-            paramStore.Add(id, (() =>
-            {
-                return ((int)Enum.Parse(typeof(T), (selection.SelectedValue as ComboBoxItem).Content.ToString())).ToString();
-            }));
+            paramStore.Add(id, new NodeParam(
+                () =>
+                {
+                    return (Enum.Parse(typeof(T), (selection.SelectedValue as ComboBoxItem).Content.ToString())).ToString();
+                },
+
+                (value) =>
+                {
+                    selection.SelectedValue = Enum.GetName(typeof(T), value);
+                }
+            ));
         }
 
         /// <summary>
@@ -224,22 +257,36 @@ namespace NodeAI
         public void AddParam<T>(ParamId id, NodeType type, string description) where T : Nodes.GeneralNodes.GeneralNode
         {
             AddInputConnector(description, type);
-            paramStore.Add(id, (() => {
-                Node connectedNode = GetDirectlyConnectedNode(type);
-                if (connectedNode != null && connectedNode is Nodes.GeneralNodes.GeneralNode generalNode)
+            paramStore.Add(id, new NodeParam(
+                () =>
                 {
-                    return generalNode.GetParamValue();
+                    Node connectedNode = GetDirectlyConnectedNode(type);
+                    if (connectedNode != null && connectedNode is Nodes.GeneralNodes.GeneralNode generalNode)
+                        return generalNode.GetParamValue();
+                    return "0";
+                },
+
+                (value) =>
+                {
+                    Node connectedNode = GetDirectlyConnectedNode(type);
+                    if (connectedNode != null && connectedNode is Nodes.GeneralNodes.GeneralNode generalNode)
+                        generalNode.SetParamValue(value);
                 }
-                return "0";
-            }));
+            ));
         }
 
         public string GetParam(ParamId id)
         {
             if (paramStore.ContainsKey(id))
-                return paramStore[id].Invoke();
+                return paramStore[id].Get();
 
             return "0";
+        }
+
+        public void SetParam(ParamId id, int value)
+        {
+            if (paramStore.ContainsKey(id))
+                paramStore[id].Set(value);
         }
 
         private void CheckInputForNaN(object sender, TextCompositionEventArgs e)

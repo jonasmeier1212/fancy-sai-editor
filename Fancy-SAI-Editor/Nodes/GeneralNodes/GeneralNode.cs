@@ -25,6 +25,8 @@ namespace NodeAI.Nodes.GeneralNodes
 
         public abstract string GetParamValue();
 
+        public abstract void SetParamValue(int value);
+
         public string AdditionalQuery { get; set; }
 
         private StackPanel selectPanel; //The select panel is shown if there is no database data selected and is used to open a windows in which the user can select data from the database

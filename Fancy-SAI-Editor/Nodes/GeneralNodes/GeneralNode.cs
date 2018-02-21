@@ -25,7 +25,7 @@ namespace NodeAI.Nodes.GeneralNodes
 
         public abstract string GetParamValue();
 
-        public abstract void SetParamValue(int value);
+        public abstract void SetParamValue(string value);
 
         public string AdditionalQuery { get; set; }
 

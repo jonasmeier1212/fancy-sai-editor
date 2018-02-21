@@ -19,7 +19,7 @@ using System.Diagnostics;
 namespace NodeAI
 {
     public delegate string NodeParamGetCallback();
-    public delegate void NodeParamSetCallback(int value);
+    public delegate void NodeParamSetCallback(string value);
 
     /// <summary>
     /// Interaktionslogik für Node.xaml
@@ -159,7 +159,7 @@ namespace NodeAI
                 return getCallback();
             }
 
-            public void Set(int value)
+            public void Set(string value)
             {
                 setCallback(value);
             }
@@ -283,7 +283,7 @@ namespace NodeAI
             return "0";
         }
 
-        public void SetParam(ParamId id, int value)
+        public void SetParam(ParamId id, string value)
         {
             if (paramStore.ContainsKey(id))
                 paramStore[id].Set(value);

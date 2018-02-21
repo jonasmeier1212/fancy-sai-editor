@@ -227,7 +227,7 @@ namespace NodeAI
 
         private void NodeEditorCanvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            NodeManager.Instance.Scale(e.Delta);
+            //NodeManager.Instance.Scale(e.Delta);
         }
 
         private void HandleRightClick(object sender, MouseButtonEventArgs e)
@@ -274,8 +274,7 @@ namespace NodeAI
         private void NodeEditorScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             //Route this event manually because I didn't figured out how to prevent this yet
-            NodeEditorCanvas_MouseWheel(sender, e);
-            e.Handled = true;
+            //NodeEditorCanvas_MouseWheel(sender, e); //Zooming disabled
         }
 
         private void MenutItemExport_Click(object sender, RoutedEventArgs e)

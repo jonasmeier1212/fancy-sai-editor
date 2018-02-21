@@ -141,6 +141,7 @@
     <Compile Include="Nodes\ActionNodes\ActionNode_FailQuest.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_FleeForAssist.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_Follow.cs" />
+    <Compile Include="Nodes\ActionNodes\ActionNode_ForceDespawn.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_IncEventPhase.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_InterruptSpell.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_InvokerCast.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Nodes\ActionNodes\ActionNode_SummonCreature.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_Talk.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_ThreatSinglePct.cs" />
+    <Compile Include="Nodes\ActionNodes\ActionNode_WPStart.cs" />
     <Compile Include="Nodes\EventNodes\EventNode.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_ActionDone.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Aggro.cs" />
@@ -220,7 +222,8 @@
     <Compile Include="Nodes\EventNodes\EventNode_UpdateIC.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Update_OOC.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_VictimCasting.cs" />
-    <Compile Include="Nodes\EventNodes\EventNode_Waypoint.cs" />
+    <Compile Include="Nodes\EventNodes\EventNode_WaypointReached.cs" />
+    <Compile Include="Nodes\EventNodes\EventNode_WaypointStarted.cs" />
     <Compile Include="Nodes\GeneralNodes\CreatureTextCreation.xaml.cs">
       <DependentUpon>CreatureTextCreation.xaml</DependentUpon>
     </Compile>

@@ -44,5 +44,10 @@ namespace NodeAI.Nodes.GeneralNodes
                 throw new ExportException();
             }
         }
+
+        public override void SetParamValue(int value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

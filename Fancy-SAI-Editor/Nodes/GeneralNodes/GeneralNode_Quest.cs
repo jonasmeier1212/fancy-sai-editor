@@ -41,5 +41,10 @@ namespace NodeAI.Nodes.GeneralNodes
                 throw new ExportException("Not all Quest Nodes has selected quest!");
             }
         }
+
+        public override void SetParamValue(int value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

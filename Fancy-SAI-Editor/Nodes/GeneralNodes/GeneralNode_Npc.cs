@@ -73,5 +73,10 @@ namespace NodeAI.Nodes.GeneralNodes
 
             return correct;
         }
+
+        public override void SetParamValue(int value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -53,5 +53,10 @@ namespace NodeAI.Nodes.GeneralNodes
                 throw new ArgumentException();
             }
         }
+
+        public override void SetParamValue(int value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

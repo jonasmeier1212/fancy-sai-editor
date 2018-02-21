@@ -246,7 +246,14 @@ namespace NodeAI
 
                 (value) =>
                 {
-                    selection.SelectedValue = Enum.GetName(typeof(T), value);
+                    try
+                    {
+                        selection.SelectedValue = Enum.GetName(typeof(T), Convert.ToInt32(value));
+                    }
+                    catch(Exception)
+                    {
+                        selection.SelectedValue = "Invalid value";
+                    }
                 }
             ));
         }

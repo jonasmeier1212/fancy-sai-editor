@@ -275,6 +275,9 @@ namespace NodeAI
 
                 (value) =>
                 {
+                    if (value == "0")
+                        return;
+
                     Node connectedNode = MainWindow.CreateNode(type, this);
                     if (connectedNode != null && connectedNode is Nodes.GeneralNodes.GeneralNode generalNode)
                         generalNode.SetParamValue(value);

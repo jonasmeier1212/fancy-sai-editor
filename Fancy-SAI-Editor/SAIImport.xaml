@@ -11,7 +11,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="entry" HorizontalAlignment="Center" VerticalAlignment="Center" PreviewTextInput="entry_PreviewTextInput" MinWidth ="158" MaxWidth="158"/>
+        <TextBox x:Name="entry" HorizontalAlignment="Center" VerticalAlignment="Center" PreviewTextInput="entry_PreviewTextInput" MinWidth ="158" MaxWidth="158" KeyDown="entry_KeyDown"/>
         <Button Content="Import" Click="Button_Click" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="60,2"/>
     </Grid>
 </Window>

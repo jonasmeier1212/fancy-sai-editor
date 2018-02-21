@@ -26,15 +26,26 @@ namespace NodeAI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ImportSAI();
+        }
+
+        private void entry_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                ImportSAI();
+        }
+
+        private void ImportSAI()
+        {
             try
             {
                 SAIImporter.ImportSAI(Convert.ToInt32(entry.Text));
+                Close();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show($"Entry {entry.Text} is not a valid entry!");
             }
-            Close();
         }
 
         private void entry_PreviewTextInput(object sender, TextCompositionEventArgs e)

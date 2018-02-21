@@ -49,9 +49,10 @@ namespace NodeAI.Nodes.GeneralNodes
             }
         }
 
-        public override void SetParamValue(string value)
+        public async override void SetParamValue(string value)
         {
-            throw new NotImplementedException();
+            await Database.SelectSqliteData("ID", value, NodeData);
+            SelectData(NodeData);
         }
     }
 }

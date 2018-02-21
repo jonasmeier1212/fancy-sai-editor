@@ -116,7 +116,7 @@ namespace NodeAI
             }
             catch (Exception e)
             {
-                MessageBox.Show("Invalid SAI!\nError: " + e.Message + "\nStack:\n" + e.StackTrace);
+                MessageBox.Show($"Invalid SAI!\nError: {e.Message} \nStack:\n {e.StackTrace}");
                 return;
             }
         }

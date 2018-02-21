@@ -369,6 +369,16 @@ namespace NodeAI
         Yes,
     }
 
+    [Flags]
+    public enum CastFlags
+    {
+        None                            = 0x00,
+        INTERRUPT_PREVIOUS              = 0x01,
+        TRIGGERED                       = 0x02,
+        CAST_AURA_NOT_PRESENT           = 0x20,
+        COMBAT_MOVE                     = 0x40,
+    }
+
 #pragma warning restore 1591
 
     /// <summary>

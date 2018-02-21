@@ -26,12 +26,4 @@ namespace NodeAI.Nodes.ActionNodes
             return new Cast();
         }
     }
-    [Flags]
-    enum CastFlags
-    {
-        SMARTCAST_INTERRUPT_PREVIOUS    = 0x01,
-        SMARTCAST_TRIGGERED             = 0x02,
-        CAST_AURA_NOT_PRESENT           = 0x20,
-        SMARTCAST_COMBAT_MOVE           = 0x40,
-    }
 }

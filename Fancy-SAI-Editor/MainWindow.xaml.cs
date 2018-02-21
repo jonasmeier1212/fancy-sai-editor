@@ -116,6 +116,8 @@ namespace NodeAI
         /// <param name="connector"></param>
         public void ShowNodeSelectionMenuInNodeEditor(NodeConnector connector)
         {
+            ClearNodeEditorContexMenu();
+
             Assembly assembly = Assembly.GetExecutingAssembly();
             foreach (var type in assembly.GetTypes())
             {
@@ -148,6 +150,8 @@ namespace NodeAI
         /// <param name="connector"></param>
         public void ShowNodeSelectionMenuInNodeEditor(Point mousePosition)
         {
+            ClearNodeEditorContexMenu();
+
             Assembly assembly = Assembly.GetExecutingAssembly();
             foreach (var type in assembly.GetTypes())
             {
@@ -201,6 +205,12 @@ namespace NodeAI
 
         private void HandleContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
+            if(!(e.Source is Canvas) && !(e.OriginalSource is Ellipse))
+            {
+                e.Handled = true;
+                return;
+            }
+
             if (selectionMenuEventNodes.Items.IsEmpty)
                 selectionMenuEventNodes.Visibility = Visibility.Collapsed;
             else
@@ -225,6 +235,11 @@ namespace NodeAI
         private void HandleContextMenuClosing(object sender, ContextMenuEventArgs e)
         {
             //Clear the content of the node selection context menu to prevent wrong items at next opening
+            ClearNodeEditorContexMenu();
+        }
+
+        private void ClearNodeEditorContexMenu()
+        {
             selectionMenuTargetNodes.Items.Clear();
             selectionMenuActionNodes.Items.Clear();
             selectionMenuEventNodes.Items.Clear();

@@ -289,7 +289,8 @@ namespace NodeAI
                     {
                         if (dataReader.Read())
                         {
-                            return dataReader[field].ToString();
+                            if(dataReader[field].ToString() != "")
+                                return dataReader[field].ToString();
                         }
                     }
                 }

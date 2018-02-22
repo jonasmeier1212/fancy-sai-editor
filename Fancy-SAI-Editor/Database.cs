@@ -136,6 +136,38 @@ namespace NodeAI
             return;
         }
 
+        /// <summary>
+        /// Selects data specified by the parameters from world database with custom WHERE statement.
+        /// <para>
+        /// Example for whereStatement: 'entry=12345 AND groupid=0'
+        /// </para>
+        /// </summary>
+        public static async Task SelectMySqlData(NodeData data, string whereStatement)
+        {
+            try
+            {
+                data.Clear();
+                using (MySqlCommand query = mySqlConnection.CreateCommand())
+                {
+                    string fieldNames = DetermineFieldNames(data);
+
+                    query.CommandText = "SELECT " + fieldNames + " FROM " + data.SelectTableName + " WHERE " + whereStatement + " LIMIT 100";
+                    using (MySqlDataAdapter dataAdp = new MySqlDataAdapter(query))
+                    {
+                        await dataAdp.FillAsync(data);
+                        foreach (DataColumn c in data.Columns)
+                            c.ReadOnly = true;
+                        return;
+                    }
+                }
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show("Database Error!\nError: " + e.Message);
+            }
+            return;
+        }
+
         public static async Task SelectBroadcastText(string searchTerm, BroadcastTextData data)
         {
             try

@@ -257,6 +257,7 @@ namespace NodeAI
         /// Includes all target node types
         /// </summary>
         TARGET,
+        TARGET_NONE,
         TARGET_SELF,
         TARGET_VICTIM,
         TARGET_HOSTILE_SECOND_AGGRO,

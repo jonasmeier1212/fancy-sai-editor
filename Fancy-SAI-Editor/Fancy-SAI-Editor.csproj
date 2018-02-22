@@ -259,6 +259,7 @@
     <Compile Include="Nodes\TargetNodes\TargetNode_HostileSecondAggro.cs" />
     <Compile Include="Nodes\TargetNodes\TargetNode_InvokerParty.cs" />
     <Compile Include="Nodes\TargetNodes\TargetNode_LootRecipients.cs" />
+    <Compile Include="Nodes\TargetNodes\TargetNode_None.cs" />
     <Compile Include="Nodes\TargetNodes\TargetNode_OwnerOrSummoner.cs" />
     <Compile Include="Nodes\TargetNodes\TargetNode_PlayerDistance.cs" />
     <Compile Include="Nodes\TargetNodes\TargetNode_PlayerRange.cs" />

@@ -33,7 +33,6 @@ namespace NodeAI
         {
             InitializeComponent();
             Deselect(); //Node shouldn't be selected by default
-            LoadTooltip();
             connectorStore = new List<NodeConnector>();
             paramStore = new Dictionary<ParamId, NodeParam>();
             nodeTree = null;
@@ -50,7 +49,7 @@ namespace NodeAI
         /// </summary>
         private async void LoadTooltip()
         {
-            string tooltip = await Database.FindNodeTooltip(type);
+            string tooltip = await Database.FindNodeTooltip(Type);
             ToolTip toolTip = new ToolTip()
             {
                 Content = tooltip,
@@ -626,6 +625,11 @@ namespace NodeAI
         {
             if(NodeTree != null)
                 NodeTree.RecalcSize();
+        }
+
+        private void NodeUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadTooltip();
         }
     }
 

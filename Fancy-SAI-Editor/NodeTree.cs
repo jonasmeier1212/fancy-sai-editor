@@ -246,7 +246,7 @@ namespace NodeAI
         {
             public VisualBucket()
             {
-                nodes = new List<Node>();
+                nodes = new SortedSet<Node>(new ByVerticalPosition());
                 width = 0;
                 height = 0;
                 position = new Point(0, 0);
@@ -296,43 +296,51 @@ namespace NodeAI
                 }
             }
 
-            private int CalcPositionIndex(Node _node)
-            {
-                int index = 0;
-                var inputs = _node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.INPUT);
-                if (inputs.Count > 0 && inputs.First() is Node input)
-                {
-                    index += input.VerticalPositionIndex * 10; //Weight the input node position index more than the connector position index
-                    if(input.GetConnectorConnectedTo(_node) is NodeConnector connector1)
-                        index += connector1.PositionIndex;
-                    if (_node.GetConnectorConnectedTo(input) is NodeConnector connector2)
-                        index += connector2.PositionIndex;
-                }
-                var outputs = _node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.OUTPUT);
-                if(outputs.Count > 0 && outputs.First() is Node output) //TODO: There can be more than one output
-                {
-                    index += output.VerticalPositionIndex * 10; //Weight the input node position index more than the connector position index
-                    if (output.GetConnectorConnectedTo(_node) is NodeConnector connector1)
-                        index += connector1.PositionIndex;
-                    if (_node.GetConnectorConnectedTo(output) is NodeConnector connector2)
-                        index += connector2.PositionIndex;
-                }
-
-                return index;
-            }
-
             public bool HasNode(Node _node)
             {
                 return nodes.Contains(_node);
             }
 
-            List<Node> nodes;
+            SortedSet<Node> nodes;
             double width;
             double height;
             Point position;
 
             public double Width { get => width; }
             public double Height { get => height; }
+
+            private class ByVerticalPosition : IComparer<Node>
+            {
+                public int Compare(Node n1, Node n2)
+                {
+                    return CalcPositionIndex(n1) - CalcPositionIndex(n2);
+                }
+
+                private int CalcPositionIndex(Node _node)
+                {
+                    int index = 0;
+                    var inputs = _node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.INPUT);
+                    if (inputs.Count > 0 && inputs.First() is Node input)
+                    {
+                        index += input.VerticalPositionIndex * 10; //Weight the input node position index more than the connector position index
+                        if (input.GetConnectorConnectedTo(_node) is NodeConnector connector1)
+                            index += connector1.PositionIndex;
+                        if (_node.GetConnectorConnectedTo(input) is NodeConnector connector2)
+                            index += connector2.PositionIndex;
+                    }
+                    var outputs = _node.GetDirectlyConnectedNodes(NodeType.NONE, NodeConnectorType.OUTPUT);
+                    if (outputs.Count > 0 && outputs.First() is Node output) //TODO: There can be more than one output
+                    {
+                        index += output.VerticalPositionIndex * 10; //Weight the input node position index more than the connector position index
+                        if (output.GetConnectorConnectedTo(_node) is NodeConnector connector1)
+                            index += connector1.PositionIndex;
+                        if (_node.GetConnectorConnectedTo(output) is NodeConnector connector2)
+                            index += connector2.PositionIndex;
+                    }
+
+                    return index;
+                }
+            }
         }
 
         private class VisualConnection

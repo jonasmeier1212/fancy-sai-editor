@@ -291,7 +291,7 @@ namespace NodeAI
 
             public bool HasNode(Node _node)
             {
-                return nodes.Contains(_node); //Must be converted to list because otherwise the Comparer is used and this is wrong!
+                return nodes.Contains(_node);
             }
 
             HashSet<Node> nodes;

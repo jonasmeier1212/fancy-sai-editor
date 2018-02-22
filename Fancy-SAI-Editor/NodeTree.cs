@@ -59,6 +59,9 @@ namespace NodeAI
             // Node tree of _connectTo node must be this tree!
             Debug.Assert(_originNode.NodeTree == this);
 
+            if (_node.GetDirectlyConnectedNodes(NodeType.NONE).Contains(_originNode))
+                return;
+
             NodeConnector origin = null;
             NodeConnector target = null;
             foreach(NodeConnector originConnector in _originNode.Connectors)

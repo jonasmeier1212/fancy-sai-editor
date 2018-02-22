@@ -172,15 +172,29 @@ namespace NodeAI
         /// </summary>
         public void AddParam(ParamId id, string description, bool allowNaN = false)
         {
+            ToolTip toolTip = null;
+            if (Database.GetNodeParamTooltip(Type, id) is String tooltipValue)
+            {
+                toolTip = new ToolTip()
+                {
+                    Content = tooltipValue,
+                };
+            }
+
             Label label = new Label()
             {
                 Content = description,
                 Foreground = Brushes.White,
+                ToolTip = toolTip,
             };
             Grid.SetColumn(label, 0);
             Grid.SetRow(label, paramGrid.Rows);
 
-            TextBox input = new TextBox();
+            TextBox input = new TextBox()
+            {
+                ToolTip = toolTip,
+            };
+
             if (!allowNaN)
             {
                 input.Text = "0";
@@ -207,9 +221,20 @@ namespace NodeAI
         public void AddParam<T>(ParamId id, string selectionName) where T : struct, IConvertible
         {
             paramGrid.Rows++;
+
+            ToolTip toolTip = null;
+            if(Database.GetNodeParamTooltip(Type, id) is String tooltipValue)
+            {
+                toolTip = new ToolTip()
+                {
+                    Content = tooltipValue,
+                };
+            }
+
             ComboBox selection = new ComboBox()
             {
                 MaxWidth = 100,
+                ToolTip = toolTip,
             };
 
             Label name = new Label()
@@ -217,6 +242,7 @@ namespace NodeAI
                 Foreground = Brushes.White,
                 Content = selectionName,
                 HorizontalAlignment = HorizontalAlignment.Center,
+                ToolTip = toolTip,
             };
             Grid.SetColumn(name, 0);
             Grid.SetRow(name, paramGrid.Rows);
@@ -274,7 +300,7 @@ namespace NodeAI
         /// </summary>
         public void AddParam<T>(ParamId id, NodeType type, string description) where T : Nodes.GeneralNodes.GeneralNode
         {
-            AddInputConnector(description, type);
+            AddInputConnector(description, type, 1, Database.GetNodeParamTooltip(this.Type, id));
             paramStore.Add(id, new NodeParam(
                 () =>
                 {
@@ -337,9 +363,9 @@ namespace NodeAI
         /// </summary>
         /// <param name="label">Description text of the connector.</param>
         /// <param name="allowedNode">Type of nodes allowed for connection.</param>
-        protected void AddInputConnector(string label, NodeType allowedNode, int nmbAllowedConnections = 1)
+        protected void AddInputConnector(string label, NodeType allowedNode, int nmbAllowedConnections = 1, string tooltip = null)
         {
-            AddConnector(NodeConnectorType.INPUT, label, allowedNode, nmbAllowedConnections);
+            AddConnector(NodeConnectorType.INPUT, label, allowedNode, nmbAllowedConnections, tooltip);
         }
 
         /// <summary>
@@ -347,12 +373,12 @@ namespace NodeAI
         /// </summary>
         /// <param name="label">Description text of the connector.</param>
         /// <param name="allowedNode">Type of nodes allowed for connection.</param>
-        protected void AddOutputConnector(string label, NodeType allowedNode, int nmbAllowedConnections = 1)
+        protected void AddOutputConnector(string label, NodeType allowedNode, int nmbAllowedConnections = 1, string tooltip = null)
         {
-            AddConnector(NodeConnectorType.OUTPUT, label, allowedNode, nmbAllowedConnections);
+            AddConnector(NodeConnectorType.OUTPUT, label, allowedNode, nmbAllowedConnections, tooltip);
         }
 
-        private void AddConnector(NodeConnectorType type, string label, NodeType allowedNode, int nmbAllowedConnections)
+        private void AddConnector(NodeConnectorType type, string label, NodeType allowedNode, int nmbAllowedConnections, string tooltip = null)
         {
             int index = 0;
             if (type == NodeConnectorType.INPUT)
@@ -361,6 +387,14 @@ namespace NodeAI
                 index = (from NodeConnector in connectorStore where NodeConnector.Type == NodeConnectorType.OUTPUT select NodeConnector).Count();
 
             NodeConnector newConnector = new NodeConnector(label, type, this, allowedNode, index, nmbAllowedConnections);
+
+            if (tooltip != null)
+            {
+                newConnector.ToolTip = new ToolTip()
+                {
+                    Content = tooltip,
+                };
+            }
 
             if (type == NodeConnectorType.INPUT)
                 inputNodesPanel.Children.Add(newConnector);

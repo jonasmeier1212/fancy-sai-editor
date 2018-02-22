@@ -259,12 +259,12 @@ namespace NodeAI
             {
                 using (SQLiteCommand query = new SQLiteCommand(sqliteConnection))
                 {
-                    query.CommandText = "SELECT tooltip FROM node_tooltips WHERE Type LIKE '" + type + "';";
+                    query.CommandText = "SELECT general FROM node_tooltips WHERE Type LIKE '" + type + "';";
                     using (DbDataReader dataReader = await query.ExecuteReaderAsync())
                     {
                         if (await dataReader.ReadAsync())
                         {
-                            return dataReader["tooltip"].ToString();
+                            return dataReader["general"].ToString();
                         }
                     }
                 }
@@ -275,6 +275,31 @@ namespace NodeAI
             }
 
             return "No tooltip available!";
+        }
+
+        public static string GetNodeParamTooltip(NodeType type, ParamId paramId)
+        {
+            try
+            {
+                using (SQLiteCommand query = new SQLiteCommand(sqliteConnection))
+                {
+                    string field = $"param{ ((int)paramId + 1).ToString()}";
+                    query.CommandText = $"SELECT {field} FROM node_tooltips WHERE Type LIKE '{type}';";
+                    using (DbDataReader dataReader = query.ExecuteReader())
+                    {
+                        if (dataReader.Read())
+                        {
+                            return dataReader[field].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Database Error!\nError: " + e.Message);
+            }
+
+            return null;
         }
 
         #endregion

@@ -18,7 +18,7 @@ namespace NodeAI
         {
             nodeEditor = _nodeEditor;
 
-            nodes = new List<Node>();
+            nodes = new HashSet<Node>();
             visualConnectionsStore = new List<VisualConnection>();
             visualBuckets = new SortedDictionary<int, VisualBucket>();
             nodes.Add(_creatorNode);
@@ -213,7 +213,7 @@ namespace NodeAI
 
         public List<Node> GetNodes()
         {
-            return nodes;
+            return nodes.ToList();
         }
 
         public void Move(double offsetX, double offsetY)
@@ -228,7 +228,7 @@ namespace NodeAI
             AutoPosition();
         }
 
-        private List<Node> nodes;
+        private HashSet<Node> nodes;
         private List<VisualConnection> visualConnectionsStore;
         private Canvas nodeEditor;
         private SortedDictionary<int, VisualBucket> visualBuckets;

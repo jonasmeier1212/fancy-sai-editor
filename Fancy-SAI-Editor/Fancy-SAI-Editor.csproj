@@ -132,6 +132,7 @@
     <Compile Include="Nodes\ActionNodes\ActionNode_AttackStart.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_AutoAttack.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_CallAreaExplored.cs" />
+    <Compile Include="Nodes\ActionNodes\ActionNode_CallForHelp.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_Cast.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_CloseGossip.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_CombatStop.cs" />

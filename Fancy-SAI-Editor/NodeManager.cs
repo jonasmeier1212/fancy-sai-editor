@@ -38,11 +38,14 @@ namespace NodeAI
         /// </summary>
         public void AddNode(Node _node, Node _creator = null)
         {
-            //Very important to do this first, because otherwise the connectors crashes because the visual parents aren't existing
-            nodeEditor.Children.Add(_node);
-            Canvas.SetTop(_node, 0); //Init default canvas position
-            Canvas.SetLeft(_node, 0);
-            nodeEditor.UpdateLayout();
+            if (!nodeEditor.Children.Contains(_node))
+            {
+                //Very important to do this first, because otherwise the connectors crashes because the visual parents aren't existing
+                nodeEditor.Children.Add(_node);
+                Canvas.SetTop(_node, 0); //Init default canvas position
+                Canvas.SetLeft(_node, 0);
+                nodeEditor.UpdateLayout();
+            }
 
             //Important: First handle connections and then sort in a node tree to ensure a correct classification!
             if (_creator != null)

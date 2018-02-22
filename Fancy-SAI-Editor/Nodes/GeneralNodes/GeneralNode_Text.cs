@@ -56,32 +56,22 @@ namespace NodeAI.Nodes.GeneralNodes
 
         public async override void SetParamValue(string value)
         {
-            /*
-             * Try to get entry:
-             * I think this can only be part of action nodes -> If this is false this will no work as intend
-             */
-            if(GetDirectlyConnectedNode(NodeType.ACTION) is Node actionNode)
+            //TODO: I think this will not work with two or more sai owners in one tree -> Changed this
+
+            foreach (Npc npcNode in GetConnectedNodes(NodeType.GENERAL_NPC))
             {
-                if(actionNode.GetDirectlyConnectedNode(NodeType.EVENT) is Node eventNode)
-                {
-                    if(eventNode.GetDirectlyConnectedNode(NodeType.GENERAL_NPC) is Npc npcNode)
-                    {
-                        if (!npcNode.IsSAIOwner())
-                            return;
+                if (!npcNode.IsSAIOwner())
+                    continue;
 
-                        string entry = "";
-                        entry = npcNode.GetParamValue();
+                string entry = "";
+                entry = npcNode.GetParamValue();
 
-                        if (entry == "" || entry == "0")
-                            return;
+                if (entry == "" || entry == "0")
+                    continue;
 
-                        await Database.SelectMySqlData(NodeData, $"entry={entry} AND groupid={value}");
-                        SelectData(NodeData);
-                    }
-                }
+                await Database.SelectMySqlData(NodeData, $"entry={entry} AND groupid={value}");
+                SelectData(NodeData);
             }
-
-            
         }
     }
 }

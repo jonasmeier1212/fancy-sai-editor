@@ -26,5 +26,8 @@
     <Setting Name="ScaleRatio" Type="System.Single" Scope="Application">
       <Value Profile="(Default)">1.1</Value>
     </Setting>
+    <Setting Name="ConnectionPathColor" Type="System.Windows.Media.Color" Scope="Application">
+      <Value Profile="(Default)">#FF164BA0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

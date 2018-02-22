@@ -109,5 +109,14 @@ namespace NodeAI.Properties {
                 return ((float)(this["ScaleRatio"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF164BA0")]
+        public global::System.Windows.Media.Color ConnectionPathColor {
+            get {
+                return ((global::System.Windows.Media.Color)(this["ConnectionPathColor"]));
+            }
+        }
     }
 }

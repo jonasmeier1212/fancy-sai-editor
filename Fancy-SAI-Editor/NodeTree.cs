@@ -132,6 +132,14 @@ namespace NodeAI
                 return;
 
             nodes.Remove(_node);
+            
+            //Remove node from visual bucket
+            foreach(VisualBucket bucket in visualBuckets.Values)
+            {
+                if (bucket.HasNode(_node))
+                    bucket.Remove(_node);
+            }
+
             //Remove attached visual connections
             var connectionsToRemove = visualConnectionsStore.Where(connection =>
             {
@@ -256,14 +264,14 @@ namespace NodeAI
                 nodes.Add(node);
             }
 
+            public void Remove(Node node)
+            {
+                nodes.Remove(node);
+                RecalcSize();
+            }
+
             public void Update(Point _position = default(Point))
             {
-                //Sort nodes in vertical direction
-                nodes.Sort((Node _n1, Node _n2) =>
-                {
-                    return CalcPositionIndex(_n1) - CalcPositionIndex(_n2);
-                });
-
                 if (_position != default(Point))
                     position = _position;
 

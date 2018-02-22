@@ -74,41 +74,13 @@ namespace NodeAI
             try
             {
                 if (sender is NodeMenuItem item)
-                    CreateNode(item.Type, item.Origin, item.CreatePosition);
+                    NodeManager.Instance.CreateNode(item.Type, item.Origin, item.CreatePosition);
             }
             catch (Exception exc)
             {
                 MessageBox.Show("Error at node creation!\nError: " + exc.Message);
             }
-        }
-
-        /// <summary>
-        /// Creates node with passed type and returns this node if the creation was successfull.
-        /// </summary>
-        /// <param name="_nodeType">Type of the node to be created.</param>
-        public Node CreateNode(NodeType _nodeType, Node _creator = null, Point _createPosition = default(Point))
-        {
-            try
-            {
-                Assembly assembly = Assembly.GetExecutingAssembly();
-                foreach (var type in assembly.GetTypes())
-                {
-                    if (type.GetCustomAttribute<NodeAttribute>() != null && type.GetCustomAttribute<NodeAttribute>().Type == _nodeType)
-                    {
-                        if(Activator.CreateInstance(type) is Node newNode)
-                        {
-                            NodeManager.Instance.AddNode(newNode, _creator);
-                            return newNode;
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error at node creation!\nError: " + e.Message);
-            }
-            return null;
-        }
+        }   
 
         /// <summary>
         /// Shows a node selection menu in the editor at the mouse position with all node which has a connection possibilities with the passed NodeConnector.

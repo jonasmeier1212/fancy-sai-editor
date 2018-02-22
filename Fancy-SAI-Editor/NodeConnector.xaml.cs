@@ -199,7 +199,7 @@ namespace NodeAI
                 {
                     if (ParentNode.MainWindow != null)
                     {
-                        Node newNode = ParentNode.MainWindow.CreateNode(AllowedNodeType, ParentNode);
+                        Node newNode = NodeManager.Instance.CreateNode(AllowedNodeType, ParentNode);
                         ParentNode.MainWindow.UpdateLayout();
                     }
                 }

@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Windows.Media;
 using System.Windows.Input;
 using System.Windows.Shapes;
+using System.Reflection;
 
 namespace NodeAI
 {
@@ -30,6 +31,34 @@ namespace NodeAI
         {
             get { Debug.Assert(_instance != null); return _instance; }
             set { Debug.Assert(_instance == null); _instance = value; }
+        }
+
+        /// <summary>
+        /// Creates node with passed type and returns this node if the creation was successfull.
+        /// </summary>
+        /// <param name="_nodeType">Type of the node to be created.</param>
+        public Node CreateNode(NodeType _nodeType, Node _creator = null, Point _createPosition = default(Point))
+        {
+            try
+            {
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                foreach (var type in assembly.GetTypes())
+                {
+                    if (type.GetCustomAttribute<NodeAttribute>() != null && type.GetCustomAttribute<NodeAttribute>().Type == _nodeType)
+                    {
+                        if (Activator.CreateInstance(type) is Node newNode)
+                        {
+                            AddNode(newNode, _creator);
+                            return newNode;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error at node creation!\nError: " + e.Message);
+            }
+            return null;
         }
 
         /// <summary>

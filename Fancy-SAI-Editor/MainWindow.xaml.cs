@@ -248,22 +248,20 @@ namespace NodeAI
         private void NodeEditorCanvas_MouseMove(object sender, MouseEventArgs e)
         {
             if(Mouse.LeftButton == MouseButtonState.Pressed && e.OriginalSource == NodeEditorCanvas)
-            {
-                //DragEditor(e); //Temporary disabled
                 SelectMany();
-            }
+
+            if (Mouse.MiddleButton == MouseButtonState.Pressed && e.OriginalSource == NodeEditorCanvas)
+                DragEditor(e);
         }
 
         private void NodeEditorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             NodeManager.Instance.DeselectNodes();
-            //InitDragEditor(e);
             InitSelectMany();
         }
 
         private void NodeEditorCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //EndDragEditor();
             EndSelectMany();
         }
 
@@ -418,9 +416,23 @@ namespace NodeAI
 
         private void NodeEditorCanvas_MouseLeave(object sender, MouseEventArgs e)
         {
+            EndDragEditor();
+
             Mouse.OverrideCursor = Cursors.Arrow;
             NodeEditorCanvas.Children.Remove(selectionRect);
             selectionRect = null;
+        }
+
+        private void NodeEditorCanvas_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Middle)
+                InitDragEditor(e);
+        }
+
+        private void NodeEditorCanvas_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Middle)
+                EndDragEditor();
         }
     }
 }

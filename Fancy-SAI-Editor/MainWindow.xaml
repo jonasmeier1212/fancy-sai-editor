@@ -21,7 +21,7 @@
             </MenuItem>
         </Menu>
         <ScrollViewer x:Name="NodeEditorScrollViewer" HorizontalScrollBarVisibility="Visible" Grid.Row="1" CanContentScroll="True" PreviewMouseWheel="NodeEditorScrollViewer_PreviewMouseWheel">
-            <Canvas x:Name="NodeEditorCanvas" Background="White" ContextMenuOpening="HandleContextMenuOpening" ContextMenuClosing="HandleContextMenuClosing" MouseWheel="NodeEditorCanvas_MouseWheel" MouseRightButtonDown="HandleRightClick" MouseMove="NodeEditorCanvas_MouseMove" MouseLeftButtonDown="NodeEditorCanvas_MouseLeftButtonDown" MouseLeftButtonUp="NodeEditorCanvas_MouseLeftButtonUp" MouseLeave="NodeEditorCanvas_MouseLeave">
+            <Canvas x:Name="NodeEditorCanvas" Background="White" ContextMenuOpening="HandleContextMenuOpening" ContextMenuClosing="HandleContextMenuClosing" MouseWheel="NodeEditorCanvas_MouseWheel" MouseRightButtonDown="HandleRightClick" MouseMove="NodeEditorCanvas_MouseMove" MouseLeftButtonDown="NodeEditorCanvas_MouseLeftButtonDown" MouseLeftButtonUp="NodeEditorCanvas_MouseLeftButtonUp" MouseLeave="NodeEditorCanvas_MouseLeave" MouseDown="NodeEditorCanvas_MouseDown" MouseUp="NodeEditorCanvas_MouseUp">
                 <Canvas.RenderTransform>
                     <ScaleTransform x:Name="NodeEditorCanvasScaleTransfrom"/>
                 </Canvas.RenderTransform>

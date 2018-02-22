@@ -276,6 +276,9 @@
     </Compile>
     <Compile Include="SAIImporter.cs" />
     <Compile Include="SharedDefines.cs" />
+    <Compile Include="ShowSqlExport.xaml.cs">
+      <DependentUpon>ShowSqlExport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SqlExporter.cs" />
     <Page Include="DataWindow.xaml">
       <SubType>Designer</SubType>
@@ -309,6 +312,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SAIImport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShowSqlExport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

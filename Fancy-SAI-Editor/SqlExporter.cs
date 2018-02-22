@@ -13,21 +13,6 @@ namespace NodeAI
     {
         public static void ExportNodeTree(NodeTree _tree)
         {
-            // Configure open file dialog box
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
-            {
-                FileName = "SAI", // Default file name
-                DefaultExt = ".sql", // Default file extension
-                Filter = "SQL File (.sql)|*.sql" // Filter files by extension
-            };
-
-            // Show open file dialog box
-            bool? result = dlg.ShowDialog();
-
-            // Process open file dialog box results
-            if (result == false)
-                return;
-
             string update = "";
 
             //First find the NPCs which should be affected
@@ -101,23 +86,7 @@ namespace NodeAI
 
                 try
                 {
-                    File.WriteAllText(dlg.FileName, update);
-                }
-                catch (ArgumentException)
-                {
-                    MessageBox.Show("File name or path is empty or invalid!");
-                }
-                catch(PathTooLongException)
-                {
-                    MessageBox.Show("File name or path is too long!");
-                }
-                catch (DirectoryNotFoundException)
-                {
-                    MessageBox.Show("The specified path is invalid!");
-                }
-                catch(UnauthorizedAccessException e)
-                {
-                    MessageBox.Show(e.Message);
+                    new ShowSqlExport(update).ShowDialog();
                 }
                 catch(Exception e)
                 {

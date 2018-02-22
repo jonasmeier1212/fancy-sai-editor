@@ -230,6 +230,9 @@ namespace NodeAI
                 selectionMenuGeneralNodes.Visibility = Visibility.Collapsed;
             else
                 selectionMenuGeneralNodes.Visibility = Visibility.Visible;
+
+            if (selectionMenuEventNodes.Items.IsEmpty && selectionMenuActionNodes.Items.IsEmpty && selectionMenuTargetNodes.Items.IsEmpty && selectionMenuGeneralNodes.Items.IsEmpty)
+                e.Handled = true;
         }
 
         private void HandleContextMenuClosing(object sender, ContextMenuEventArgs e)

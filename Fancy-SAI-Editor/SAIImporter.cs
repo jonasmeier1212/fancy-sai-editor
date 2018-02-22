@@ -123,7 +123,7 @@ namespace NodeAI
                     if (createdActionNodes.ToList().Find(node => { return eventNode.IsEqualTo(node); }) is Node existingActionNode)
                         actionNode = existingActionNode;
 
-                    if (createdEventNodes.ToList().Find(node => { return eventNode.IsEqualTo(node); }) is Node existingTargetNode)
+                    if (createdTargetNodes.ToList().Find(node => { return eventNode.IsEqualTo(node); }) is Node existingTargetNode)
                         targetNode = existingTargetNode;
 
                     NodeManager.Instance.AddNode(eventNode, saiOwnerNode);

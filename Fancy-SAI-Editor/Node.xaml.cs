@@ -312,7 +312,7 @@ namespace NodeAI
 
                 (value) =>
                 {
-                    if (value == "0")
+                    if (value == "0" && type != NodeType.GENERAL_TEXT) //Value can be 0 for texts
                         return;
 
                     Node connectedNode = NodeManager.Instance.CreateNode(type, this);

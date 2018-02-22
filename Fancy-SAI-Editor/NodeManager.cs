@@ -87,6 +87,11 @@ namespace NodeAI
             }
         }
 
+        public void RemoveNode(Node node)
+        {
+            node.NodeTree.RemoveNode(node);
+        }
+
         /// <summary>
         /// Tries to connect the two passed nodes
         /// Important: _n1 must have a node tree!

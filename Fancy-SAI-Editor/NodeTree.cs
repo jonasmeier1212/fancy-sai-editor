@@ -237,7 +237,7 @@ namespace NodeAI
         {
             public VisualBucket()
             {
-                nodes = new SortedSet<Node>(new ByVerticalPosition());
+                nodes = new HashSet<Node>();
                 width = 0;
                 height = 0;
                 position = new Point(0, 0);
@@ -262,11 +262,14 @@ namespace NodeAI
 
             public void Update(Point _position = default(Point))
             {
+                var positionNodes = nodes.ToList();
+                positionNodes.Sort(new ByVerticalPosition());
+
                 if (_position != default(Point))
                     position = _position;
 
                 double offset = position.Y;
-                foreach (Node node in nodes)
+                foreach (Node node in positionNodes)
                 {
                     Canvas.SetTop(node, offset);
                     offset += node.ActualHeight + 10;
@@ -288,10 +291,10 @@ namespace NodeAI
 
             public bool HasNode(Node _node)
             {
-                return nodes.ToList().Contains(_node); //Must be converted to list because otherwise the Comparer is used and this is wrong!
+                return nodes.Contains(_node); //Must be converted to list because otherwise the Comparer is used and this is wrong!
             }
 
-            SortedSet<Node> nodes;
+            HashSet<Node> nodes;
             double width;
             double height;
             Point position;

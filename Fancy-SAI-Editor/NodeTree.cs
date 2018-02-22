@@ -166,20 +166,6 @@ namespace NodeAI
 
         public void AutoPosition()
         {
-            /*
-            * Visual order of the nodes in horizontal direction
-            * 1. SAI owner
-            * 2. Event nodes
-            * 3. Action nodes
-            * 4. Target nodes
-            * The other general nodes are left of it's owner
-            * If an action node for example has an emote node connected this emote node is
-            * arranged under the horizontal visual predecessor of the action node
-            * -> In this example the event node
-            * 
-            * This means there are 4 buckets maximum. This buckets are arranged horizontal.
-            */
-
             double offsetX = position.X;
             double offsetY = 0;
             //Find bucket with highest height

@@ -150,7 +150,7 @@ namespace NodeAI
         ACTION_MOUNT_TO_ENTRY_OR_MODEL,     
         ACTION_SET_INGAME_PHASE_MASK,     
         ACTION_SET_DATA,     
-        ACTION_UNUSED_46,
+        ACTION_MOVE_FORWARD,
         ACTION_SET_VISIBILITY,     
         ACTION_SET_ACTIVE,     
         ACTION_ATTACK_START,     

@@ -149,6 +149,7 @@
     <Compile Include="Nodes\ActionNodes\ActionNode_KillUnit.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_MorphToEntryOrModel.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_AddNpcFlag.cs" />
+    <Compile Include="Nodes\ActionNodes\ActionNode_MoveForward.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_OfferQuest.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_PlayEmote.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_PlayRandomEmote.cs" />

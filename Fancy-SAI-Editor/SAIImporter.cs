@@ -27,6 +27,10 @@ namespace NodeAI
                 return;
             }
 
+            HashSet<Node> createdEventNodes = new HashSet<Node>();
+            HashSet<Node> createdActionNodes = new HashSet<Node>();
+            HashSet<Node> createdTargetNodes = new HashSet<Node>();
+
             try
             {
                 NodeManager.Instance.AddNode(saiOwnerNode);
@@ -81,9 +85,7 @@ namespace NodeAI
                         continue;
                     }
 
-                    NodeManager.Instance.AddNode(eventNode, saiOwnerNode);
-                    NodeManager.Instance.AddNode(actionNode, eventNode);
-                    NodeManager.Instance.AddNode(targetNode, actionNode);
+
 
                     for (int i = 0; i < 4; ++i)
                         eventNode.SetParam((ParamId)i, Convert.ToInt32(row["event_param" + (i + 1).ToString()]).ToString());
@@ -93,11 +95,11 @@ namespace NodeAI
 
                     for (int i = 0; i < 7; ++i)
                     {
-                        if(i < 3)
+                        if (i < 3)
                             targetNode.SetParam((ParamId)i, Convert.ToInt32(row["target_param" + (i + 1).ToString()]).ToString());
                         else
                         {
-                            switch(i)
+                            switch (i)
                             {
                                 case 3:
                                     targetNode.SetParam((ParamId)i, Convert.ToInt32(row["target_x"]).ToString());
@@ -114,7 +116,22 @@ namespace NodeAI
                             }
                         }
                     }
-                    
+
+                    if (createdEventNodes.ToList().Find(node => { return eventNode.IsEqualTo(node); }) is Node existingEventNode)
+                        eventNode = existingEventNode;
+
+                    if (createdActionNodes.ToList().Find(node => { return eventNode.IsEqualTo(node); }) is Node existingActionNode)
+                        actionNode = existingActionNode;
+
+                    if (createdEventNodes.ToList().Find(node => { return eventNode.IsEqualTo(node); }) is Node existingTargetNode)
+                        targetNode = existingTargetNode;
+
+                    NodeManager.Instance.AddNode(eventNode, saiOwnerNode);
+                    NodeManager.Instance.AddNode(actionNode, eventNode);
+                    NodeManager.Instance.AddNode(targetNode, actionNode);
+                    createdEventNodes.Add(eventNode);
+                    createdActionNodes.Add(actionNode);
+                    createdTargetNodes.Add(targetNode);
                 }
             }
             catch (Exception e)

@@ -166,6 +166,7 @@ namespace NodeAI
             private NodeParamGetCallback getCallback;
             private NodeParamSetCallback setCallback;
         }
+
         /// <summary>
         /// Adds param as text input
         /// </summary>
@@ -630,6 +631,17 @@ namespace NodeAI
         private void NodeUserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadTooltip();
+        }
+
+        public bool IsEqualTo(Node node)
+        {
+            foreach(ParamId param in paramStore.Keys)
+            {
+                if (!node.GetParam(param).Equals(GetParam(param)))
+                    return false;
+            }
+
+            return true;
         }
     }
 

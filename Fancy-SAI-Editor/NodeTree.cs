@@ -157,6 +157,7 @@ namespace NodeAI
             visualConnectionsStore.RemoveAll(c => connectionsToRemove.Contains(c));
 
             RecalcSize();
+            nodeEditor.Children.Remove(_node);
         }
 
         /// <summary>

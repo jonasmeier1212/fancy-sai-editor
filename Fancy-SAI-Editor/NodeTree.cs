@@ -128,10 +128,8 @@ namespace NodeAI
         /// </summary>
         public void RemoveNode(Node _node)
         {
-            if (!nodes.Contains(_node))
+            if (!nodes.Remove(_node))
                 return;
-
-            nodes.Remove(_node);
             
             //Remove node from visual bucket
             foreach(VisualBucket bucket in visualBuckets.Values)
@@ -154,6 +152,8 @@ namespace NodeAI
             foreach(var c in connectionsToRemove)
                 c.Remove();
             visualConnectionsStore.RemoveAll(c => connectionsToRemove.Contains(c));
+
+            RecalcSize();
         }
 
         /// <summary>
@@ -253,7 +253,6 @@ namespace NodeAI
             public void Remove(Node node)
             {
                 nodes.Remove(node);
-                RecalcSize();
             }
 
             public void Update(Point _position = default(Point))

@@ -29,7 +29,7 @@ namespace NodeAI
             InitializeComponent();
 
             //Initialize node manager
-            NodeManager.Instance = new NodeManager(NodeEditorCanvas, NodeEditorCanvasScaleTransfrom);
+            NodeManager.Instance = new NodeManager(NodeEditorCanvas);
 
             Database.InitializeDatabase();
 
@@ -221,11 +221,6 @@ namespace NodeAI
             selectionMenuGeneralNodes.Items.Clear();
         }
 
-        private void NodeEditorCanvas_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            //NodeManager.Instance.Scale(e.Delta);
-        }
-
         private void HandleRightClick(object sender, MouseButtonEventArgs e)
         {
             //Show node creation menu
@@ -263,12 +258,6 @@ namespace NodeAI
         private void NodeEditorCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             EndSelectMany();
-        }
-
-        private void NodeEditorScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            //Route this event manually because I didn't figured out how to prevent this yet
-            //NodeEditorCanvas_MouseWheel(sender, e); //Zooming disabled
         }
 
         private void MenutItemExport_Click(object sender, RoutedEventArgs e)

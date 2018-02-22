@@ -15,10 +15,9 @@ namespace NodeAI
 {
     public class NodeManager
     {
-        public NodeManager(Canvas _nodeEditor, ScaleTransform _scaleTransform)
+        public NodeManager(Canvas _nodeEditor)
         {
             nodeEditor = _nodeEditor;
-            nodeEditorScaleTransform = _scaleTransform;
 
             nodeTrees = new List<NodeTree>();
             selectedNodes = new HashSet<Node>();
@@ -202,27 +201,6 @@ namespace NodeAI
         }
 
         /// <summary>
-        /// Scales the editor for the given value
-        /// </summary>
-        public void Scale(float _delta)
-        {
-            //Take mouse position as scale center point
-            nodeEditorScaleTransform.CenterX = Mouse.GetPosition(nodeEditor).X;
-            nodeEditorScaleTransform.CenterY = Mouse.GetPosition(nodeEditor).Y;
-            if (_delta > 0)
-            {
-                nodeEditorScaleTransform.ScaleX *= Properties.Settings.Default.ScaleRatio;
-                nodeEditorScaleTransform.ScaleY *= Properties.Settings.Default.ScaleRatio;
-            }
-            else
-            {
-                nodeEditorScaleTransform.ScaleX /= Properties.Settings.Default.ScaleRatio;
-                nodeEditorScaleTransform.ScaleY /= Properties.Settings.Default.ScaleRatio;
-            }
-            
-        }
-
-        /// <summary>
         /// Repositions every node view tree and removes every collision
         /// </summary>
         public void Position()
@@ -337,7 +315,6 @@ namespace NodeAI
         private Point anchorPoint;
 
         private Canvas nodeEditor;
-        private ScaleTransform nodeEditorScaleTransform;
         private List<NodeTree> nodeTrees;
         private HashSet<Node> selectedNodes;
         private List<Node> copiedNodes;

@@ -85,7 +85,9 @@ namespace NodeAI
                         continue;
                     }
 
-
+                    NodeManager.Instance.AddNode(eventNode, saiOwnerNode);
+                    NodeManager.Instance.AddNode(actionNode, eventNode);
+                    NodeManager.Instance.AddNode(targetNode, actionNode);
 
                     for (int i = 0; i < 4; ++i)
                         eventNode.SetParam((ParamId)i, Convert.ToInt32(row["event_param" + (i + 1).ToString()]).ToString());
@@ -117,21 +119,35 @@ namespace NodeAI
                         }
                     }
 
-                    if (createdEventNodes.ToList().Find(node => { return eventNode.IsEqualTo(node); }) is Node existingEventNode)
+                    
+                    //Merge duplicated nodes
+                    if (FindEqualNodeIn(createdEventNodes, eventNode) is Node existingEventNode)
+                    {
+                        NodeManager.Instance.RemoveNode(eventNode);
+                        NodeManager.Instance.ConnectNodes(saiOwnerNode, existingEventNode);
+                        NodeManager.Instance.ConnectNodes(existingEventNode, actionNode);
                         eventNode = existingEventNode;
+                    }
+                    else
+                        createdEventNodes.Add(eventNode);
 
-                    if (createdActionNodes.ToList().Find(node => { return eventNode.IsEqualTo(node); }) is Node existingActionNode)
+                    if (FindEqualNodeIn(createdActionNodes, actionNode) is Node existingActionNode)
+                    {
+                        NodeManager.Instance.RemoveNode(actionNode);
+                        NodeManager.Instance.ConnectNodes(eventNode, existingActionNode);
+                        NodeManager.Instance.ConnectNodes(existingActionNode, targetNode);
                         actionNode = existingActionNode;
+                    }
+                    else
+                        createdActionNodes.Add(actionNode);
 
-                    if (createdTargetNodes.ToList().Find(node => { return eventNode.IsEqualTo(node); }) is Node existingTargetNode)
-                        targetNode = existingTargetNode;
-
-                    NodeManager.Instance.AddNode(eventNode, saiOwnerNode);
-                    NodeManager.Instance.AddNode(actionNode, eventNode);
-                    NodeManager.Instance.AddNode(targetNode, actionNode);
-                    createdEventNodes.Add(eventNode);
-                    createdActionNodes.Add(actionNode);
-                    createdTargetNodes.Add(targetNode);
+                    if (FindEqualNodeIn(createdTargetNodes, targetNode) is Node existingTargetNode)
+                    {
+                        NodeManager.Instance.RemoveNode(targetNode);
+                        NodeManager.Instance.ConnectNodes(actionNode, existingTargetNode);
+                    }
+                    else
+                        createdTargetNodes.Add(targetNode);
                 }
             }
             catch (Exception e)
@@ -139,6 +155,16 @@ namespace NodeAI
                 MessageBox.Show($"Invalid SAI!\nError: {e.Message} \nStack:\n {e.StackTrace}");
                 return;
             }
+        }
+
+        private static Node FindEqualNodeIn(HashSet<Node> nodes, Node searchNode)
+        {
+            foreach (Node node in nodes)
+            {
+                if (searchNode.IsEqualTo(node))
+                    return node;
+            }
+            return null;
         }
     }
 }

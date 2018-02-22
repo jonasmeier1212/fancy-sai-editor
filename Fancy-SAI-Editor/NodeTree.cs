@@ -186,9 +186,14 @@ namespace NodeAI
 
         private int GetNodeVisualBucketIndex(Node _node)
         {
-            var index = from VisualBucket in visualBuckets where VisualBucket.Value.HasNode(_node) select VisualBucket.Key;
+            foreach(var bucketKeyPair in visualBuckets)
+            {
+                if (bucketKeyPair.Value.HasNode(_node))
+                    return bucketKeyPair.Key;
+            }
 
-            return index.First();
+            Debug.Assert(true, "Node isn't in any bucket! Something went wrong at creation!");
+            return int.MinValue;
         }
 
         public List<Nodes.GeneralNodes.Npc> GetSAIOwnerNodes()
@@ -222,7 +227,7 @@ namespace NodeAI
             AutoPosition();
         }
 
-        private HashSet<Node> nodes;
+        private HashSet<Node> nodes; //TODO: Is it needed to store the nodes here? Because they are already in their buckets!
         private List<VisualConnection> visualConnectionsStore;
         private Canvas nodeEditor;
         private SortedDictionary<int, VisualBucket> visualBuckets;
@@ -283,7 +288,7 @@ namespace NodeAI
 
             public bool HasNode(Node _node)
             {
-                return nodes.Contains(_node);
+                return nodes.ToList().Contains(_node); //Must be converted to list because otherwise the Comparer is used and this is wrong!
             }
 
             SortedSet<Node> nodes;

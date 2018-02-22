@@ -635,6 +635,9 @@ namespace NodeAI
 
         public bool IsEqualTo(Node node)
         {
+            if (Type != node.Type)
+                return false;
+
             foreach(ParamId param in paramStore.Keys)
             {
                 if (!node.GetParam(param).Equals(GetParam(param)))

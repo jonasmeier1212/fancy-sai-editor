@@ -54,9 +54,34 @@ namespace NodeAI.Nodes.GeneralNodes
             }
         }
 
-        public override void SetParamValue(string value)
+        public async override void SetParamValue(string value)
         {
-            throw new NotImplementedException();
+            /*
+             * Try to get entry:
+             * I think this can only be part of action nodes -> If this is false this will no work as intend
+             */
+            if(GetDirectlyConnectedNode(NodeType.ACTION) is Node actionNode)
+            {
+                if(actionNode.GetDirectlyConnectedNode(NodeType.EVENT) is Node eventNode)
+                {
+                    if(eventNode.GetDirectlyConnectedNode(NodeType.GENERAL_NPC) is Npc npcNode)
+                    {
+                        if (!npcNode.IsSAIOwner())
+                            return;
+
+                        string entry = "";
+                        entry = npcNode.GetParamValue();
+
+                        if (entry == "" || entry == "0")
+                            return;
+
+                        await Database.SelectMySqlData(NodeData, $"entry={entry} AND groupid={value}");
+                        SelectData(NodeData);
+                    }
+                }
+            }
+
+            
         }
     }
 }

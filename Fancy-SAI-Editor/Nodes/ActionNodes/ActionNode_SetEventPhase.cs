@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "SetEventPhase", Type = NodeType.ACTION_SET_EVENT_PHASE, AllowedTypes = new NodeType[] { NodeType.EVENT, NodeType.TARGET })]
     class SetEventPhase : ActionNode

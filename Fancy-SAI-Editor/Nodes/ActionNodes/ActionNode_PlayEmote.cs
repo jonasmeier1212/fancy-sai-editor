@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Play Emote", Type = NodeType.ACTION_PLAY_EMOTE, AllowedTypes = new NodeType[] { NodeType.GENERAL_EMOTE, NodeType.EVENT, NodeType.TARGET })]
     class PlayEmote : ActionNode

@@ -16,7 +16,7 @@ using System.Data;
 using System.Windows.Controls.Primitives;
 using System.Diagnostics;
 
-namespace NodeAI
+namespace FancySaiEditor
 {
     public delegate string NodeParamGetCallback();
     public delegate void NodeParamSetCallback(string value);

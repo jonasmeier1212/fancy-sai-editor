@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Shapes;
 using System.Reflection;
 
-namespace NodeAI
+namespace FancySaiEditor
 {
     public class NodeManager
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Cast", Type = NodeType.ACTION_CAST, AllowedTypes = new NodeType[] { NodeType.GENERAL_SPELL, NodeType.EVENT, NodeType.TARGET })]
     class Cast : ActionNode

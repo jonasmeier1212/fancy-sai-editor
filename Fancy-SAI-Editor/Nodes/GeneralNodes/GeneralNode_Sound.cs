@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.GeneralNodes
 {
     [Node(MenuName = "Sound", Type = NodeType.GENERAL_SOUND)]
     class Sound : GeneralNode

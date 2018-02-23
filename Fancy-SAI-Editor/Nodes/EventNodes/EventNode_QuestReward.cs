@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.EventNodes
+namespace FancySaiEditor.Nodes.EventNodes
 {
     [Node(MenuName = "Quest reward", Type = NodeType.EVENT_QUEST_REWARD, AllowedTypes = new NodeType[] { NodeType.GENERAL_QUEST, NodeType.GENERAL_NPC, NodeType.ACTION })]
     public class QuestReward : EventNode

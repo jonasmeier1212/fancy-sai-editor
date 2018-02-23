@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Flee for assist", Type = NodeType.ACTION_FLEE_FOR_ASSIST, AllowedTypes = new NodeType[] { NodeType.EVENT, NodeType.TARGET })]
     class FleeForAssist : ActionNode

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Hostile random not top", Type = NodeType.TARGET_HOSTILE_RANDOM_NOT_TOP, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class HostileRandomNotTop : TargetNode

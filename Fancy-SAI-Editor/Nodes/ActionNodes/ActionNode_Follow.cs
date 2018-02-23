@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Follow", Type = NodeType.ACTION_FOLLOW, AllowedTypes = new NodeType[] { NodeType.EVENT, NodeType.TARGET })]
     class Follow : ActionNode

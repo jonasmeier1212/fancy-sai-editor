@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.EventNodes
+namespace FancySaiEditor.Nodes.EventNodes
 {
     /// <summary>
     /// SMART_EVENT_RESET

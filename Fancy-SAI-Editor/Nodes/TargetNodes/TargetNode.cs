@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     /// <summary>
     /// Base class for every target node

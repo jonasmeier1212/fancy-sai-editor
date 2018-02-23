@@ -1,8 +1,8 @@
-﻿<Controls:MetroWindow x:Class="NodeAI.MainWindow"
+﻿<Controls:MetroWindow x:Class="FancySaiEditor.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="NodeAI" Height="700" Width="1300" LayoutUpdated="Window_LayoutUpdated" KeyDown="HandleKeyboard">
+        Title="FancySaiEditor" Height="700" Width="1300" LayoutUpdated="Window_LayoutUpdated" KeyDown="HandleKeyboard">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

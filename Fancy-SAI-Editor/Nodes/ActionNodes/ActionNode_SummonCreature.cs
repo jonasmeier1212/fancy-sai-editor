@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Summon creature", Type = NodeType.ACTION_SUMMON_CREATURE, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.EVENT, NodeType.TARGET })]
     class SummonCreature : ActionNode

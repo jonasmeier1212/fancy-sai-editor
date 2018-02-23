@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace NodeAI.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.GeneralNodes
 {
     /// <summary>
     /// Interaktionslogik für CreatureTextCreation.xaml

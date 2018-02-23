@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NodeAI.Nodes.GeneralNodes;
+using FancySaiEditor.Nodes.GeneralNodes;
 using System.Windows;
 using System.IO;
 
-namespace NodeAI
+namespace FancySaiEditor
 {
     static class SqlExporter
     {

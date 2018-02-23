@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "AutoAttack", Type = NodeType.ACTION_AUTO_ATTACK, AllowedTypes = new NodeType[] { NodeType.EVENT, NodeType.TARGET })]
     class AutoAttack : ActionNode

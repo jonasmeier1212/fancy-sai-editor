@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Simple talk", Type = NodeType.ACTION_SIMPLE_TALK, AllowedTypes = new NodeType[] { NodeType.GENERAL_TEXT, NodeType.EVENT, NodeType.TARGET })]
     class SimpleTalk : ActionNode

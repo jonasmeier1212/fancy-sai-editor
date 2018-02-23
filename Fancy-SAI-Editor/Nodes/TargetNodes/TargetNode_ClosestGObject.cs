@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Closest Gameobject", Type = NodeType.TARGET_CLOSEST_GAMEOBJECT, AllowedTypes = new NodeType[] { NodeType.GENERAL_GAMEOBJECT, NodeType.ACTION })]
     public class ClosestGameobject : TargetNode

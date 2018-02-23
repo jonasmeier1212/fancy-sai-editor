@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Player range", Type = NodeType.TARGET_PLAYER_RANGE, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class PlayerRange : TargetNode

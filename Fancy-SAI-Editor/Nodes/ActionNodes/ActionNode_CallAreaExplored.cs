@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "CallAreaExplored", Type = NodeType.ACTION_CALL_AREAEXPLORED, AllowedTypes = new NodeType[] { NodeType.EVENT, NodeType.TARGET })]
     class CallAreaExplored : ActionNode

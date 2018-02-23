@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Kill Unit", Type = NodeType.ACTION_KILL_UNIT, AllowedTypes = new NodeType[] { NodeType.EVENT, NodeType.TARGET })]
     class KillUnit : ActionNode

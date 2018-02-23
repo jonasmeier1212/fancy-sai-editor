@@ -1,9 +1,9 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NodeAI.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FancySaiEditor.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="SQLiteDatabase" Type="System.String" Scope="User">
-      <Value Profile="(Default)">../../NodeAIDatabase.db</Value>
+      <Value Profile="(Default)">../../FancySaiEditorDatabase.db</Value>
     </Setting>
     <Setting Name="MysqlUsername" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

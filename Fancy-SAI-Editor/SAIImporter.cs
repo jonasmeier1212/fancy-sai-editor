@@ -7,7 +7,7 @@ using System.Data;
 using System.Reflection;
 using System.Windows;
 
-namespace NodeAI
+namespace FancySaiEditor
 {
     public static class SAIImporter
     {

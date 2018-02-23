@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Gameobject GUID", Type = NodeType.TARGET_GAMEOBJECT_GUID, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class GObjectGuid : TargetNode

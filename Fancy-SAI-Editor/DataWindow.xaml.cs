@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Diagnostics;
 
-namespace NodeAI
+namespace FancySaiEditor
 {
     public partial class DataWindow
     {

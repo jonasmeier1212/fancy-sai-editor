@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Close gossip", Type = NodeType.ACTION_CLOSE_GOSSIP, AllowedTypes = new NodeType[] { NodeType.EVENT, NodeType.TARGET })]
     class CloseGossip : ActionNode

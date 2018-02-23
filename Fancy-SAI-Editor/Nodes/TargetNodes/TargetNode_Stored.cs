@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Stored", Type = NodeType.TARGET_STORED, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class Stored : TargetNode

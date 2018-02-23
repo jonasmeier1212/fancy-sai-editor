@@ -7,7 +7,7 @@ using System.Data;
 
 #pragma warning disable 1591
 
-namespace NodeAI
+namespace FancySaiEditor
 {
     public class CreatureText
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Closest enemy", Type = NodeType.TARGET_CLOSEST_ENEMY, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class ClosestEnemy : TargetNode

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Force despawn", Type = NodeType.ACTION_FORCE_DESPAWN, AllowedTypes = new NodeType[] { NodeType.EVENT, NodeType.TARGET })]
     class ForceDepspawn : ActionNode

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 
-namespace NodeAI
+namespace FancySaiEditor
 {
     /// <summary>
     /// Class for all menu items whose purpose is the creation of nodes

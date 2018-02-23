@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Hostile second aggro", Type = NodeType.TARGET_HOSTILE_SECOND_AGGRO, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class HostileSecondAggro : TargetNode

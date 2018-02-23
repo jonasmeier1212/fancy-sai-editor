@@ -9,7 +9,7 @@ using System.Data;
 using System.Windows.Media;
 using System.Windows.Input;
 
-namespace NodeAI.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.GeneralNodes
 {
     /// <summary>
     /// Node for selecting a NPC.

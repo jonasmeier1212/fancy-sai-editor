@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Summon Gameobject", Type = NodeType.ACTION_SUMMON_GO, AllowedTypes = new NodeType[] { NodeType.GENERAL_GAMEOBJECT, NodeType.EVENT, NodeType.TARGET })]
     class SummonGObject : ActionNode

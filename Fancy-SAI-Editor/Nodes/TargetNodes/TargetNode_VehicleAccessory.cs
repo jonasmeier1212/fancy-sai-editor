@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Vehicle Accessory", Type = NodeType.TARGET_VEHICLE_ACCESSORY, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class VehicleAccessory : TargetNode

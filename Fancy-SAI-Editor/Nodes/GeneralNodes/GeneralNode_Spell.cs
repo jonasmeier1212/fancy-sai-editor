@@ -9,7 +9,7 @@ using System.Data;
 using System.Windows.Media;
 using System.Windows.Input;
 
-namespace NodeAI.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.GeneralNodes
 {
     [Node(MenuName = "Spell", Type = NodeType.GENERAL_SPELL)]
     class Spell : GeneralNode

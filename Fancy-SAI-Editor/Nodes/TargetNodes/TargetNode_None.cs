@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "None", Type = NodeType.TARGET_NONE, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class None : TargetNode

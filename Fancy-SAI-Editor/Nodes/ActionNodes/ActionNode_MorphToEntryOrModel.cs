@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Morph to entry or model", Type = NodeType.ACTION_MORPH_TO_ENTRY_OR_MODEL, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.EVENT, NodeType.TARGET })]
     class MorphToEntryOrModel : ActionNode

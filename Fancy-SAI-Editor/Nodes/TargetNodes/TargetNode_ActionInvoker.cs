@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Action Invoker", Type = NodeType.TARGET_ACTION_INVOKER, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class ActionInvoker : TargetNode

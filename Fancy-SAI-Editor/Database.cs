@@ -12,7 +12,7 @@ using System.Data.Common;
 using System.Diagnostics;
 using MahApps.Metro.Controls;
 
-namespace NodeAI
+namespace FancySaiEditor
 {
     /// <summary>
     /// Handles all interactions with MySql and SQLite Database.

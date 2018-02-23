@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Creature GUID", Type = NodeType.TARGET_CREATURE_GUID, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class CreatureGUID : TargetNode

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Set Faction", Type = NodeType.ACTION_SET_FACTION, AllowedTypes = new NodeType[] { NodeType.GENERAL_FACTION, NodeType.EVENT, NodeType.TARGET })]
     class SetFaction : ActionNode

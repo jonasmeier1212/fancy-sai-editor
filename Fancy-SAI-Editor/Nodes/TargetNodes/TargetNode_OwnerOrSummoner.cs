@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Owner or summoner", Type = NodeType.TARGET_OWNER_OR_SUMMONER, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class OwnerOrSummoner : TargetNode

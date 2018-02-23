@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node(MenuName = "Random move", Type = NodeType.ACTION_RANDOM_MOVE, AllowedTypes = new NodeType[] { NodeType.EVENT, NodeType.TARGET })]
     class RandomMove : ActionNode

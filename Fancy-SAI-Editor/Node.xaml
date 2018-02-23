@@ -1,9 +1,9 @@
-﻿<UserControl x:Name="NodeUserControl" x:Class="NodeAI.Node"
+﻿<UserControl x:Name="NodeUserControl" x:Class="FancySaiEditor.Node"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:NodeAI"
+             xmlns:local="clr-namespace:FancySaiEditor"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="200" SizeChanged="NodeUserControl_SizeChanged" Loaded="NodeUserControl_Loaded">
     <Border x:Name="NodeSelectionBorder" BorderBrush="LightSkyBlue" BorderThickness="1">

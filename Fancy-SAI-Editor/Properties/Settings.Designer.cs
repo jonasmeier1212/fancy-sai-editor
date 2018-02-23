@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NodeAI.Properties {
+namespace FancySaiEditor.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,7 +25,7 @@ namespace NodeAI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("../../NodeAIDatabase.db")]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../FancySaiEditorDatabase.db")]
         public string SQLiteDatabase {
             get {
                 return ((string)(this["SQLiteDatabase"]));

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Invoker party", Type = NodeType.TARGET_INVOKER_PARTY, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class InvokerParty : TargetNode

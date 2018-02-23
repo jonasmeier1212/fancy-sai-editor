@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NodeAI.Nodes.ActionNodes
+namespace FancySaiEditor.Nodes.ActionNodes
 {
     [Node( MenuName = "ThreatSinglePct", Type = NodeType.ACTION_THREAT_SINGLE_PCT, AllowedTypes = new NodeType[] {NodeType.EVENT, NodeType.TARGET})]
     class ThreatSinglePct : ActionNode

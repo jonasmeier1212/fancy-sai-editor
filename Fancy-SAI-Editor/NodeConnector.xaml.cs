@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 
-namespace NodeAI
+namespace FancySaiEditor
 {
     /// <summary>
     /// Interaktionslogik für NodeConnector.xaml

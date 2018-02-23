@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeAI.Nodes.TargetNodes
+namespace FancySaiEditor.Nodes.TargetNodes
 {
     [Node(MenuName = "Loot recipients", Type = NodeType.TARGET_LOOT_RECIPIENTS, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class LootRecipients : TargetNode

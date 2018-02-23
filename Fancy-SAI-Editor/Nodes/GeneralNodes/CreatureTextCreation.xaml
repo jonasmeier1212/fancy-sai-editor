@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="NodeAI.Nodes.GeneralNodes.CreatureTextCreation"
+﻿<UserControl x:Class="FancySaiEditor.Nodes.GeneralNodes.CreatureTextCreation"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:NodeAI.Nodes.GeneralNodes"
+             xmlns:local="clr-namespace:FancySaiEditor.Nodes.GeneralNodes"
              mc:Ignorable="d" d:DesignWidth="300">
     <StackPanel>
         <Grid>

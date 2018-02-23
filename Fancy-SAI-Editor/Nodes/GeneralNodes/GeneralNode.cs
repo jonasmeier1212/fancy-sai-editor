@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows;
 using System.Data;
 
-namespace NodeAI.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.GeneralNodes
 {
     /// <summary>
     /// Base class for every general node

@@ -353,7 +353,7 @@ namespace NodeAI
 
                 connectionPath = new Path
                 {
-                    Stroke = Brushes.LightBlue,
+                    Stroke = new SolidColorBrush(Properties.Settings.Default.ConnectionPathColor),
                 };
 
                 Point p1 = new Point(e1.TransformToAncestor(nodeEditor).Transform(new Point(0, 0)).X + e1.ActualWidth / 2, (e1.TransformToAncestor(nodeEditor).Transform(new Point(0, 0)).Y + e1.ActualHeight / 2));

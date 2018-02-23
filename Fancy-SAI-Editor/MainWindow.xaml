@@ -1,12 +1,13 @@
-﻿<Window x:Class="NodeAI.MainWindow"
+﻿<Controls:MetroWindow x:Class="NodeAI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="NodeAI" Height="700" Width="1300" LayoutUpdated="Window_LayoutUpdated" KeyDown="HandleKeyboard">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="17.96"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="17.96"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="File">
@@ -39,4 +40,4 @@
             <MenuItem x:Name="targetNodesMenu" Header="Target Nodes"/>
         </Menu>
     </Grid>
-</Window>
+</Controls:MetroWindow>

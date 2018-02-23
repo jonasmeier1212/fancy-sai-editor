@@ -19,7 +19,7 @@ namespace NodeAI
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         /// <summary>
         /// Initializes the MainWindow and the database and addes the MenuItems to the node selection menu.

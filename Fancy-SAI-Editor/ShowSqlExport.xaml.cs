@@ -17,7 +17,7 @@ namespace NodeAI
     /// <summary>
     /// Interaktionslogik für ShowSqlExport.xaml
     /// </summary>
-    public partial class ShowSqlExport : Window
+    public partial class ShowSqlExport
     {
         public ShowSqlExport(String sqlText)
         {

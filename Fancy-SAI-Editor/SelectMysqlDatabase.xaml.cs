@@ -17,7 +17,7 @@ namespace NodeAI
     /// <summary>
     /// Interaktionslogik für SelectMysqlDatabase.xaml
     /// </summary>
-    public partial class SelectMysqlDatabase : Window
+    public partial class SelectMysqlDatabase
     {
         public SelectMysqlDatabase()
         {

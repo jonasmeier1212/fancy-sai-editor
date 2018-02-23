@@ -17,7 +17,7 @@ namespace NodeAI
     /// <summary>
     /// Interaktionslogik für SAIImport.xaml
     /// </summary>
-    public partial class SAIImport : Window
+    public partial class SAIImport
     {
         public SAIImport()
         {

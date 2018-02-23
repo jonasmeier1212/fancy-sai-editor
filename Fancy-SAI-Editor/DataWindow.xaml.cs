@@ -16,7 +16,7 @@ using System.Diagnostics;
 
 namespace NodeAI
 {
-    public partial class DataWindow : Window
+    public partial class DataWindow
     {
         /// <summary>
         /// Initializes the DataWindow.

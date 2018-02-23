@@ -187,8 +187,6 @@ namespace NodeAI
                 Foreground = Brushes.White,
                 ToolTip = toolTip,
             };
-            Grid.SetColumn(label, 0);
-            Grid.SetRow(label, paramGrid.Rows);
 
             TextBox input = new TextBox()
             {
@@ -200,8 +198,6 @@ namespace NodeAI
                 input.Text = "0";
                 input.PreviewTextInput += CheckInputForNaN;
             }
-            Grid.SetColumn(input, 1);
-            Grid.SetRow(input, paramGrid.Rows);
 
             paramGrid.Children.Add(label);
             paramGrid.Children.Add(input);
@@ -220,8 +216,6 @@ namespace NodeAI
         /// </summary>
         public void AddParam<T>(ParamId id, string selectionName) where T : struct, IConvertible
         {
-            paramGrid.Rows++;
-
             ToolTip toolTip = null;
             if(Database.GetNodeParamTooltip(Type, id) is String tooltipValue)
             {
@@ -244,8 +238,6 @@ namespace NodeAI
                 HorizontalAlignment = HorizontalAlignment.Center,
                 ToolTip = toolTip,
             };
-            Grid.SetColumn(name, 0);
-            Grid.SetRow(name, paramGrid.Rows);
             paramGrid.Children.Add(name);
 
             foreach (var flag in Enum.GetNames(typeof(T)))
@@ -254,11 +246,8 @@ namespace NodeAI
                 {
                     Content = flag,
                 };
-                Grid.SetColumn(boxItem, 1);
-                Grid.SetRow(name, paramGrid.Rows);
                 selection.Items.Add(boxItem);
             }
-
             paramGrid.Children.Add(selection);
 
             if (!selection.Items.IsEmpty)

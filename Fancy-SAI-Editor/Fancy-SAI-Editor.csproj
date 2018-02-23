@@ -275,6 +275,9 @@
       <DependentUpon>SAIImport.xaml</DependentUpon>
     </Compile>
     <Compile Include="SAIImporter.cs" />
+    <Compile Include="SelectMysqlDatabase.xaml.cs">
+      <DependentUpon>SelectMysqlDatabase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SharedDefines.cs" />
     <Compile Include="ShowSqlExport.xaml.cs">
       <DependentUpon>ShowSqlExport.xaml</DependentUpon>
@@ -312,6 +315,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SAIImport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectMysqlDatabase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

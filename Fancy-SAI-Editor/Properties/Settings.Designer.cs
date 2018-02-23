@@ -118,5 +118,17 @@ namespace NodeAI.Properties {
                 return ((global::System.Windows.Media.Color)(this["ConnectionPathColor"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3306")]
+        public string MysqlPort {
+            get {
+                return ((string)(this["MysqlPort"]));
+            }
+            set {
+                this["MysqlPort"] = value;
+            }
+        }
     }
 }

@@ -31,14 +31,12 @@ namespace NodeAI
                 //Init Mysql connection
                 try
                 {
-                    mySqlConnection = new MySqlConnection(
-                        "SERVER=" + Properties.Settings.Default.MysqlServer + "; " +
-                        "DATABASE=" + Properties.Settings.Default.MysqlWorldDatabase + ";" +
-                        "UID=" + Properties.Settings.Default.MysqlUsername + ";" +
-                        " PASSWORD=" + Properties.Settings.Default.MysqlPassword);
-                    mySqlConnection.Open();
+                    if(Properties.Settings.Default.MysqlServer == "" || Properties.Settings.Default.MysqlWorldDatabase == "" || Properties.Settings.Default.MysqlUsername == "" || Properties.Settings.Default.MysqlPassword == "")
+                    {
+                        new SelectMysqlDatabase().ShowDialog();
+                    }
 
-
+                    OpenMysqlDatabase(Properties.Settings.Default.MysqlServer, Properties.Settings.Default.MysqlPort, Properties.Settings.Default.MysqlWorldDatabase, Properties.Settings.Default.MysqlUsername, Properties.Settings.Default.MysqlPassword);
                 }
                 catch (MySqlException e)
                 {
@@ -58,6 +56,26 @@ namespace NodeAI
             catch (Exception e)
             {
                 MessageBox.Show("Unknown error in InitializeDatabase\nError: " + e.Message);
+            }
+        }
+
+        private static void OpenMysqlDatabase(string server, string port, string database, string username, string password)
+        {
+            mySqlConnection = new MySqlConnection($"SERVER={server}; DATABASE={database}; UID={username}; PASSWORD={password}");
+            mySqlConnection.Open();
+        }
+
+        public static void CheckMysqlConnection(string server, string port, string database, string username, string password)
+        {
+            try
+            {
+                OpenMysqlDatabase(server, port, database, username, password);
+                mySqlConnection.Close();
+                MessageBox.Show("Connection successful!");
+            }
+            catch(MySqlException)
+            {
+                MessageBox.Show("Connection was not successful!");
             }
         }
 

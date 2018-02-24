@@ -207,6 +207,7 @@
     <Compile Include="Nodes\EventNodes\EventNode_GameEventStart.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_GoEventInform.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_GossipHello.cs" />
+    <Compile Include="Nodes\EventNodes\EventNode_GossipSelect.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_GoStateChanged.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_HasAura.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_HealthPct.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="Nodes\GeneralNodes\GeneralNode_Emote.cs" />
     <Compile Include="Nodes\GeneralNodes\GeneralNode_Faction.cs" />
     <Compile Include="Nodes\GeneralNodes\GeneralNode_GObject.cs" />
+    <Compile Include="Nodes\GeneralNodes\GeneralNode_GossipMenu.cs" />
     <Compile Include="Nodes\GeneralNodes\GeneralNode_Npc.cs" />
     <Compile Include="Nodes\GeneralNodes\GeneralNode_NpcModel.cs" />
     <Compile Include="Nodes\GeneralNodes\GeneralNode_Quest.cs" />

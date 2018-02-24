@@ -13,8 +13,6 @@ namespace FancySaiEditor.Nodes.TargetNodes
         {
             Type = NodeType.TARGET_SELF;
 
-            
-
             NodeName.Content = "Self";
         }
 

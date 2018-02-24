@@ -142,6 +142,15 @@ namespace FancySaiEditor.Nodes.GeneralNodes
                     ++i;
                 }
 
+                var rows = NodeData.Rows;
+                foreach(DataRow row in rows)
+                {
+                    if (row != selectedRow)
+                        row.Delete();
+                }
+
+                NodeData.AcceptChanges();
+
                 selectPanel.Visibility = Visibility.Collapsed;
                 dataPanel.Visibility = Visibility.Visible;
             }

@@ -251,6 +251,7 @@ namespace FancySaiEditor
         GENERAL_EMOTE,
         GENERAL_SOUND,
         GENERAL_GAMEOBJECT,
+        GENERAL_GOSSIP_MENU,
         GENERAL_MAX,
 
         /// <summary>

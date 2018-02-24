@@ -143,6 +143,14 @@ namespace FancySaiEditor
         }
     }
 
+    public class GossipMenuData : NodeData
+    {
+        public GossipMenuData()
+        {
+
+        }
+    }
+
     public class ActionData
     {
         public string type = "0";

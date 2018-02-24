@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace FancySaiEditor.Nodes.TargetNodes
 {
-    [Node(MenuName = "Closest friendly", Type = NodeType.TARGET_SELF, AllowedTypes = new NodeType[] { NodeType.ACTION })]
+    [Node(MenuName = "Closest friendly", Type = NodeType.TARGET_CLOSEST_FRIENDLY, AllowedTypes = new NodeType[] { NodeType.ACTION })]
     public class ClosestFriendly : TargetNode
     {
         public ClosestFriendly()
         {
-            Type = NodeType.TARGET_SELF;
-
-            
+            Type = NodeType.TARGET_CLOSEST_FRIENDLY;
 
             NodeName.Content = "Closest friendly";
 

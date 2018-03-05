@@ -18,7 +18,7 @@ namespace FancySaiEditor.Nodes.TargetNodes
             NodeName.Content = "Creature GUID";
 
             AddParam(ParamId.PARAM_1, "GUID:");
-            AddParam<GeneralNodes.Npc>(ParamId.PARAM_2, NodeType.GENERAL_NPC, "NPC");
+            AddParam<ParamNodes.Npc>(ParamId.PARAM_2, NodeType.PARAM_NPC, "NPC");
         }
 
         public override Node Clone()

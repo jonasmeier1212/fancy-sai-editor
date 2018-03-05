@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_RESPAWN
     /// 
     /// </summary>
-    [Node(MenuName = "Charmed target", Type = NodeType.EVENT_CHARMED_TARGET, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Charmed target", Type = NodeType.EVENT_CHARMED_TARGET, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class CharmedTarget : EventNode
     {
         /// <summary>

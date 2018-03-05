@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_RESPAWN
     /// 
     /// </summary>
-    [Node(MenuName = "Target buffed", Type = NodeType.EVENT_TARGET_BUFFED, AllowedTypes = new NodeType[] { NodeType.GENERAL_SPELL, NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Target buffed", Type = NodeType.EVENT_TARGET_BUFFED, AllowedTypes = new NodeType[] { NodeType.PARAM_SPELL, NodeType.PARAM_NPC, NodeType.ACTION })]
     public class TargetBuffed : EventNode
     {
         /// <summary>
@@ -26,7 +26,7 @@ namespace FancySaiEditor.Nodes.EventNodes
             //Update text
             NodeName.Content = "Target buffed";
 
-            AddParam<GeneralNodes.Spell>(ParamId.PARAM_1, NodeType.GENERAL_SPELL, "Spell");
+            AddParam<ParamNodes.Spell>(ParamId.PARAM_1, NodeType.PARAM_SPELL, "Spell");
             AddParam(ParamId.PARAM_2, "Stacks:");
             AddParam(ParamId.PARAM_3, "Repeat min:");
             AddParam(ParamId.PARAM_4, "Repeat max:");

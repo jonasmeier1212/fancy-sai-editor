@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace FancySaiEditor.Nodes.ActionNodes
 {
-    [Node(MenuName = "Cast", Type = NodeType.ACTION_CAST, AllowedTypes = new NodeType[] { NodeType.GENERAL_SPELL, NodeType.EVENT, NodeType.TARGET })]
+    [Node(MenuName = "Cast", Type = NodeType.ACTION_CAST, AllowedTypes = new NodeType[] { NodeType.PARAM_SPELL, NodeType.EVENT, NodeType.TARGET })]
     class Cast : ActionNode
     {
         public Cast()
@@ -18,7 +18,7 @@ namespace FancySaiEditor.Nodes.ActionNodes
             NodeName.Content = "Cast";
 
             AddParam<CastFlags>(ParamId.PARAM_1, "Flags");
-            AddParam<GeneralNodes.Spell>(ParamId.PARAM_2, NodeType.GENERAL_SPELL, "Spell");
+            AddParam<ParamNodes.Spell>(ParamId.PARAM_2, NodeType.PARAM_SPELL, "Spell");
         }
 
         public override Node Clone()

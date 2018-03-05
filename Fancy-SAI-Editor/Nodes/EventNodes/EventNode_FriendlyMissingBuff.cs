@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_FRIENDLY_MISSING_BUFF
     /// 
     /// </summary>
-    [Node(MenuName = "Friendly missing buff", Type = NodeType.EVENT_FRIENDLY_MISSING_BUFF, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Friendly missing buff", Type = NodeType.EVENT_FRIENDLY_MISSING_BUFF, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class FriendlyMissingBuff : EventNode
     {
         /// <summary>
@@ -26,7 +26,7 @@ namespace FancySaiEditor.Nodes.EventNodes
             //Update text
             NodeName.Content = "Friendly missing buff";
 
-            AddParam<GeneralNodes.Spell>(ParamId.PARAM_1, NodeType.GENERAL_SPELL, "Buff");
+            AddParam<ParamNodes.Spell>(ParamId.PARAM_1, NodeType.PARAM_SPELL, "Buff");
             AddParam(ParamId.PARAM_2, "Radius");
             AddParam(ParamId.PARAM_3, "Repeat min");
             AddParam(ParamId.PARAM_4, "Repeat max");

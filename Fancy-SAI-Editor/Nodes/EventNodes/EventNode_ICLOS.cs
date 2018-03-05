@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_LOS_OOC
     /// SMART_EVENT_LOS_IC
     /// </summary>
-    [Node(MenuName = "In combat line of sight", Type = NodeType.EVENT_IC_LOS, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "In combat line of sight", Type = NodeType.EVENT_IC_LOS, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class ICLOS : EventNode
     {
         /// <summary>

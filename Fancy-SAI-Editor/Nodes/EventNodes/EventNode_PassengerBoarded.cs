@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_RESPAWN
     /// 
     /// </summary>
-    [Node(MenuName = "Passenger boarded", Type = NodeType.EVENT_PASSENGER_BOARDED, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Passenger boarded", Type = NodeType.EVENT_PASSENGER_BOARDED, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class PassengerBoarded : EventNode
     {
         /// <summary>

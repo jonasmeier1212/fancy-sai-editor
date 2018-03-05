@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FancySaiEditor.Nodes.TargetNodes
 {
-    [Node(MenuName = "Closest Gameobject", Type = NodeType.TARGET_CLOSEST_GAMEOBJECT, AllowedTypes = new NodeType[] { NodeType.GENERAL_GAMEOBJECT, NodeType.ACTION })]
+    [Node(MenuName = "Closest Gameobject", Type = NodeType.TARGET_CLOSEST_GAMEOBJECT, AllowedTypes = new NodeType[] { NodeType.PARAM_GAMEOBJECT, NodeType.ACTION })]
     public class ClosestGameobject : TargetNode
     {
         public ClosestGameobject()
@@ -17,7 +17,7 @@ namespace FancySaiEditor.Nodes.TargetNodes
 
             NodeName.Content = "Closest Gameobject";
 
-            AddParam<GeneralNodes.GObject>(ParamId.PARAM_1, NodeType.GENERAL_GAMEOBJECT, "Gameobject");
+            AddParam<ParamNodes.GObject>(ParamId.PARAM_1, NodeType.PARAM_GAMEOBJECT, "Gameobject");
             AddParam(ParamId.PARAM_2, "Max Dist:");
         }
 

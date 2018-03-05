@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_AGGRO
     ///
     /// </summary>
-    [Node(MenuName = "Distance gameobject", Type = NodeType.EVENT_DISTANCE_GAMEOBJECT, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Distance gameobject", Type = NodeType.EVENT_DISTANCE_GAMEOBJECT, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class DistanceGameObject : EventNode
     {
         /// <summary>

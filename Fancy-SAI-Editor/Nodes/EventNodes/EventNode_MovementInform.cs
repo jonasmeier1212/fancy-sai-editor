@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_MOVEMENTINFORM
     ///
     /// </summary>
-    [Node(MenuName = "Movement inform", Type = NodeType.EVENT_MOVEMENTINFORM, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Movement inform", Type = NodeType.EVENT_MOVEMENTINFORM, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class MovementInform : EventNode
     {
         /// <summary>

@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_FRIENDLY_IS_CC
     /// 
     /// </summary>
-    [Node(MenuName = "Friendly is CC", Type = NodeType.EVENT_FRIENDLY_IS_CC, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Friendly is CC", Type = NodeType.EVENT_FRIENDLY_IS_CC, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class FriendlyIsCC : EventNode
     {
         /// <summary>

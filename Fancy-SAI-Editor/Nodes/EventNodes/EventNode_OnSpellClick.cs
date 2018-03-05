@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_ON_SPELLCLICK
     ///
     /// </summary>
-    [Node(MenuName = "On spell click", Type = NodeType.EVENT_ON_SPELLCLICK, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "On spell click", Type = NodeType.EVENT_ON_SPELLCLICK, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class OnSpellClick : EventNode
     {
         /// <summary>

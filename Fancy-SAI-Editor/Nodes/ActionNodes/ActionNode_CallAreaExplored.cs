@@ -17,7 +17,7 @@ namespace FancySaiEditor.Nodes.ActionNodes
             //Update text
             NodeName.Content = "Call Area Explored";
 
-            AddParam<GeneralNodes.Quest>(ParamId.PARAM_1, NodeType.GENERAL_QUEST, "Quest");
+            AddParam<ParamNodes.Quest>(ParamId.PARAM_1, NodeType.PARAM_QUEST, "Quest");
         }
 
         public override Node Clone()

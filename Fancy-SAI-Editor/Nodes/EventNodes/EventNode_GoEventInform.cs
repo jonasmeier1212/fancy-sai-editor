@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_GO_EVENT_INFORM
     ///
     /// </summary>
-    [Node(MenuName = "GameObject event inform", Type = NodeType.EVENT_GO_EVENT_INFORM, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "GameObject event inform", Type = NodeType.EVENT_GO_EVENT_INFORM, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class GoEventInform : EventNode
     {
         /// <summary>

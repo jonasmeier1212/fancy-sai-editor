@@ -9,20 +9,20 @@ using System.Data;
 using System.Windows.Media;
 using System.Windows.Input;
 
-namespace FancySaiEditor.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.ParamNodes
 {
-    [Node(MenuName = "Quest", Type = NodeType.GENERAL_QUEST)]
-    class Quest : GeneralNode
+    [Node(MenuName = "Quest", Type = NodeType.PARAM_QUEST)]
+    class Quest : ParamNode
     {
         public Quest()
         {
             NodeData = new QuestData();
 
-            Type = NodeType.GENERAL_QUEST;
+            Type = NodeType.PARAM_QUEST;
 
             NodeName.Content = "Quest";
 
-            AddDatabaseSelectionFrame(new DataSelectionPossibility("Quest title", "title"));
+            AddDatabaseSelection();
         }
 
         public override Node Clone()

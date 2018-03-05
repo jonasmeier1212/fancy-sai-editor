@@ -27,7 +27,7 @@ namespace FancySaiEditor
         /// <param name="_label">In the node shown name of the connector.</param>
         /// <param name="_type">Determines if it's an input or an output connector</param>
         /// <param name="_parentNode">Node which contains this new NodeConnector.</param>
-        /// <param name="_allowedNodeType">Type of node which is allowed to connector to this connector. If you want all nodes of a base type to be allowed use EVENT, ACTION or GENERAL</param>
+        /// <param name="_allowedNodeType">Type of node which is allowed to connector to this connector. If you want all nodes of a base type to be allowed use EVENT, ACTION or PARAM</param>
         /// <param name="_allowedConnectionCount">Number of allowed connections to this node</param>
         public NodeConnector(string _label, NodeConnectorType _type, Node _parentNode, NodeType _allowedNodeType, int _positionIndex, int _allowedConnectionCount = 1)
         {
@@ -204,7 +204,7 @@ namespace FancySaiEditor
             if (ConnectedNodeConnectors.Count < AllowedConnectionCount)
             {
                 //Create the appropriate node if allowed node is a specific node
-                if (AllowedNodeType != NodeType.NONE && AllowedNodeType != NodeType.ACTION && AllowedNodeType != NodeType.EVENT && AllowedNodeType != NodeType.GENERAL && AllowedNodeType != NodeType.TARGET)
+                if (AllowedNodeType != NodeType.NONE && AllowedNodeType != NodeType.ACTION && AllowedNodeType != NodeType.EVENT && AllowedNodeType != NodeType.PARAM && AllowedNodeType != NodeType.TARGET)
                 {
                     if (ParentNode.MainWindow != null)
                     {

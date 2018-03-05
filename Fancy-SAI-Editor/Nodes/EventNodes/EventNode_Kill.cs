@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_KILL
     ///
     /// </summary>
-    [Node(MenuName = "Kill", Type = NodeType.EVENT_AGGRO, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Kill", Type = NodeType.EVENT_AGGRO, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class Kill : EventNode
     {
         /// <summary>
@@ -29,7 +29,7 @@ namespace FancySaiEditor.Nodes.EventNodes
             AddParam(ParamId.PARAM_1, "Cooldown min");
             AddParam(ParamId.PARAM_2, "Cooldown max");
             AddParam<PlayerOnly>(ParamId.PARAM_3, "Player only");
-            AddParam<GeneralNodes.Npc>(ParamId.PARAM_4, NodeType.GENERAL_NPC, "Creature");
+            AddParam<ParamNodes.Npc>(ParamId.PARAM_4, NodeType.PARAM_NPC, "Creature");
         }
 
         enum PlayerOnly

@@ -5,26 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace FancySaiEditor.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.ParamNodes
 {
-    [Node(MenuName = "Sound", Type = NodeType.GENERAL_SOUND)]
-    class Sound : GeneralNode
+    [Node(MenuName = "Gameoject", Type = NodeType.PARAM_GAMEOBJECT)]
+    class GObject : ParamNode
     {
-        public Sound()
+        public GObject()
         {
-            NodeData = new SoundData();
+            NodeData = new NodeData(); //TODO
 
-            Type = NodeType.GENERAL_SOUND;
+            Type = NodeType.PARAM_GAMEOBJECT;
 
             //Update text
-            NodeName.Content = "Sound";
+            NodeName.Content = "Gameobject";
 
-            AddDatabaseSelectionFrame(new DataSelectionPossibility("Name:", "name"));
+            //TODO
         }
 
         public override Node Clone()
         {
-            return new Faction();
+            return new GObject();
         }
 
         public override string GetParamValue()
@@ -35,13 +35,13 @@ namespace FancySaiEditor.Nodes.GeneralNodes
             }
             catch (IndexOutOfRangeException)
             {
-                MessageBox.Show("Sound node has no faction selected!");
-                throw new ArgumentException();
+                MessageBox.Show("Emote node has no Emote selected!");
+                throw new ExportException();
             }
             catch (FormatException)
             {
                 MessageBox.Show("ID is not a number!");
-                throw new ArgumentException();
+                throw new ExportException();
             }
         }
 

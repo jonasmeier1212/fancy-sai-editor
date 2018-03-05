@@ -9,20 +9,20 @@ using System.Data;
 using System.Windows.Media;
 using System.Windows.Input;
 
-namespace FancySaiEditor.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.ParamNodes
 {
-    [Node(MenuName = "Gossip menu", Type = NodeType.GENERAL_GOSSIP_MENU)]
-    class GossipMenu : GeneralNode
+    [Node(MenuName = "Gossip menu", Type = NodeType.PARAM_GOSSIP_MENU)]
+    class GossipMenu : ParamNode
     {
         public GossipMenu()
         {
             NodeData = new QuestData();
 
-            Type = NodeType.GENERAL_QUEST;
+            Type = NodeType.PARAM_QUEST;
 
             NodeName.Content = "Gossip menu";
 
-            AddDatabaseSelectionFrame(new DataSelectionPossibility("Npc name", "name"));
+            AddDatabaseSelection();
         }
 
         public override Node Clone()

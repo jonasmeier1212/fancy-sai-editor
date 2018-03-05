@@ -127,9 +127,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Database.cs" />
-    <Compile Include="DataWindow.xaml.cs">
-      <DependentUpon>DataWindow.xaml</DependentUpon>
+    <Compile Include="Database\Database.cs" />
+    <Compile Include="Database\DatabaseSelectionWindow.xaml.cs">
+      <DependentUpon>DatabaseSelectionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataStructures.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -183,6 +183,8 @@
     <Compile Include="Nodes\ActionNodes\ActionNode_Talk.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_ThreatSinglePct.cs" />
     <Compile Include="Nodes\ActionNodes\ActionNode_WPStart.cs" />
+    <Compile Include="Nodes\AIOwnerNodes\AIOwnerNode.cs" />
+    <Compile Include="Nodes\AIOwnerNodes\AIOwnerNode_Npc.cs" />
     <Compile Include="Nodes\EventNodes\EventNode.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_ActionDone.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_Aggro.cs" />
@@ -240,20 +242,17 @@
     <Compile Include="Nodes\EventNodes\EventNode_VictimCasting.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_WaypointReached.cs" />
     <Compile Include="Nodes\EventNodes\EventNode_WaypointStarted.cs" />
-    <Compile Include="Nodes\GeneralNodes\CreatureTextCreation.xaml.cs">
-      <DependentUpon>CreatureTextCreation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Nodes\GeneralNodes\GeneralNode.cs" />
-    <Compile Include="Nodes\GeneralNodes\GeneralNode_Emote.cs" />
-    <Compile Include="Nodes\GeneralNodes\GeneralNode_Faction.cs" />
-    <Compile Include="Nodes\GeneralNodes\GeneralNode_GObject.cs" />
-    <Compile Include="Nodes\GeneralNodes\GeneralNode_GossipMenu.cs" />
-    <Compile Include="Nodes\GeneralNodes\GeneralNode_Npc.cs" />
-    <Compile Include="Nodes\GeneralNodes\GeneralNode_NpcModel.cs" />
-    <Compile Include="Nodes\GeneralNodes\GeneralNode_Quest.cs" />
-    <Compile Include="Nodes\GeneralNodes\GeneralNode_Sound.cs" />
-    <Compile Include="Nodes\GeneralNodes\GeneralNode_Spell.cs" />
-    <Compile Include="Nodes\GeneralNodes\GeneralNode_Text.cs" />
+    <Compile Include="Nodes\ParamNodes\GeneralNode.cs" />
+    <Compile Include="Nodes\ParamNodes\GeneralNode_Emote.cs" />
+    <Compile Include="Nodes\ParamNodes\GeneralNode_Faction.cs" />
+    <Compile Include="Nodes\ParamNodes\GeneralNode_GObject.cs" />
+    <Compile Include="Nodes\ParamNodes\GeneralNode_GossipMenu.cs" />
+    <Compile Include="Nodes\ParamNodes\GeneralNode_Npc.cs" />
+    <Compile Include="Nodes\ParamNodes\GeneralNode_NpcModel.cs" />
+    <Compile Include="Nodes\ParamNodes\GeneralNode_Quest.cs" />
+    <Compile Include="Nodes\ParamNodes\GeneralNode_Sound.cs" />
+    <Compile Include="Nodes\ParamNodes\GeneralNode_Spell.cs" />
+    <Compile Include="Nodes\ParamNodes\GeneralNode_Text.cs" />
     <Compile Include="Nodes\TargetNodes\TargetNode.cs" />
     <Compile Include="Nodes\TargetNodes\TargetNode_ActionInvoker.cs" />
     <Compile Include="Nodes\TargetNodes\TargetNode_ActionInvokerVehicle.cs" />
@@ -290,7 +289,7 @@
       <DependentUpon>SAIImport.xaml</DependentUpon>
     </Compile>
     <Compile Include="SAIImporter.cs" />
-    <Compile Include="SelectMysqlDatabase.xaml.cs">
+    <Compile Include="Database\SelectMysqlDatabase.xaml.cs">
       <DependentUpon>SelectMysqlDatabase.xaml</DependentUpon>
     </Compile>
     <Compile Include="SharedDefines.cs" />
@@ -298,7 +297,7 @@
       <DependentUpon>ShowSqlExport.xaml</DependentUpon>
     </Compile>
     <Compile Include="SqlExporter.cs" />
-    <Page Include="DataWindow.xaml">
+    <Page Include="Database\DatabaseSelectionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -325,15 +324,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Nodes\GeneralNodes\CreatureTextCreation.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="SAIImport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SelectMysqlDatabase.xaml">
+    <Page Include="Database\SelectMysqlDatabase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

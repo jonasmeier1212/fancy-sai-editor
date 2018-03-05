@@ -31,7 +31,7 @@ namespace FancySaiEditor
             //Initialize node manager
             NodeManager.Instance = new NodeManager(NodeEditorCanvas);
 
-            Database.InitializeDatabase();
+            Database.DatabaseConnection.InitializeDatabase();
 
             CreateNodeCreationMenu();
         }
@@ -56,10 +56,6 @@ namespace FancySaiEditor
                     else if (type.IsSubclassOf(typeof(Nodes.EventNodes.EventNode)))
                     {
                         eventNodesMenu.Items.Add(menuItem);
-                    }
-                    else if (type.IsSubclassOf(typeof(Nodes.GeneralNodes.GeneralNode)))
-                    {
-                        generalNodesMenu.Items.Add(menuItem);
                     }
                     else if(type.IsSubclassOf(typeof(Nodes.TargetNodes.TargetNode)))
                     {
@@ -104,8 +100,8 @@ namespace FancySaiEditor
                     };
                     menuItem.Click += HandleNodeMenu;
 
-                    if (type.Namespace.Contains("GeneralNodes"))
-                        selectionMenuGeneralNodes.Items.Add(menuItem);
+                    if (type.Namespace.Contains("AIOwnerNodes"))
+                        selectionMenuOwnerNodes.Items.Add(menuItem);
                     else if (type.Namespace.Contains("ActionNodes"))
                         selectionMenuActionNodes.Items.Add(menuItem);
                     else if (type.Namespace.Contains("EventNodes"))
@@ -135,8 +131,8 @@ namespace FancySaiEditor
                     Header = type.GetCustomAttribute<NodeAttribute>().MenuName,
                 };
                 menuItem.Click += HandleNodeMenu;
-                if (type.Namespace.Contains("GeneralNodes"))
-                    selectionMenuGeneralNodes.Items.Add(menuItem);
+                if (type.Namespace.Contains("AIOwnerNodes"))
+                    selectionMenuOwnerNodes.Items.Add(menuItem);
                 else if (type.Namespace.Contains("ActionNodes"))
                     selectionMenuActionNodes.Items.Add(menuItem);
                 else if (type.Namespace.Contains("EventNodes"))
@@ -198,12 +194,12 @@ namespace FancySaiEditor
             else
                 selectionMenuTargetNodes.Visibility = Visibility.Visible;
 
-            if (selectionMenuGeneralNodes.Items.IsEmpty)
-                selectionMenuGeneralNodes.Visibility = Visibility.Collapsed;
+            if (selectionMenuOwnerNodes.Items.IsEmpty)
+                selectionMenuOwnerNodes.Visibility = Visibility.Collapsed;
             else
-                selectionMenuGeneralNodes.Visibility = Visibility.Visible;
+                selectionMenuOwnerNodes.Visibility = Visibility.Visible;
 
-            if (selectionMenuEventNodes.Items.IsEmpty && selectionMenuActionNodes.Items.IsEmpty && selectionMenuTargetNodes.Items.IsEmpty && selectionMenuGeneralNodes.Items.IsEmpty)
+            if (selectionMenuEventNodes.Items.IsEmpty && selectionMenuActionNodes.Items.IsEmpty && selectionMenuTargetNodes.Items.IsEmpty && selectionMenuOwnerNodes.Items.IsEmpty)
                 e.Handled = true;
         }
 
@@ -218,7 +214,7 @@ namespace FancySaiEditor
             selectionMenuTargetNodes.Items.Clear();
             selectionMenuActionNodes.Items.Clear();
             selectionMenuEventNodes.Items.Clear();
-            selectionMenuGeneralNodes.Items.Clear();
+            selectionMenuOwnerNodes.Items.Clear();
         }
 
         private void HandleRightClick(object sender, MouseButtonEventArgs e)

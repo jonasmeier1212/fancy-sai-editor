@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_ACTION_DONE
     ///
     /// </summary>
-    [Node(MenuName = "Action done", Type = NodeType.EVENT_ACTION_DONE, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Action done", Type = NodeType.EVENT_ACTION_DONE, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class ActionDone : EventNode
     {
         /// <summary>

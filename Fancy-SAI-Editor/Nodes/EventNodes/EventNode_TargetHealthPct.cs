@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_TARGET_HEALTH_PCT
     /// 
     /// </summary>
-    [Node(MenuName = "Target Health Percentage", Type = NodeType.EVENT_TARGET_HEALTH_PCT, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Target Health Percentage", Type = NodeType.EVENT_TARGET_HEALTH_PCT, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class TargetHpPct : EventNode
     {
         /// <summary>

@@ -19,7 +19,7 @@ namespace FancySaiEditor.Nodes.ActionNodes
             //Update text
             NodeName.Content = "Play Sound";
 
-            AddParam<GeneralNodes.Sound>(ParamId.PARAM_1, NodeType.GENERAL_SOUND, "Sound");
+            AddParam<ParamNodes.Sound>(ParamId.PARAM_1, NodeType.PARAM_SOUND, "Sound");
             AddParam<OnlySelf>(ParamId.PARAM_2, "Only self");
             AddParam<DistantSound>(ParamId.PARAM_3, "Distant sound");
         }

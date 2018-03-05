@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace FancySaiEditor.Nodes.ActionNodes
 {
-    [Node(MenuName = "Remove Auras From Spell", Type = NodeType.ACTION_REMOVEAURASFROMSPELL, AllowedTypes = new NodeType[] { NodeType.GENERAL_SPELL, NodeType.EVENT, NodeType.TARGET })]
+    [Node(MenuName = "Remove Auras From Spell", Type = NodeType.ACTION_REMOVEAURASFROMSPELL, AllowedTypes = new NodeType[] { NodeType.PARAM_SPELL, NodeType.EVENT, NodeType.TARGET })]
     class RemoveAuraFromSpell : ActionNode
     {
         public RemoveAuraFromSpell()
@@ -19,7 +19,7 @@ namespace FancySaiEditor.Nodes.ActionNodes
             //Update text
             NodeName.Content = "Remove Auras From Spell";
 
-            AddParam<GeneralNodes.Spell>(ParamId.PARAM_1, NodeType.GENERAL_SPELL, "Spell");
+            AddParam<ParamNodes.Spell>(ParamId.PARAM_1, NodeType.PARAM_SPELL, "Spell");
         }
 
         public override Node Clone()

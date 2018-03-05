@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_UPDATE_IC
     /// SMART_EVENT_UPDATE_OOC
     /// </summary>
-    [Node(MenuName = "Update Out of Combat", Type = NodeType.EVENT_UPDATE_OOC, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Update Out of Combat", Type = NodeType.EVENT_UPDATE_OOC, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class UpdateOOC : EventNode
     {
         /// <summary>

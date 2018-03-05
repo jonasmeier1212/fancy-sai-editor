@@ -200,18 +200,9 @@ namespace FancySaiEditor
             return int.MinValue;
         }
 
-        public List<Nodes.GeneralNodes.Npc> GetSAIOwnerNodes()
+        public List<Nodes.AIOwnerNodes.AIOwner> GetSAIOwnerNodes()
         {
-            List<Nodes.GeneralNodes.Npc> saiOwnerNodes = new List<Nodes.GeneralNodes.Npc>();
-            foreach(Node node in nodes)
-            {
-                if(node is Nodes.GeneralNodes.Npc npcNode)
-                {
-                    if (npcNode.IsSAIOwner())
-                        saiOwnerNodes.Add(npcNode);
-                }
-            }
-            return saiOwnerNodes;
+            return (from Node in nodes where Node is Nodes.AIOwnerNodes.AIOwner select Node as Nodes.AIOwnerNodes.AIOwner).ToList();
         }
 
         public List<Node> GetNodes()

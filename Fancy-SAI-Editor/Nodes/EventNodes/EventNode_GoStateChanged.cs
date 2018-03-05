@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_AGGRO
     ///
     /// </summary>
-    [Node(MenuName = "GameObject state changed", Type = NodeType.EVENT_GO_STATE_CHANGED, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "GameObject state changed", Type = NodeType.EVENT_GO_STATE_CHANGED, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class GoStateChanged : EventNode
     {
         /// <summary>

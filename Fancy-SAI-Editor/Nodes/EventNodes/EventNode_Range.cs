@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_RANGE
     ///
     /// </summary>
-    [Node(MenuName = "Range", Type = NodeType.EVENT_RANGE, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Range", Type = NodeType.EVENT_RANGE, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class Range : EventNode
     {
         /// <summary>

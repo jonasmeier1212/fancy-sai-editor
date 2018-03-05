@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace FancySaiEditor.Nodes.ActionNodes
 {
-    [Node(MenuName = "Call for help", Type = NodeType.ACTION_CALL_FOR_HELP, AllowedTypes = new NodeType[] { NodeType.GENERAL_SPELL, NodeType.EVENT, NodeType.TARGET })]
+    [Node(MenuName = "Call for help", Type = NodeType.ACTION_CALL_FOR_HELP, AllowedTypes = new NodeType[] { NodeType.PARAM_SPELL, NodeType.EVENT, NodeType.TARGET })]
     class CallForHelp : ActionNode
     {
         public CallForHelp()

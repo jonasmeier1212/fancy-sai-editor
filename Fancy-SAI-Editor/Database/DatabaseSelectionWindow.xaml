@@ -1,10 +1,10 @@
-﻿<Window x:Class="FancySaiEditor.DataWindow"
+﻿<Window x:Class="FancySaiEditor.Database.DatabaseSelectionWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:local="clr-namespace:FancySaiEditor"
+        xmlns:local="clr-namespace:FancySaiEditor.Database"
         mc:Ignorable="d"
         Title="DatabaseSelectorWindow" Width="370" MaxHeight="550" ResizeMode="NoResize">
     <TabControl x:Name="TabControl">
@@ -19,12 +19,12 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <ComboBox x:Name="SearchElementType" Width="115.92" Margin="0" HorizontalAlignment="Center"/>
-                            <TextBox x:Name="SearchTerm" TextWrapping="NoWrap" Margin="0,0,10,0" Text="" KeyDown="HandleSearchTerm_KeyDown" Grid.Column="1"/>
+                            <TextBox x:Name="SearchTerm" TextWrapping="NoWrap" Margin="0,0,10,0" Text="" KeyDown="SearchTerm_KeyDown" Grid.Column="1"/>
                         </Grid>
-                        <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Right" Margin="0,8,11,0" Width="75" Click="HandleSearch"/>
+                        <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Right" Margin="0,8,11,0" Width="75" Click="SearchButton_Click"/>
                     </StackPanel>
                 </Border>
-                <DataGrid x:Name="SearchData" Height="352" Margin="0,9,0,0" HorizontalAlignment="Stretch" MinWidth="355.84" AutoGenerateColumns="True" CanUserAddRows="False" MouseDoubleClick="SelectData"/>
+                <DataGrid x:Name="SearchData" Height="352" Margin="0,9,0,0" HorizontalAlignment="Stretch" MinWidth="355.84" AutoGenerateColumns="True" CanUserAddRows="False" MouseDoubleClick="SearchData_MouseDoubleClick"/>
             </StackPanel>
         </TabItem>
     </TabControl>

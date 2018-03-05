@@ -25,16 +25,16 @@
             <Canvas x:Name="NodeEditorCanvas" Background="White" ContextMenuOpening="HandleContextMenuOpening" ContextMenuClosing="HandleContextMenuClosing" MouseRightButtonDown="HandleRightClick" MouseMove="NodeEditorCanvas_MouseMove" MouseLeftButtonDown="NodeEditorCanvas_MouseLeftButtonDown" MouseLeftButtonUp="NodeEditorCanvas_MouseLeftButtonUp" MouseLeave="NodeEditorCanvas_MouseLeave" MouseDown="NodeEditorCanvas_MouseDown" MouseUp="NodeEditorCanvas_MouseUp">
                 <Canvas.ContextMenu>
                     <ContextMenu>
+                        <MenuItem x:Name="selectionMenuOwnerNodes" Header="AI Owner"/>
                         <MenuItem x:Name="selectionMenuActionNodes" Header="Action"/>
                         <MenuItem x:Name="selectionMenuEventNodes" Header="Event"/>
-                        <MenuItem x:Name="selectionMenuGeneralNodes" Header="General"/>
                         <MenuItem x:Name="selectionMenuTargetNodes" Header="Target"/>
                     </ContextMenu>
                 </Canvas.ContextMenu>
             </Canvas>
         </ScrollViewer>
         <Menu Grid.Row="2">
-            <MenuItem x:Name="generalNodesMenu" Header="General Nodes"/>
+            <MenuItem x:Name="aiOwnerNodeMenu" Header="AI Owner"/>
             <MenuItem x:Name="eventNodesMenu" Header="Event Nodes"/>
             <MenuItem x:Name="actionNodesMenu" Header="Action Nodes"/>
             <MenuItem x:Name="targetNodesMenu" Header="Target Nodes"/>

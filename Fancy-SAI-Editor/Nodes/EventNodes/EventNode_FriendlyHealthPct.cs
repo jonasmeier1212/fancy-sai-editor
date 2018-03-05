@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_FIRENDLY_HEALTH_PCT
     ///
     /// </summary>
-    [Node(MenuName = "Friendly health pct", Type = NodeType.EVENT_FRIENDLY_HEALTH_PCT, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Friendly health pct", Type = NodeType.EVENT_FRIENDLY_HEALTH_PCT, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class FriendlyHealthPct : EventNode
     {
         /// <summary>

@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_DEATH
     ///
     /// </summary>
-    [Node(MenuName = "Death", Type = NodeType.EVENT_DEATH, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Death", Type = NodeType.EVENT_DEATH, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class Death : EventNode
     {
         /// <summary>

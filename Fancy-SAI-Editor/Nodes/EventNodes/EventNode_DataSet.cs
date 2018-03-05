@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_SET_DATA
     ///
     /// </summary>
-    [Node(MenuName = "Data set", Type = NodeType.EVENT_DATA_SET, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Data set", Type = NodeType.EVENT_DATA_SET, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class DataSet : EventNode
     {
         /// <summary>

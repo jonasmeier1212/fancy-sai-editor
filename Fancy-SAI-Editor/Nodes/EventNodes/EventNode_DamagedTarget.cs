@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_AGGRO
     ///
     /// </summary>
-    [Node(MenuName = "Damaged target", Type = NodeType.EVENT_DAMAGED_TARGET, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Damaged target", Type = NodeType.EVENT_DAMAGED_TARGET, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class DamagedTarget : EventNode
     {
         /// <summary>

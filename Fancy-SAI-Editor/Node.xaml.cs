@@ -49,7 +49,7 @@ namespace FancySaiEditor
         /// </summary>
         private async void LoadTooltip()
         {
-            string tooltip = await Database.FindNodeTooltip(Type);
+            string tooltip = await Database.DatabaseConnection.FindNodeTooltip(Type);
             ToolTip toolTip = new ToolTip()
             {
                 Content = tooltip,
@@ -104,6 +104,142 @@ namespace FancySaiEditor
         /// Stores all connectors of this node.
         /// </summary>
         public List<NodeConnector> Connectors { get => connectorStore; }
+
+        public StackPanel MainPanel { get => nodeMainPanel; }
+
+        #endregion
+
+        #region Database Selection
+
+        private StackPanel selectPanel; //The select panel is shown if there is no database data selected and is used to open a windows in which the user can select data from the database
+        private StackPanel dataPanel; //The data panel is shown if there is data selected
+        private List<TextBlock> valueTexts;
+
+        public void AddDatabaseSelection()
+        {
+            valueTexts = new List<TextBlock>();
+
+            #region Select Panel
+            selectPanel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal
+            };
+            Label text = new Label
+            {
+                Content = NodeName.Content + ":",
+                Foreground = Brushes.White,
+            };
+            Button searchButton = new Button
+            {
+                Content = "...",
+                Padding = new Thickness(8, 0, 8, 0),
+                Margin = new Thickness(0, 0, 5, 0),
+            };
+            searchButton.Click += OpenSelectionWindow;
+            selectPanel.Children.Add(text);
+            selectPanel.Children.Add(searchButton);
+            nodeMainPanel.Children.Add(selectPanel);
+            #endregion
+
+            #region Data Panel
+            dataPanel = new StackPanel
+            {
+                Visibility = Visibility.Collapsed,
+            };
+            Grid dataGrid = new Grid();
+            dataGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            dataGrid.ColumnDefinitions.Add(new ColumnDefinition());
+
+            int i = 0;
+            foreach (DataColumn column in NodeData.Columns)
+            {
+                dataGrid.RowDefinitions.Add(new RowDefinition());
+                Label identifierLable = new Label()
+                {
+                    Content = column.ColumnName,
+                    Foreground = Brushes.White,
+                };
+                Grid.SetColumn(identifierLable, 0);
+                Grid.SetRow(identifierLable, i);
+
+                TextBlock valueText = new TextBlock()
+                {
+                    Foreground = Brushes.White,
+                    MaxWidth = 130,
+                    TextWrapping = TextWrapping.WrapWithOverflow,
+                    VerticalAlignment = VerticalAlignment.Center,
+                };
+
+                if (column.ColumnName == "Text")
+                {
+                    ScrollViewer scrollViewer = new ScrollViewer()
+                    {
+                        MaxHeight = 70,
+                    };
+                    scrollViewer.Content = valueText;
+                    Grid.SetColumn(scrollViewer, 1);
+                    Grid.SetRow(scrollViewer, i);
+                    dataGrid.Children.Add(scrollViewer);
+                }
+                else
+                {
+                    Grid.SetColumn(valueText, 1);
+                    Grid.SetRow(valueText, i);
+                    dataGrid.Children.Add(valueText);
+                }
+
+                valueTexts.Add(valueText);
+
+                dataGrid.Children.Add(identifierLable);
+
+                ++i;
+            }
+            Button researchButton = new Button
+            {
+                Content = "...",
+                Padding = new Thickness(1, 0, 1, 0),
+            };
+            researchButton.Click += OpenSelectionWindow;
+
+            dataPanel.Children.Add(dataGrid);
+            dataPanel.Children.Add(researchButton);
+            nodeMainPanel.Children.Add(dataPanel);
+            #endregion
+        }
+
+        private void OpenSelectionWindow(object sender, RoutedEventArgs e)
+        {
+            new Database.DatabaseSelectionWindow(NodeData, SelectData).ShowDialog();
+        }
+
+        public void SelectData(DataRow dataRow)
+        {
+            try
+            {
+                int i = 0;
+                foreach (TextBlock valueText in valueTexts)
+                {
+                    valueText.Text = dataRow.ItemArray[i].ToString();
+                    ++i;
+                }
+
+                //Delete all rows except the selected one from NodeData
+                foreach (DataRow row in NodeData.Rows)
+                {
+                    if (row != dataRow)
+                        row.Delete();
+                }
+
+                NodeData.AcceptChanges();
+
+                selectPanel.Visibility = Visibility.Collapsed;
+                dataPanel.Visibility = Visibility.Visible;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Unknown error!\nError Message: " + exc.Message);
+            }
+        }
 
         #endregion
 
@@ -173,7 +309,7 @@ namespace FancySaiEditor
         public void AddParam(ParamId id, string description, bool allowNaN = false)
         {
             ToolTip toolTip = null;
-            if (Database.GetNodeParamTooltip(Type, id) is String tooltipValue)
+            if (Database.DatabaseConnection.GetNodeParamTooltip(Type, id) is String tooltipValue)
             {
                 toolTip = new ToolTip()
                 {
@@ -217,7 +353,7 @@ namespace FancySaiEditor
         public void AddParam<T>(ParamId id, string selectionName) where T : struct, IConvertible
         {
             ToolTip toolTip = null;
-            if(Database.GetNodeParamTooltip(Type, id) is String tooltipValue)
+            if(Database.DatabaseConnection.GetNodeParamTooltip(Type, id) is String tooltipValue)
             {
                 toolTip = new ToolTip()
                 {
@@ -287,26 +423,26 @@ namespace FancySaiEditor
         /// <summary>
         /// Adds param as connected node
         /// </summary>
-        public void AddParam<T>(ParamId id, NodeType type, string description) where T : Nodes.GeneralNodes.GeneralNode
+        public void AddParam<T>(ParamId id, NodeType type, string description) where T : Nodes.ParamNodes.ParamNode
         {
-            AddConnector(NodeConnectorType.PARAM, description, type, 1, Database.GetNodeParamTooltip(type, id));
+            AddConnector(NodeConnectorType.PARAM, description, type, 1, Database.DatabaseConnection.GetNodeParamTooltip(type, id));
             paramStore.Add(id, new NodeParam(
                 () =>
                 {
                     Node connectedNode = GetDirectlyConnectedNode(type);
-                    if (connectedNode != null && connectedNode is Nodes.GeneralNodes.GeneralNode generalNode)
-                        return generalNode.GetParamValue();
+                    if (connectedNode != null && connectedNode is Nodes.ParamNodes.ParamNode paramNode)
+                        return paramNode.GetParamValue();
                     return "0";
                 },
 
                 (value) =>
                 {
-                    if (value == "0" && type != NodeType.GENERAL_TEXT) //Value can be 0 for texts
+                    if (value == "0" && type != NodeType.PARAM_TEXT) //Value can be 0 for texts
                         return;
 
                     Node connectedNode = NodeManager.Instance.CreateNode(type, this);
-                    if (connectedNode != null && connectedNode is Nodes.GeneralNodes.GeneralNode generalNode)
-                        generalNode.SetParamValue(value);
+                    if (connectedNode != null && connectedNode is Nodes.ParamNodes.ParamNode paramNode)
+                        paramNode.SetParamValue(value);
                 }
             ));
         }
@@ -446,7 +582,7 @@ namespace FancySaiEditor
 
         /// <summary>
         /// Gets the superior type of the node.
-        /// If you call this for example in NodeNpc you will get NodeType.GENERAL.
+        /// If you call this for example in NodeNpc you will get NodeType.PARAM.
         /// </summary>
         /// <returns>Returns superior node type.</returns>
         public NodeType GetSuperiorType()
@@ -456,7 +592,7 @@ namespace FancySaiEditor
 
         /// <summary>
         /// Gets the superior type of the node. Returns NodeType.NONE if the passed NodeType is already a superior type.
-        /// If you call this for example with NodeType.GENERAL_NPC you will get NodeType.GENERAL.
+        /// If you call this for example with NodeType.PARAM_NPC you will get NodeType.PARAM.
         /// </summary>
         /// <param name="type">Type of node to be checked.</param>
         /// <returns>Returns superior node type. Returns NodeType.NONE if the passed NodeType is already a superior type.</returns>
@@ -468,9 +604,9 @@ namespace FancySaiEditor
                 return NodeType.EVENT;
             if (type > NodeType.EVENT_MAX && type < NodeType.ACTION_MAX && type != NodeType.ACTION)
                 return NodeType.ACTION;
-            if (type > NodeType.ACTION_MAX && type < NodeType.GENERAL_MAX && type != NodeType.GENERAL)
-                return NodeType.GENERAL;
-            if (type > NodeType.GENERAL_MAX && type < NodeType.TARGET_MAX && type != NodeType.TARGET)
+            if (type > NodeType.ACTION_MAX && type < NodeType.PARAM_MAX && type != NodeType.PARAM)
+                return NodeType.PARAM;
+            if (type > NodeType.PARAM_MAX && type < NodeType.TARGET_MAX && type != NodeType.TARGET)
                 return NodeType.TARGET;
             return NodeType.NONE;
         }
@@ -661,7 +797,7 @@ namespace FancySaiEditor
         /// <summary>
         /// Contains all NodeTypes which can be connected to this node.
         /// Should be the same types as the input or output connector.
-        /// <para>Don't use superior node types like NodeType.GENERAL here!</para>
+        /// <para>Don't use superior node types like NodeType.PARAM here!</para>
         /// </summary>
         public NodeType[] AllowedTypes { get; set; }
     }

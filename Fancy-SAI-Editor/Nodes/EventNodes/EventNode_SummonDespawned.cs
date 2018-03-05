@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_AGGRO
     ///
     /// </summary>
-    [Node(MenuName = "Summon despawned", Type = NodeType.EVENT_SUMMON_DESPAWNED, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Summon despawned", Type = NodeType.EVENT_SUMMON_DESPAWNED, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class SummonDespawned : EventNode
     {
         /// <summary>
@@ -24,7 +24,7 @@ namespace FancySaiEditor.Nodes.EventNodes
             //Update text
             NodeName.Content = "Summon despawned";
 
-            AddParam<GeneralNodes.Npc>(ParamId.PARAM_1, NodeType.GENERAL_NPC, "NPC");
+            AddParam<ParamNodes.Npc>(ParamId.PARAM_1, NodeType.PARAM_NPC, "NPC");
             AddParam(ParamId.PARAM_2, "Cooldown min:");
             AddParam(ParamId.PARAM_3, "Cooldown max:");
         }

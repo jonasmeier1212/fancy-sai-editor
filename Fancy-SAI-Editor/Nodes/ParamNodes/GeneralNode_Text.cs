@@ -14,21 +14,20 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 
-namespace FancySaiEditor.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.ParamNodes
 {
-    [Node( MenuName = "Text", Type = NodeType.GENERAL_TEXT)]
-    class Text : GeneralNode
+    [Node( MenuName = "Text", Type = NodeType.PARAM_TEXT)]
+    class Text : ParamNode
     {
         public Text()
         {
             NodeData = new TextData();
-            Type = NodeType.GENERAL_TEXT;
+            Type = NodeType.PARAM_TEXT;
 
             //Update text
             NodeName.Content = "Text";
 
-            AddDatabaseSelectionFrame(new DataSelectionPossibility("Text", "text") ,new AdditionalTab(new CreatureTextCreation(), "Create"));
-            
+            //AddDatabaseSelectionFrame(new DataSelectionPossibility("Text", "text") ,new AdditionalTab(new CreatureTextCreation(), "Create"));
         }
 
         public override Node Clone()
@@ -58,19 +57,16 @@ namespace FancySaiEditor.Nodes.GeneralNodes
         {
             //TODO: I think this will not work with two or more sai owners in one tree -> Changed this
 
-            foreach (Npc npcNode in GetConnectedNodes(NodeType.GENERAL_NPC))
+            foreach (AIOwnerNodes.AIOwner aiOwner in GetConnectedNodes(NodeType.AI_OWNER))
             {
-                if (!npcNode.IsSAIOwner())
-                    continue;
-
                 string entry = "";
-                entry = npcNode.GetParamValue();
+                entry = aiOwner.GetEntryOrGuid().ToString();
 
                 if (entry == "" || entry == "0")
                     continue;
 
-                await Database.SelectMySqlData(NodeData, $"entry={entry} AND groupid={value}");
-                SelectData(NodeData);
+                //await Database.SelectMySqlData(NodeData, $"entry={entry} AND groupid={value}");
+                //SelectData(NodeData);
             }
         }
     }

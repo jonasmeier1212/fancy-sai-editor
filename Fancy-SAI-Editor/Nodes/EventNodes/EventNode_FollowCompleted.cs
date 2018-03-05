@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_FOLLOW_COMPLETED
     ///
     /// </summary>
-    [Node(MenuName = "Follow completed", Type = NodeType.EVENT_FOLLOW_COMPLETED, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Follow completed", Type = NodeType.EVENT_FOLLOW_COMPLETED, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class FollowCompleted : EventNode
     {
         /// <summary>

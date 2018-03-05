@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_RESET
     /// 
     /// </summary>
-    [Node(MenuName = "Reset", Type = NodeType.EVENT_RESET, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Reset", Type = NodeType.EVENT_RESET, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class Reset : EventNode
     {
         /// <summary>

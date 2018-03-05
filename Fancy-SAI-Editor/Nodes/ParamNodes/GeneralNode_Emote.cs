@@ -4,25 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Data;
+using System.Windows.Media;
+using System.Windows.Input;
 
-namespace FancySaiEditor.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.ParamNodes
 {
-    [Node(MenuName = "Npc Model", Type = NodeType.GENERAL_NPC_MODEL)]
-    class NpcModel : GeneralNode
+    [Node(MenuName = "Emote", Type = NodeType.PARAM_EMOTE)]
+    class Emote : ParamNode
     {
-        public NpcModel()
+        public Emote()
         {
-            NodeData = new NodeData();
-            //NodeData = new NpcModelData();
+            NodeData = new EmoteData();
 
-            Type = NodeType.GENERAL_NPC_MODEL;
+            Type = NodeType.PARAM_EMOTE;
 
-            NodeName.Content = "Npc model";
+            //Update text
+            NodeName.Content = "Emote";
+
+            //AddDatabaseSelectionFrame(new DataSelectionPossibility("Name:", "name"));
         }
 
         public override Node Clone()
         {
-            return new NpcModel();
+            return new Emote();
         }
 
         public override string GetParamValue()
@@ -33,13 +39,13 @@ namespace FancySaiEditor.Nodes.GeneralNodes
             }
             catch (IndexOutOfRangeException)
             {
-                MessageBox.Show("Npc model node has no faction selected!");
-                throw new ArgumentException();
+                MessageBox.Show("Emote node has no Emote selected!");
+                throw new ExportException();
             }
             catch (FormatException)
             {
                 MessageBox.Show("ID is not a number!");
-                throw new ArgumentException();
+                throw new ExportException();
             }
         }
 

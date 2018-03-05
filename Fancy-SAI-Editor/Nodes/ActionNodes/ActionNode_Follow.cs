@@ -21,7 +21,7 @@ namespace FancySaiEditor.Nodes.ActionNodes
 
             AddParam(ParamId.PARAM_1, "Distance");
             AddParam(ParamId.PARAM_2, "Angle");
-            AddParam<GeneralNodes.Npc>(ParamId.PARAM_3, NodeType.GENERAL_NPC, "End NPC");
+            AddParam<ParamNodes.Npc>(ParamId.PARAM_3, NodeType.PARAM_NPC, "End NPC");
             // TODO: Remain params
         }
 

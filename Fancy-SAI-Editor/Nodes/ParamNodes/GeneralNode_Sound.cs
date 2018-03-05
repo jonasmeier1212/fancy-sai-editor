@@ -4,31 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Data;
-using System.Windows.Media;
-using System.Windows.Input;
 
-namespace FancySaiEditor.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.ParamNodes
 {
-    [Node(MenuName = "Spell", Type = NodeType.GENERAL_SPELL)]
-    class Spell : GeneralNode
+    [Node(MenuName = "Sound", Type = NodeType.PARAM_SOUND)]
+    class Sound : ParamNode
     {
-        public Spell()
+        public Sound()
         {
-            NodeData = new SpellData();
+            NodeData = new SoundData();
 
-            Type = NodeType.GENERAL_SPELL;
+            Type = NodeType.PARAM_SOUND;
 
             //Update text
-            NodeName.Content = "Spell";
+            NodeName.Content = "Sound";
 
-            AddDatabaseSelectionFrame(new DataSelectionPossibility("Spell:", "Name"));
+            AddDatabaseSelection();
         }
 
         public override Node Clone()
         {
-            return new Spell();
+            return new Faction();
         }
 
         public override string GetParamValue()
@@ -39,7 +35,7 @@ namespace FancySaiEditor.Nodes.GeneralNodes
             }
             catch (IndexOutOfRangeException)
             {
-                MessageBox.Show("Spell node has no spell selected!");
+                MessageBox.Show("Sound node has no faction selected!");
                 throw new ArgumentException();
             }
             catch (FormatException)
@@ -49,10 +45,9 @@ namespace FancySaiEditor.Nodes.GeneralNodes
             }
         }
 
-        public async override void SetParamValue(string value)
+        public override void SetParamValue(string value)
         {
-            await Database.SelectSqliteData("ID", value, NodeData);
-            SelectData(NodeData);
+            throw new NotImplementedException();
         }
     }
 }

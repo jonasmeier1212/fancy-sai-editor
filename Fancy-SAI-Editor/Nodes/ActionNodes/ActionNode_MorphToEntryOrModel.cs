@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace FancySaiEditor.Nodes.ActionNodes
 {
-    [Node(MenuName = "Morph to entry or model", Type = NodeType.ACTION_MORPH_TO_ENTRY_OR_MODEL, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.EVENT, NodeType.TARGET })]
+    [Node(MenuName = "Morph to entry or model", Type = NodeType.ACTION_MORPH_TO_ENTRY_OR_MODEL, AllowedTypes = new NodeType[] { NodeType.PARAM_NPC, NodeType.EVENT, NodeType.TARGET })]
     class MorphToEntryOrModel : ActionNode
     {
         public MorphToEntryOrModel()
@@ -19,8 +19,8 @@ namespace FancySaiEditor.Nodes.ActionNodes
             //Update text
             NodeName.Content = "Morph to entry or model";
 
-            AddParam<GeneralNodes.Npc>(ParamId.PARAM_1, NodeType.GENERAL_NPC, "Creature Entry");
-            AddParam<GeneralNodes.NpcModel>(ParamId.PARAM_2, NodeType.GENERAL_NPC_MODEL, "NPC Model");
+            AddParam<ParamNodes.Npc>(ParamId.PARAM_1, NodeType.PARAM_NPC, "Creature Entry");
+            AddParam<ParamNodes.NpcModel>(ParamId.PARAM_2, NodeType.PARAM_NPC_MODEL, "NPC Model");
         }
 
         public override Node Clone()

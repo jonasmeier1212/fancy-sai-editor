@@ -12,12 +12,12 @@ using System.Data.Common;
 using System.Diagnostics;
 using MahApps.Metro.Controls;
 
-namespace FancySaiEditor
+namespace FancySaiEditor.Database
 {
     /// <summary>
     /// Handles all interactions with MySql and SQLite Database.
     /// </summary>
-    public static class Database
+    public static class DatabaseConnection
     {
         private static MySqlConnection mySqlConnection;
         private static SQLiteConnection sqliteConnection;

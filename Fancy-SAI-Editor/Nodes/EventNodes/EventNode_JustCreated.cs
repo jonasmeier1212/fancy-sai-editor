@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_JUST_CREATED
     ///
     /// </summary>
-    [Node(MenuName = "Just created", Type = NodeType.EVENT_JUST_CREATED, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Just created", Type = NodeType.EVENT_JUST_CREATED, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class JustCreated : EventNode
     {
         /// <summary>

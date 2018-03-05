@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_PHASE_CHANGED
     ///
     /// </summary>
-    [Node(MenuName = "Dummy Effect", Type = NodeType.EVENT_DUMMY_EFFECT, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Dummy Effect", Type = NodeType.EVENT_DUMMY_EFFECT, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class DummyEffect : EventNode
     {
         /// <summary>
@@ -24,7 +24,7 @@ namespace FancySaiEditor.Nodes.EventNodes
             //Update text
             NodeName.Content = "Event phase changed";
 
-            AddParam<GeneralNodes.Spell>(ParamId.PARAM_1, NodeType.GENERAL_SPELL, "Spell");
+            AddParam<ParamNodes.Spell>(ParamId.PARAM_1, NodeType.PARAM_SPELL, "Spell");
             AddParam(ParamId.PARAM_2, "Effect index:");
         }
 

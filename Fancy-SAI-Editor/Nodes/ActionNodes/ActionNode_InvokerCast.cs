@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace FancySaiEditor.Nodes.ActionNodes
 {
-    [Node(MenuName = "Invoker cast", Type = NodeType.ACTION_CAST, AllowedTypes = new NodeType[] { NodeType.GENERAL_SPELL, NodeType.EVENT, NodeType.TARGET })]
+    [Node(MenuName = "Invoker cast", Type = NodeType.ACTION_CAST, AllowedTypes = new NodeType[] { NodeType.PARAM_SPELL, NodeType.EVENT, NodeType.TARGET })]
     class InvokerCast : ActionNode
     {
         public InvokerCast()
@@ -19,7 +19,7 @@ namespace FancySaiEditor.Nodes.ActionNodes
             //Update text
             NodeName.Content = "Invoker cast";
 
-            AddParam<GeneralNodes.Spell>(ParamId.PARAM_1, NodeType.GENERAL_SPELL, "Spell");
+            AddParam<ParamNodes.Spell>(ParamId.PARAM_1, NodeType.PARAM_SPELL, "Spell");
             AddParam<CastFlags>(ParamId.PARAM_2, "Flags:");
             AddParam(ParamId.PARAM_3, "Triggered flags:"); //TODO: Enum for this
         }

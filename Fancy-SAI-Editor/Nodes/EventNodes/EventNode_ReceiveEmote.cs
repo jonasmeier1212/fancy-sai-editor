@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_RESPAWN
     /// 
     /// </summary>
-    [Node(MenuName = "Receive emote", Type = NodeType.EVENT_RECEIVE_EMOTE, AllowedTypes = new NodeType[] { NodeType.GENERAL_EMOTE, NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Receive emote", Type = NodeType.EVENT_RECEIVE_EMOTE, AllowedTypes = new NodeType[] { NodeType.PARAM_EMOTE, NodeType.PARAM_NPC, NodeType.ACTION })]
     public class ReceiveEmote : EventNode
     {
         /// <summary>
@@ -24,7 +24,7 @@ namespace FancySaiEditor.Nodes.EventNodes
             //Update text
             NodeName.Content = "Receive emote";
 
-            AddParam<GeneralNodes.Emote>(ParamId.PARAM_1, NodeType.GENERAL_EMOTE, "Emote");
+            AddParam<ParamNodes.Emote>(ParamId.PARAM_1, NodeType.PARAM_EMOTE, "Emote");
             AddParam(ParamId.PARAM_2, "Cooldown min:");
             AddParam(ParamId.PARAM_3, "Cooldown max:");
             AddParam(ParamId.PARAM_4, "Condition:"); //???

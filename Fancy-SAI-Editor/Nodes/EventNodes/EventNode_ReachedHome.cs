@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_REACHED_HOME
     /// 
     /// </summary>
-    [Node(MenuName = "Reached home", Type = NodeType.EVENT_REACHED_HOME, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Reached home", Type = NodeType.EVENT_REACHED_HOME, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class ReachedHome : EventNode
     {
         /// <summary>

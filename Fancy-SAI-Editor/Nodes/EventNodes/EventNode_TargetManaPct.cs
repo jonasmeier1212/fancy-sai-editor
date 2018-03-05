@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_TARGET_MANA_PCT
     /// 
     /// </summary>
-    [Node(MenuName = "Target mana percentage", Type = NodeType.EVENT_TARGET_MANA_PCT, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Target mana percentage", Type = NodeType.EVENT_TARGET_MANA_PCT, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class TargetManaPct : EventNode
     {
         /// <summary>

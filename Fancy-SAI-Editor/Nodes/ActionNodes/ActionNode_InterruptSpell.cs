@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace FancySaiEditor.Nodes.ActionNodes
 {
-    [Node(MenuName = "Interrupt spell", Type = NodeType.ACTION_INTERRUPT_SPELL, AllowedTypes = new NodeType[] { NodeType.GENERAL_SPELL, NodeType.EVENT, NodeType.TARGET })]
+    [Node(MenuName = "Interrupt spell", Type = NodeType.ACTION_INTERRUPT_SPELL, AllowedTypes = new NodeType[] { NodeType.PARAM_SPELL, NodeType.EVENT, NodeType.TARGET })]
     class InterruptSpell : ActionNode
     {
         public InterruptSpell()
@@ -20,7 +20,7 @@ namespace FancySaiEditor.Nodes.ActionNodes
             NodeName.Content = "Interrupt spell";
 
             AddParam<YesNo>(ParamId.PARAM_1, "With delay:");
-            AddParam<GeneralNodes.Spell>(ParamId.PARAM_2, NodeType.GENERAL_SPELL, "Spell");
+            AddParam<ParamNodes.Spell>(ParamId.PARAM_2, NodeType.PARAM_SPELL, "Spell");
             AddParam<YesNo>(ParamId.PARAM_3, "Instant:");
         }
 

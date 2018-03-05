@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace FancySaiEditor.Nodes.ActionNodes
 {
-    [Node(MenuName = "Add Quest", Type = NodeType.ACTION_ADD_QUEST, AllowedTypes = new NodeType[] { NodeType.GENERAL_QUEST, NodeType.EVENT, NodeType.TARGET })]
+    [Node(MenuName = "Add Quest", Type = NodeType.ACTION_ADD_QUEST, AllowedTypes = new NodeType[] { NodeType.PARAM_QUEST, NodeType.EVENT, NodeType.TARGET })]
     class AddQuest : ActionNode
     {
         public AddQuest()
@@ -17,7 +17,7 @@ namespace FancySaiEditor.Nodes.ActionNodes
             //Update text
             NodeName.Content = "Add Quest";
 
-            AddParam<GeneralNodes.Quest>(ParamId.PARAM_1, NodeType.GENERAL_QUEST, "Quest");
+            AddParam<ParamNodes.Quest>(ParamId.PARAM_1, NodeType.PARAM_QUEST, "Quest");
         }
 
         public override Node Clone()

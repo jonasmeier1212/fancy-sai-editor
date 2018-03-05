@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace FancySaiEditor.Nodes.ActionNodes
 {
-    [Node(MenuName = "Simple talk", Type = NodeType.ACTION_SIMPLE_TALK, AllowedTypes = new NodeType[] { NodeType.GENERAL_TEXT, NodeType.EVENT, NodeType.TARGET })]
+    [Node(MenuName = "Simple talk", Type = NodeType.ACTION_SIMPLE_TALK, AllowedTypes = new NodeType[] { NodeType.PARAM_TEXT, NodeType.EVENT, NodeType.TARGET })]
     class SimpleTalk : ActionNode
     {
         public SimpleTalk()
@@ -19,7 +19,7 @@ namespace FancySaiEditor.Nodes.ActionNodes
             //Update text
             NodeName.Content = "Simple talk";
 
-            AddParam<GeneralNodes.Text>(ParamId.PARAM_1, NodeType.GENERAL_TEXT, "Text:");
+            AddParam<ParamNodes.Text>(ParamId.PARAM_1, NodeType.PARAM_TEXT, "Text:");
         }
 
         public override Node Clone()

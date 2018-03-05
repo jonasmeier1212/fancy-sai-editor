@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_WAYPOINT_REACHED
     /// SMART_EVENT_WAYPOINT_START
     /// </summary>
-    [Node(MenuName = "Waypoint start", Type = NodeType.EVENT_WAYPOINT_START, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Waypoint start", Type = NodeType.EVENT_WAYPOINT_START, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class WaypointStart : EventNode
     {
         /// <summary>
@@ -25,7 +25,7 @@ namespace FancySaiEditor.Nodes.EventNodes
             NodeName.Content = "Waypoint start";
 
             AddParam(ParamId.PARAM_1, "Point Id:");
-            AddParam(ParamId.PARAM_2, "Path Id:"); // TODO: Replace with general node
+            AddParam(ParamId.PARAM_2, "Path Id:"); // TODO: Replace with param node
         }
 
         /// <summary>

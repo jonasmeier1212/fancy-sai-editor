@@ -13,7 +13,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     {
         public EventNode()
         {
-            AddInputConnector("NPC", NodeType.GENERAL_NPC);
+            AddInputConnector("NPC", NodeType.PARAM_NPC);
             AddOutputConnector("Action", NodeType.ACTION, int.MaxValue);
         }
 

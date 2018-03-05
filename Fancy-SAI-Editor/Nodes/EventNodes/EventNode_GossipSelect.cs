@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_GOSSIP_HELLO
     ///
     /// </summary>
-    [Node(MenuName = "Gossip select", Type = NodeType.EVENT_GOSSIP_SELECT, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Gossip select", Type = NodeType.EVENT_GOSSIP_SELECT, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class GossipSelect : EventNode
     {
         /// <summary>

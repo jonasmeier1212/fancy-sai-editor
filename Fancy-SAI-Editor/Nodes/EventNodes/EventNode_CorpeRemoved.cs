@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_AGGRO
     ///
     /// </summary>
-    [Node(MenuName = "Corpse removed", Type = NodeType.EVENT_CORPSE_REMOVED, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Corpse removed", Type = NodeType.EVENT_CORPSE_REMOVED, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class CorpseRemoved : EventNode
     {
         /// <summary>

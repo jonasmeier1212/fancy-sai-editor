@@ -9,7 +9,7 @@ using System.Data;
 using System.Windows.Media;
 using System.Windows.Input;
 
-namespace FancySaiEditor.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.ParamNodes
 {
     /// <summary>
     /// Node for selecting a NPC.
@@ -17,8 +17,8 @@ namespace FancySaiEditor.Nodes.GeneralNodes
     /// Output:
     ///     - NPC for event node for example.
     /// </summary>
-    [Node(MenuName = "NPC", Type = NodeType.GENERAL_NPC)]
-    public class Npc : GeneralNode
+    [Node(MenuName = "NPC", Type = NodeType.PARAM_NPC)]
+    public class Npc : ParamNode
     {
         /// <summary>
         /// Standard constructor.
@@ -28,12 +28,12 @@ namespace FancySaiEditor.Nodes.GeneralNodes
         {
             NodeData = new NpcData();
 
-            Type = NodeType.GENERAL_NPC;
+            Type = NodeType.PARAM_NPC;
 
             //Update text
             NodeName.Content = "NPC";
 
-            AddDatabaseSelectionFrame(new DataSelectionPossibility("Name", "name"));
+            AddDatabaseSelection();
         }
 
         /// <summary>
@@ -61,35 +61,10 @@ namespace FancySaiEditor.Nodes.GeneralNodes
             }
         }
 
-        public bool IsSAIOwner()
-        {
-            //TODO: This doesn't work with every event node! Some event nodes have more than one connector for npcs
-
-            bool correct = true;
-            var dirConEventNodes = GetDirectlyConnectedNodes(NodeType.EVENT, NodeConnectorType.OUTPUT);
-            
-            if (dirConEventNodes.Count == 0)
-                return false;
-
-            return correct;
-        }
-
         public async override void SetParamValue(string value)
         {
-            await Database.SelectMySqlData("entry", value, NodeData);
-            SelectData(NodeData);
-        }
-
-        public string GetNpcName()
-        {
-            try
-            {
-                return NodeData.Rows[0].ItemArray[1].ToString();
-            }
-            catch (IndexOutOfRangeException)
-            {
-                throw new ExportException("Not all NPC Nodes has a selected NPC!");
-            }
+            //await Database.SelectMySqlData("entry", value, NodeData);
+            //SelectData(NodeData);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_RECEIVE_HEAL
     ///
     /// </summary>
-    [Node(MenuName = "Receive heal", Type = NodeType.EVENT_RECEIVE_HEAL, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Receive heal", Type = NodeType.EVENT_RECEIVE_HEAL, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class ReceiveHeal : EventNode
     {
         /// <summary>

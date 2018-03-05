@@ -9,21 +9,21 @@ using System.Data;
 using System.Windows.Media;
 using System.Windows.Input;
 
-namespace FancySaiEditor.Nodes.GeneralNodes
+namespace FancySaiEditor.Nodes.ParamNodes
 {
-    [Node(MenuName = "Faction", Type = NodeType.GENERAL_FACTION)]
-    class Faction : GeneralNode
+    [Node(MenuName = "Faction", Type = NodeType.PARAM_FACTION)]
+    class Faction : ParamNode
     {
         public Faction()
         {
             NodeData = new FactionData();
 
-            Type = NodeType.GENERAL_FACTION;
+            Type = NodeType.PARAM_FACTION;
 
             //Update text
             NodeName.Content = "Faction";
 
-            AddDatabaseSelectionFrame(new DataSelectionPossibility("Name:", "name"));
+            AddDatabaseSelection();
         }
 
         public override Node Clone()
@@ -51,8 +51,8 @@ namespace FancySaiEditor.Nodes.GeneralNodes
 
         public async override void SetParamValue(string value)
         {
-            await Database.SelectSqliteData("ID", value, NodeData);
-            SelectData(NodeData);
+            //await Database.SelectSqliteData("ID", value, NodeData);
+            //SelectData(NodeData);
         }
     }
 }

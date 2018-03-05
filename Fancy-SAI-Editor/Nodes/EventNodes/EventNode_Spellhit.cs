@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_SPELLHIT
     ///
     /// </summary>
-    [Node(MenuName = "Spellhit", Type = NodeType.EVENT_SPELLHIT, AllowedTypes = new NodeType[] { NodeType.GENERAL_SPELL, NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Spellhit", Type = NodeType.EVENT_SPELLHIT, AllowedTypes = new NodeType[] { NodeType.PARAM_SPELL, NodeType.PARAM_NPC, NodeType.ACTION })]
     public class Spellhit : EventNode
     {
         /// <summary>
@@ -25,7 +25,7 @@ namespace FancySaiEditor.Nodes.EventNodes
 
             //Update text
             NodeName.Content = "Spellhit";
-            AddParam<GeneralNodes.Spell>(ParamId.PARAM_1, NodeType.GENERAL_SPELL, "Spell");
+            AddParam<ParamNodes.Spell>(ParamId.PARAM_1, NodeType.PARAM_SPELL, "Spell");
         }
 
         /// <summary>

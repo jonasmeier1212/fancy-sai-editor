@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace FancySaiEditor.Nodes.ActionNodes
 {
-    [Node(MenuName = "Set Emote State", Type = NodeType.ACTION_SET_EMOTE_STATE, AllowedTypes = new NodeType[] {NodeType.GENERAL_EMOTE, NodeType.EVENT, NodeType.TARGET })]
+    [Node(MenuName = "Set Emote State", Type = NodeType.ACTION_SET_EMOTE_STATE, AllowedTypes = new NodeType[] {NodeType.PARAM_EMOTE, NodeType.EVENT, NodeType.TARGET })]
     class SetEmoteState : ActionNode
     {
         public SetEmoteState()
@@ -19,7 +19,7 @@ namespace FancySaiEditor.Nodes.ActionNodes
             //Update text
             NodeName.Content = "Set Emote State";
 
-            AddParam<GeneralNodes.Emote>(ParamId.PARAM_1, NodeType.GENERAL_EMOTE, "Emote");
+            AddParam<ParamNodes.Emote>(ParamId.PARAM_1, NodeType.PARAM_EMOTE, "Emote");
         }
 
         public override Node Clone()

@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_DISTANCE_CREATURE
     ///
     /// </summary>
-    [Node(MenuName = "Distance creature", Type = NodeType.EVENT_DISTANCE_CREATURE, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Distance creature", Type = NodeType.EVENT_DISTANCE_CREATURE, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class DistanceCreature : EventNode
     {
         /// <summary>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FancySaiEditor.Nodes.TargetNodes
 {
-    [Node(MenuName = "Creature distance", Type = NodeType.TARGET_CREATURE_DISTANCE, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Creature distance", Type = NodeType.TARGET_CREATURE_DISTANCE, AllowedTypes = new NodeType[] { NodeType.PARAM_NPC, NodeType.ACTION })]
     public class CreatureDistance : TargetNode
     {
         public CreatureDistance()
@@ -17,7 +17,7 @@ namespace FancySaiEditor.Nodes.TargetNodes
 
             NodeName.Content = "Creature distance";
 
-            AddParam<GeneralNodes.Npc>(ParamId.PARAM_1, NodeType.GENERAL_NPC, "NPC");
+            AddParam<ParamNodes.Npc>(ParamId.PARAM_1, NodeType.PARAM_NPC, "NPC");
             AddParam(ParamId.PARAM_2, "Max Dist:");
         }
 

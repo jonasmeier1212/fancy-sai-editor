@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_TEXT_OVER
     ///
     /// </summary>
-    [Node(MenuName = "Text over", Type = NodeType.EVENT_TEXT_OVER, AllowedTypes = new NodeType[] { NodeType.GENERAL_TEXT, NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Text over", Type = NodeType.EVENT_TEXT_OVER, AllowedTypes = new NodeType[] { NodeType.PARAM_TEXT, NodeType.PARAM_NPC, NodeType.ACTION })]
     public class TextOver : EventNode
     {
         /// <summary>
@@ -26,8 +26,8 @@ namespace FancySaiEditor.Nodes.EventNodes
             //Update text
             NodeName.Content = "Text over";
 
-            AddParam<GeneralNodes.Text>(ParamId.PARAM_1, NodeType.GENERAL_TEXT, "Text");
-            AddParam<GeneralNodes.Npc>(ParamId.PARAM_2, NodeType.GENERAL_NPC, "NPC");
+            AddParam<ParamNodes.Text>(ParamId.PARAM_1, NodeType.PARAM_TEXT, "Text");
+            AddParam<ParamNodes.Npc>(ParamId.PARAM_2, NodeType.PARAM_NPC, "NPC");
         }
 
         /// <summary>

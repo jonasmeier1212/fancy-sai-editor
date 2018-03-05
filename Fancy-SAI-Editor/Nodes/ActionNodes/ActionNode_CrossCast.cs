@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace FancySaiEditor.Nodes.ActionNodes
 {
-    [Node(MenuName = "Cross cast", Type = NodeType.ACTION_CROSS_CAST, AllowedTypes = new NodeType[] { NodeType.GENERAL_SPELL, NodeType.EVENT, NodeType.TARGET })]
+    [Node(MenuName = "Cross cast", Type = NodeType.ACTION_CROSS_CAST, AllowedTypes = new NodeType[] { NodeType.PARAM_SPELL, NodeType.EVENT, NodeType.TARGET })]
     class CrossCast : ActionNode
     {
         public CrossCast()
@@ -19,7 +19,7 @@ namespace FancySaiEditor.Nodes.ActionNodes
             //Update text
             NodeName.Content = "Cross cast";
 
-            AddParam<GeneralNodes.Spell>(ParamId.PARAM_1, NodeType.GENERAL_SPELL, "Spell");
+            AddParam<ParamNodes.Spell>(ParamId.PARAM_1, NodeType.PARAM_SPELL, "Spell");
             AddParam<CastFlags>(ParamId.PARAM_2, "Flags:");
             //AddParam<TargetNodes.TargetNode>(ParamId.PARAM_3, NodeType.TARGET, "Target"); //TODO: Implement something to make this work
         }

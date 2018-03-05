@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_COUNTER_SET
     ///
     /// </summary>
-    [Node(MenuName = "Counter set", Type = NodeType.EVENT_COUNTER_SET, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Counter set", Type = NodeType.EVENT_COUNTER_SET, AllowedTypes = new NodeType[] { NodeType.PARAM_NPC, NodeType.ACTION })]
     public class CounterSet : EventNode
     {
         /// <summary>
@@ -20,8 +20,6 @@ namespace FancySaiEditor.Nodes.EventNodes
         public CounterSet()
         {
             Type = NodeType.EVENT_COUNTER_SET;
-
-            
 
             //Update text
             NodeName.Content = "Counter set";

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FancySaiEditor.Nodes.GeneralNodes;
+using FancySaiEditor.Nodes.ParamNodes;
 using System.Windows;
 using System.IO;
 
@@ -16,19 +16,19 @@ namespace FancySaiEditor
             string update = "";
 
             //First find the NPCs which should be affected
-            List<Npc> npcNodes = _tree.GetSAIOwnerNodes();
+            List<Nodes.AIOwnerNodes.AIOwner> aiOwnerNodes = _tree.GetSAIOwnerNodes();
             
             try
             {
-                foreach(Npc npcNode in npcNodes)
+                foreach(Nodes.AIOwnerNodes.AIOwner aiOwnerNode in aiOwnerNodes)
                 {
-                    update += "-- " + npcNode.GetNpcName() + " SAI" + Environment.NewLine;
-                    update += "SET @NPC := " + npcNode.GetParamValue() + ";" + Environment.NewLine;
+                    update += "-- " + aiOwnerNode.GetName() + " SAI" + Environment.NewLine;
+                    update += "SET @NPC := " + aiOwnerNode.GetName() + ";" + Environment.NewLine;
                     update += "UPDATE `creature_template` SET `AIName`='SmartAI' WHERE `entry`=@NPC;" + Environment.NewLine;
                     update += "DELETE FROM `smart_scripts` WHERE `entryorguid`=@NPC AND `source_type`=0;" + Environment.NewLine;
                     update += "INSERT INTO `smart_scripts` (`entryorguid`,`source_type`,`id`,`link`,`event_type`,`event_phase_mask`,`event_chance`,`event_flags`,`event_param1`,`event_param2`,`event_param3`,`event_param4`,`action_type`,`action_param1`,`action_param2`,`action_param3`,`action_param4`,`action_param5`,`action_param6`,`target_type`,`target_param1`,`target_param2`,`target_param3`,`target_x`,`target_y`,`target_z`,`target_o`,`comment`) VALUES" + Environment.NewLine;
                     int id = 0;
-                    foreach (Nodes.EventNodes.EventNode eventNode in npcNode.GetDirectlyConnectedNodes(NodeType.EVENT, NodeConnectorType.OUTPUT))
+                    foreach (Nodes.EventNodes.EventNode eventNode in aiOwnerNode.GetDirectlyConnectedNodes(NodeType.EVENT, NodeConnectorType.OUTPUT))
                     {
                         foreach(Nodes.ActionNodes.ActionNode actionNode in eventNode.GetDirectlyConnectedNodes(NodeType.ACTION, NodeConnectorType.OUTPUT))
                         {

@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_GAME_EVENT_START
     /// SMART_EVENT_GAME_EVENT_END
     /// </summary>
-    [Node(MenuName = "Game event start", Type = NodeType.EVENT_GAME_EVENT_START, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Game event start", Type = NodeType.EVENT_GAME_EVENT_START, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class GameEventStart : EventNode
     {
         /// <summary>
@@ -24,7 +24,7 @@ namespace FancySaiEditor.Nodes.EventNodes
             //Update text
             NodeName.Content = "Game event start";
 
-            AddParam(ParamId.PARAM_1, "Game event:"); //TODO: Make general node!
+            AddParam(ParamId.PARAM_1, "Game event:"); //TODO: Make param node!
         }
 
         /// <summary>

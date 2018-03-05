@@ -26,7 +26,7 @@ namespace FancySaiEditor
 
         private void TestConnection_Click(object sender, RoutedEventArgs e)
         {
-            Database.CheckMysqlConnection(serverName.Text, port.Text, database.Text, username.Text, password.Password);
+            Database.DatabaseConnection.CheckMysqlConnection(serverName.Text, port.Text, database.Text, username.Text, password.Password);
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)

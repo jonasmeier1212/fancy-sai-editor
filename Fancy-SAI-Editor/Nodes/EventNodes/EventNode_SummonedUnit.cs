@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_SUMMONED_UNIT
     /// 
     /// </summary>
-    [Node(MenuName = "Summoned Unit", Type = NodeType.EVENT_SUMMONED_UNIT, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Summoned Unit", Type = NodeType.EVENT_SUMMONED_UNIT, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class SummonedUnit : EventNode
     {
         /// <summary>
@@ -25,7 +25,7 @@ namespace FancySaiEditor.Nodes.EventNodes
 
             //Update text
             NodeName.Content = "Summoned Unit";
-            AddParam<GeneralNodes.Npc>(ParamId.PARAM_1, NodeType.GENERAL_NPC, "Creature");
+            AddParam<ParamNodes.Npc>(ParamId.PARAM_1, NodeType.PARAM_NPC, "Creature");
             AddParam(ParamId.PARAM_2, "Cooldown min");
             AddParam(ParamId.PARAM_3, "Cooldown max");
         }

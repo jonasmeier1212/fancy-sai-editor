@@ -10,7 +10,7 @@ namespace FancySaiEditor.Nodes.EventNodes
     /// SMART_EVENT_VICTIM_CASTING
     /// 
     /// </summary>
-    [Node(MenuName = "Victim casting", Type = NodeType.EVENT_VICTIM_CASTING, AllowedTypes = new NodeType[] { NodeType.GENERAL_NPC, NodeType.ACTION })]
+    [Node(MenuName = "Victim casting", Type = NodeType.EVENT_VICTIM_CASTING, AllowedTypes = new NodeType[] { NodeType.AI_OWNER, NodeType.ACTION })]
     public class VictimCasting : EventNode
     {
         /// <summary>
@@ -26,7 +26,7 @@ namespace FancySaiEditor.Nodes.EventNodes
 
             AddParam(ParamId.PARAM_1, "Repeat min");
             AddParam(ParamId.PARAM_2, "Repeat max");
-            AddParam<GeneralNodes.Spell>(ParamId.PARAM_3, NodeType.GENERAL_SPELL, "Spell");
+            AddParam<ParamNodes.Spell>(ParamId.PARAM_3, NodeType.PARAM_SPELL, "Spell");
         }
 
         /// <summary>

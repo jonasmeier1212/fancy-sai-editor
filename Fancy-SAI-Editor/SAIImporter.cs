@@ -13,14 +13,14 @@ namespace FancySaiEditor
     {
         public static async void ImportSAI(int entry)
         {
-            DataTable data = await Database.SelectMysqlData("smart_scripts", "entryorguid", entry.ToString());
+            DataTable data = await Database.DatabaseConnection.SelectMysqlData("smart_scripts", "entryorguid", entry.ToString());
             if (data.Rows.Count == 0)
             {
                 MessageBox.Show($"No SAI found for entry: {entry}");
                 return;
             }
 
-            Node saiOwnerNode = new Nodes.GeneralNodes.Npc();
+            Node saiOwnerNode = new Nodes.ParamNodes.Npc();
             if (saiOwnerNode == null)
             {
                 MessageBox.Show("This Npc is not a valid SAI owner!");
@@ -34,7 +34,7 @@ namespace FancySaiEditor
             try
             {
                 NodeManager.Instance.AddNode(saiOwnerNode);
-                (saiOwnerNode as Nodes.GeneralNodes.GeneralNode).SetParamValue(entry.ToString());
+                (saiOwnerNode as Nodes.ParamNodes.ParamNode).SetParamValue(entry.ToString());
                 foreach (DataRow row in data.Rows)
                 {
                     Node eventNode = null;

@@ -17,6 +17,12 @@ namespace FancySaiEditor
     {
         NONE,
 
+        AI_OWNER,
+        AI_OWNER_NPC,
+        AI_OWNER_GAMEOBJECT,
+        AI_OWNER_AREATRIGGER,
+        AI_OWNER_END,
+
         /// <summary>
         /// Includes all event node types
         /// </summary>
@@ -239,20 +245,20 @@ namespace FancySaiEditor
         ACTION_MAX,
 
         /// <summary>
-        /// Includes all general node types
+        /// Includes all param node types
         /// </summary>
-        GENERAL,
-        GENERAL_TEXT,
-        GENERAL_QUEST,
-        GENERAL_NPC,
-        GENERAL_NPC_MODEL,
-        GENERAL_SPELL,
-        GENERAL_FACTION,
-        GENERAL_EMOTE,
-        GENERAL_SOUND,
-        GENERAL_GAMEOBJECT,
-        GENERAL_GOSSIP_MENU,
-        GENERAL_MAX,
+        PARAM,
+        PARAM_TEXT,
+        PARAM_QUEST,
+        PARAM_NPC,
+        PARAM_NPC_MODEL,
+        PARAM_SPELL,
+        PARAM_FACTION,
+        PARAM_EMOTE,
+        PARAM_SOUND,
+        PARAM_GAMEOBJECT,
+        PARAM_GOSSIP_MENU,
+        PARAM_MAX,
 
         /// <summary>
         /// Includes all target node types
@@ -336,7 +342,7 @@ namespace FancySaiEditor
         UNIT_NPC_FLAG_TRAINER_CLASS = 0x00000020,       // 100%
         UNIT_NPC_FLAG_TRAINER_PROFESSION = 0x00000040,       // 100%
         UNIT_NPC_FLAG_VENDOR = 0x00000080,       // 100%
-        UNIT_NPC_FLAG_VENDOR_AMMO = 0x00000100,       // 100%, general goods vendor
+        UNIT_NPC_FLAG_VENDOR_AMMO = 0x00000100,       // 100%, param goods vendor
         UNIT_NPC_FLAG_VENDOR_FOOD = 0x00000200,       // 100%
         UNIT_NPC_FLAG_VENDOR_POISON = 0x00000400,       // guessed
         UNIT_NPC_FLAG_VENDOR_REAGENT = 0x00000800,       // 100%

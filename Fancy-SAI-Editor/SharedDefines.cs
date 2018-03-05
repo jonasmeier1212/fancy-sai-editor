@@ -299,6 +299,7 @@ namespace FancySaiEditor
         NONE,
         INPUT,
         OUTPUT,
+        PARAM,
     }
 
     public enum ParamId

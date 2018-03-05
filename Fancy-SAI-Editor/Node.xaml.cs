@@ -289,7 +289,7 @@ namespace FancySaiEditor
         /// </summary>
         public void AddParam<T>(ParamId id, NodeType type, string description) where T : Nodes.GeneralNodes.GeneralNode
         {
-            AddInputConnector(description, type, 1, Database.GetNodeParamTooltip(this.Type, id));
+            AddConnector(NodeConnectorType.PARAM, description, type, 1, Database.GetNodeParamTooltip(type, id));
             paramStore.Add(id, new NodeParam(
                 () =>
                 {
@@ -374,6 +374,8 @@ namespace FancySaiEditor
                 index = (from NodeConnector in connectorStore where NodeConnector.Type == NodeConnectorType.INPUT select NodeConnector).Count();
             else if (type == NodeConnectorType.OUTPUT)
                 index = (from NodeConnector in connectorStore where NodeConnector.Type == NodeConnectorType.OUTPUT select NodeConnector).Count();
+            else
+                index = 0; //This must be a param node connector. Eventually a index system is also needed here
 
             NodeConnector newConnector = new NodeConnector(label, type, this, allowedNode, index, nmbAllowedConnections);
 
@@ -387,8 +389,10 @@ namespace FancySaiEditor
 
             if (type == NodeConnectorType.INPUT)
                 inputNodesPanel.Children.Add(newConnector);
-            else
+            else if (type == NodeConnectorType.OUTPUT)
                 outputNodesPanel.Children.Add(newConnector);
+            else if (type == NodeConnectorType.PARAM)
+                paramNodesPanel.Children.Add(newConnector);
             connectorStore.Add(newConnector);
         }
         #endregion

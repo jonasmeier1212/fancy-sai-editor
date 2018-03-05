@@ -54,9 +54,18 @@ namespace FancySaiEditor
 
             label.Content = _label;
 
-            //If it's an input connector the ellipse must be first element respectively the element on the left
-            ellipse.SetValue(Grid.ColumnProperty, type == NodeConnectorType.INPUT ? 0 : 1);
-            label.SetValue(Grid.ColumnProperty, type == NodeConnectorType.INPUT ? 1 : 0);
+            if (type == NodeConnectorType.PARAM)
+            {
+                HorizontalAlignment = HorizontalAlignment.Center;
+                label.HorizontalAlignment = HorizontalAlignment.Center;
+                Grid.SetRow(ellipse, 1);
+            }
+            else
+            {
+                //If it's an input connector the ellipse must be first element respectively the element on the left
+                ellipse.SetValue(Grid.ColumnProperty, type == NodeConnectorType.INPUT ? 0 : 1);
+                label.SetValue(Grid.ColumnProperty, type == NodeConnectorType.INPUT ? 1 : 0);
+            }
 
             connectedNodeConnectors = new List<NodeConnector>();
         }

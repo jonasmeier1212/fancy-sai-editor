@@ -10,7 +10,7 @@
         <Border Background="#FF2D2D2D" BorderBrush="Black" BorderThickness="2" CornerRadius="15"  MouseMove="OnMouseMove" MouseLeftButtonDown="OnLeftMouseDown" MouseLeftButtonUp="OnLeftMouseUp">
             <StackPanel>
                 <Label x:Name="NodeName" HorizontalAlignment="Center" Foreground="White" Background="{x:Null}" FontSize="15" FontWeight="Bold">Noname</Label>
-                <Grid Margin="0,5,0,10">
+                <Grid Margin="0,5,0,10" Height="auto">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -26,6 +26,9 @@
 
                     </StackPanel>
                 </Grid>
+                <StackPanel x:Name="paramNodesPanel">
+                    
+                </StackPanel>
             </StackPanel>
         </Border>
     </Border>

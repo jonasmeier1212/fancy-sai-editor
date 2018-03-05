@@ -10,6 +10,10 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Ellipse x:Name="ellipse" Width="12" Height="12" Margin="5" VerticalAlignment="Center" StrokeThickness="2" MouseMove="HandleDragInitiation" MouseEnter="HandleMouseEnter" MouseLeave="HandleMouseLeave" Drop="HandleDrop" DragOver="HandleDragOver" MouseRightButtonDown="HandleRightClick" HorizontalAlignment="Left"/>
         <Label x:Name="label" Foreground="White"/>
     </Grid>

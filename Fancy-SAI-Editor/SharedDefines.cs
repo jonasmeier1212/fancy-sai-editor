@@ -237,11 +237,7 @@ namespace FancySaiEditor
         ACTION_LOAD_EQUIPMENT,    
         ACTION_TRIGGER_RANDOM_TIMED_EVENT,    
         ACTION_REMOVE_ALL_GAMEOBJECTS,
-        ACTION_STOP_MOTION,   
-
-        //Custom RG Actions
-        ACTION_SET_RESPAWN_TIME,     
-        ACTION_MOVE_HOME_POS,     
+        ACTION_STOP_MOTION,
         ACTION_MAX,
 
         /// <summary>
